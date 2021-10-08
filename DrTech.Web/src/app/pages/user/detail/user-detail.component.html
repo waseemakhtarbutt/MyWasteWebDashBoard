@@ -1,0 +1,149 @@
+<style>
+  .verticalLine {
+    border-right: thin solid silver;
+    min-height: 400px;
+  }
+
+  .vertLine {
+    border-right: thin solid silver;
+    min-height: 8px;
+    width: 1px;
+  }
+
+  .trBorder {
+    border-bottom: thin solid silver;
+    margin-top: 15px;
+    width: 1px;
+  }
+
+  .margnBottom {
+    margin-bottom: 5px;
+  }
+
+  .top-buffer {
+    margin-top: 20px;
+  }
+</style>
+
+<nb-card style="height:100%;">
+  <nb-card-header style="background-color:transparent !important; color: black !important; height: 10px;">
+    User Profile
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+
+          <div class="col-md-3 verticalLine">
+
+            <div class="row">
+              <div class="col-md-12 trBorder">
+                <img style="border-radius: 50%; margin-left: 40px; width:150px; height:150px" class="rounded-circle"
+                  src="{{_userModel.fileName}}" />
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-12 trBorder">
+                <p style="text-align: center; margin-bottom: 10px;"> <strong>Zero Waste Challenge</strong> </p>
+              </div>
+            </div>
+           
+          
+           
+            <div class="row">
+              <div class="col-md-6 trBorder "><img src="assets/Icons/Report.png">&nbsp;<strong>Dry Waste:</strong></div>
+              <div class="col-md-6 trBorder ">
+                <p style="float: right;">{{_userModel.recycleCount}}</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-9">
+            <div class="row" style="margin-top: 9px;">
+              <div class="col-md-12">
+               <h2><strong>{{_userModel.fullName}}</strong></h2>
+              </div>
+            </div>
+            <div class="row top-buffer">
+              <div class="col-md-4 vertLine"><strong>Email</strong> &nbsp;&nbsp;&nbsp;
+                {{_userModel.email}}</div>
+              <div class="col-md-4 vertLine"><strong>Phone</strong> &nbsp;&nbsp;&nbsp;
+                {{_userModel.phone}}</div>
+              <div class="col-md-4"><strong>Address</strong> &nbsp;&nbsp;&nbsp;
+                {{_userModel.address}}</div>
+            </div>
+            <div class="row top-buffer">
+              <div class="col-md-2"><img src="assets/Icons/Reduce.png">&nbsp; <strong>Green Credits</strong> </div>
+              <div class="col-md-10">
+                <p style="color: #8cc63e !important"> <b><i>{{_userModel.totalGP}}</i> </b> </p>
+              </div>
+
+
+            </div>
+            <div class="row" style="margin-top: 36px">
+              <div class="col-md-12 trBorder">
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 trBorder">
+                <p style="margin-bottom: 10px;"><strong>Other Info</strong></p>
+              </div>
+            </div>
+            <div class="row top-buffer">
+              <div class="col-md-2 ">
+                Status
+              </div>
+              <div class="col-md-10 ">
+                <span class="label label-success user-status-label"
+                  [ngClass]="{'basic':!isRegistered, 'registered':isRegistered}">{{_userModel.userType}}</span>
+              </div>
+            </div>
+            <div class="row top-buffer">
+              <div class="col-md-2 ">
+                Member Since
+              </div>
+              <div class="col-md-10 ">
+                {{_userModel.memberSince}}
+              </div>
+            </div>
+            <div class="row" style="margin-top: 31px;">
+              <div class="col-md-12 trBorder">
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 trBorder">
+                <strong>
+                  <p class="margnBottom">GPN Associations</p>
+                </strong>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <table class="table">
+                  <thead>
+                    <th>Type</th>
+                    <th>Name</th>
+                  </thead>
+
+                  <tbody>
+
+                    <tr *ngFor="let itemm of _associationDTO">
+                      <td>{{itemm.type}}</td>
+                      <td>{{itemm.name}} </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>

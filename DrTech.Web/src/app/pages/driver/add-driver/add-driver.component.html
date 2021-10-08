@@ -1,0 +1,211 @@
+<!-- <div class="heading">
+  <h3>Create an Instance for School </h3>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+
+    <nb-tabset>
+      <nb-tab tabTitle="{{this._viewModel.title}}">
+        <nb-card>
+
+          <nb-card-body>
+
+            <form (ngSubmit)="onSubmit()" #schoolForm="ngForm">
+
+              <div class="image-location">
+                <nb-user [picture]="_viewModel.fileName" [name]="_viewModel.fullName" class=""></nb-user>
+              </div>
+              <div class="row ">
+                <div class="form-group col-md-4">
+                  <input type="text" readonly disabled
+                    [ngClass]=" image.valid || image.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Choose Profile Picture" [(ngModel)]="_viewModel.image" name="image"
+                    ng-required="_viewModel.id != 0" #image="ngModel">
+                  <div [hidden]="image.valid || image.pristine" class="alert alert-danger">
+                    Picture is required
+                  </div>
+
+                </div>
+                <div class="form-group col-md-2">
+                  <input type="file" #fileUpload placeholder="Choose Image" (click)="fileUpload.value = null"
+                    (change)="uploadImage($event)" style="display:none;">
+                  <button id="btnImage" type="button" class="btn btn-primary btn-xs"
+                    (click)="fileUpload.click()">Browse</button>
+                   
+                </div>
+                <div [hidden]="picSize" class="alert alert-danger">Size must be less then 2MB </div>
+                <div [hidden]="picType" class="alert alert-danger"> Please select image file</div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-2">
+                  <input [pattern]="'^[a-zA-Z ]*$'" type="text"
+                    [ngClass]=" name.valid || name.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="First Name" [(ngModel)]="_viewModel.firstName" name="First Name" required
+                    #name="ngModel">
+                  <!-- <div [hidden]="name.valid || name.pristine"
+                         class="alert alert-danger">
+                      First name is required
+                    </div> -->
+
+                  <div *ngIf="name.errors?.required && name.touched" class="alert alert-danger">
+                    First name is required
+                  </div>
+
+                  <div *ngIf="name.errors?.pattern" class="alert alert-danger">
+
+                    Special character are not allowed
+                  </div>
+
+
+                </div>
+                <div class="form-group col-md-2">
+                  <input [pattern]="'^[a-zA-Z ]*$'" type="text"
+                    [ngClass]=" branchName.valid || branchName.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Last Name" [(ngModel)]="_viewModel.lastName" name="Last Name" required
+                    #branchName="ngModel">
+                  <!-- <div [hidden]="branchName.valid || branchName.pristine"
+                      class="alert alert-danger">
+                   Last name is required
+                 </div> -->
+
+                  <div *ngIf="branchName.errors?.required && branchName.touched" class="alert alert-danger">
+                    Last name is required
+                  </div>
+
+                  <div *ngIf="branchName.errors?.pattern" class="alert alert-danger">
+
+                    Special character are not allowed
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-4">
+
+                  <input type="text" id="text"
+                    [ngClass]=" address.valid || address.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Address" [(ngModel)]="_viewModel.address" name="address" required #address="ngModel">
+                  <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+                    Address is required
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="row">
+                <div class="form-group col-md-5">
+                  <select class="form-control" [(ngModel)]='_viewModel.vehicleID' name="selectVehicle" required>
+                    <option [ngValue]="undefined" selected>Select</option>
+                    <option *ngFor="let vechicle of VechileList" [value]="vechicle.id">{{vechicle.vehicleName}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-5">
+                  <input type="text"
+                    [ngClass]=" regNumber.valid || regNumber.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Reg Number" [(ngModel)]="_viewModel.regNumber" name="regNumber" required
+                    #regNumber="ngModel">
+                  <div [hidden]="regNumber.valid || regNumber.pristine" class="alert alert-danger">
+                    Registration number is required
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-5">
+                  <input type="text"
+                    [ngClass]=" pin.valid || pin.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Password" [(ngModel)]="_viewModel.pin" name="pin" required
+                    #pin="ngModel">
+                  <div [hidden]="pin.valid || pin.pristine" class="alert alert-danger">
+                    pin number is required
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-5">
+                  <input type="text" pattern="[0][0-9]{10}" maxlength="11" numbersOnly (focusout)="ValidatePhoneNumber(_viewModel.phone)"
+                    [ngClass]=" phone.valid || phone.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Phone example: 03xx9383746" [(ngModel)]="_viewModel.phone" name="phone" required
+                    #phone="ngModel">
+                  <!-- <div [hidden]="phone.valid || phone.pristine"
+                    class="alert alert-danger">
+                 Phone is required
+               </div> -->
+                  <div *ngIf="phone.errors?.required && phone.touched" class="alert alert-danger">
+                    Phone is required
+                  </div>
+
+                  <div *ngIf="phone.errors?.pattern" class="alert alert-danger">
+
+                    Incorrect format Use e.g: 03xx8373787
+                  </div>
+                  <div *ngIf="isNumberExists" style="color: red">
+                    {{PhoneNumberEXistErrorMessage}}
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- <div class="row">
+              <div class="form-group col-md-4">
+                  <input type="password" required class="form-control" placeholder="PIN" [(ngModel)]="_viewModel.password" name="password" >
+              </div>
+          </div> -->
+            <!-- <div class="row">
+              <div class="form-group col-md-5">
+                <select class="form-control" [(ngModel)]='_viewModel.greenShopID' name="ddlGreenshop" required>
+                  <option [ngValue]="undefined" selected>Select</option>
+                  <option *ngFor="let greenshop of GreenShopList" [value]="greenshop.id">{{greenshop.name}}</option>
+                </select>
+              </div>
+            </div> -->
+              <div class="row">
+                <div class="form-group col-md-5">
+                  <input type="text" class="form-control" readonly placeholder="Licence required"
+                    [(ngModel)]="_viewModel.document" name="document">
+
+
+                </div>
+                <div class="form-group col-md-2">
+                  <input id="5" type="file" #file placeholder="Choose file" (click)="fileUpload.value = null"
+                    (change)="uploadFile($event)" style="display:none;">
+                  <button type="button" class="btn btn-primary btn-xs" (click)="file.click()">Browse</button>
+                </div>
+
+                <!-- <a href="#" (click)="DownloadFile(_viewModel.id)">Download</a> -->
+              </div>
+              <div *ngIf="showHide" class="row">
+                <div class="form-group col-md-5">
+                  <a target="_blank" style="color: #8cc63f" href="{{_viewModel.licienceFileName}}" download>View
+                    Licence</a>
+                </div>
+              </div>
+
+
+
+
+              <div class="row">
+                <div class="form-group col-md-4">
+
+                  <button type="submit" class="btn btn-success btn-sm"
+                    [disabled]="!schoolForm.form.valid"  [disabled]="isNumberExists" >Submit</button>
+                </div>
+
+              </div>
+
+
+            </form>
+          </nb-card-body>
+
+        </nb-card>
+      </nb-tab>
+    </nb-tabset>
+    <a class="bck" [routerLink]="['/pages/driver/list']">Back to Listing</a>
+  </div>
+
+
+</div>

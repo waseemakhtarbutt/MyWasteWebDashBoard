@@ -1,0 +1,80 @@
+<div class="row">
+    <div class ="col-md-12">
+       <div class="input-group col-md-3 search-text-box">
+           <input type="text" class="form-control rounded-right  search-text-box"  placeholder="Search"  name="search" (input)="searchGrid($event.target.value)">
+             <span class="icon-inside"><i class="fas fa-search"></i></span>
+         </div>
+     </div>
+
+</div>
+
+<nb-card  [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <nb-card-header class="headerText">
+    {{GridHeaderText}}  
+    <button type="button" class="btn btn-success btn-sm"
+    style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+    <br>
+  </nb-card-header> 
+<nb-card-body>
+  <kendo-grid [data]="gridView"
+              [pageSize]="pageSize"
+              [resizable]="true"
+              [pageable]="true"
+              [skip]="skip"
+              [sortable]="{
+                allowUnsort: allowUnsort,
+                mode: multiple ? 'multiple' : 'single'
+                }"
+              [sort]="sort"
+              (sortChange)="sortChange($event)"
+              (pageChange)="pageChange($event)" >
+
+    <kendo-grid-column field="name" title="School Name" width="*">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <nb-user [picture]="dataItem.fileName" [name]="dataItem.name"  size="small"></nb-user>
+          </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="branchName" title="Branch Name" width="*"></kendo-grid-column>
+    <kendo-grid-column field="contactPerson" title="Contact Person" width="*"></kendo-grid-column>
+    <kendo-grid-column field="phone" title="Contact Number" width="*"></kendo-grid-column>
+    <kendo-grid-column field="email" title="Email Address" width="*"></kendo-grid-column>
+
+
+    <kendo-grid-column field="Action" width="*" [sortable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+
+        <a routerLink="/pages/gpn/gpnrequest/addschool/{{dataItem.id}}-S" class="blue size13 " title="Approve" data-toggle="tooltip" data-placement="top"> <button nbButton outline  status="success" >Create Instance</button></a>&nbsp;
+        <a class="blue size13 " title="Delete" data-toggle="tooltip" data-placement="top"><button (click)="onComplaintAction(dialog,dataItem.id)" nbButton outline  status="success">x</button></a>&nbsp;
+      </ng-template>
+    </kendo-grid-column>
+  </kendo-grid>
+</nb-card-body>
+</nb-card>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="width: 400px; height:200px;">
+    <div class="row " style=" margin-top: 4rem;  text-align: center;">
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <label style="color:black"> Do you really want to delete this school? </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12 col-sm-12" style="margin-left: 7rem;">
+        <button nbButton status="success" style="width: 7rem;" (click)="deleteSchool(data,ref)">Yes</button>
+        <button nbButton status="warning" style="margin-left: 10px;  width: 7rem;" (click)="ref.close()"> No </button>
+      </div>
+    </div>
+    <div class=" form-group col-md-3 col-sm-3">
+
+
+    </div>
+
+
+
+  </nb-card>
+</ng-template>
+
+
+

@@ -1,0 +1,50 @@
+<nb-card>
+  <nb-card-header>
+    Refuse List
+  </nb-card-header>
+  <nb-card-body>
+    <input #search class="search form-control float-right col-md-4 mb-3" type="text" placeholder="Search..."
+      (keydown)="onSearch(search.value)">
+    <ng2-smart-table [settings]="settings" [source]="source" (custom)="onComplaintAction(dialog,$event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="width: 650px;">
+    <nb-card-header>Refuse Detail</nb-card-header>
+    <nb-card-body>
+      <div class="row ">
+        <div class="flex-centered col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="text-center">
+            <img class="rounded mx-auto d-block image-class-dailog" alt="..." src="{{data.fileName}}">
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+          <div class="form-group">
+            <label>Points</label>
+            <input nbInput maxlength="4" type="number" class="form-control" fullWidth [(ngModel)]="points" name="points"
+              id="points" placeholder="Points">
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+          <div class="form-group">
+            <label>Status</label>
+            <select nbInput class="form-control" [(ngModel)]="updatedStatus">
+              <option *ngFor="let status of statusList" [value]="status.value">{{status.description}}</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h1>hi this new row</h1>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="success" class="float-right" (click)="updateStatus(data, ref)">Update Status</button>
+      <button nbButton status="warning" class="mr-3 float-right" (click)="ref.close()"> Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

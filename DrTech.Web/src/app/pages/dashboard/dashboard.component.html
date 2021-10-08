@@ -1,0 +1,108 @@
+<nb-card style="background: none;-webkit-box-shadow: none;box-shadow: none;">
+  <nb-card-header>Dashboard</nb-card-header>
+  <nb-card-body style="padding-bottom:30px;overflow:hidden">
+    <div class="row" *ngIf="roleType == 1">
+      <div class="col-md-12">
+        <h1>Admin Dashboard</h1>
+      </div>
+    </div>
+    <div class="row" style="margin:0px;" *ngIf="roleType != 1">
+      <div class="col-md-12" style="padding: 10px 0px 10px 0px;">
+        <form aria-labelledby="title" #form="ngForm">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-control-group">
+                <nb-select [(ngModel)]="type"
+                           id="input-type"
+                           name="type"
+                           fullWidth
+                           type="number"
+                           placeholder="Select Business">
+                  <nb-option>ONe</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-control-group">
+                <nb-select [(ngModel)]="type"
+                           id="input-type"
+                           name="type"
+                           fullWidth
+                           type="number"
+                           placeholder="Select branch">
+                  <nb-option>ONe</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-control-group">
+                <nb-select [(ngModel)]="type"
+                           id="input-type"
+                           name="type"
+                           fullWidth
+                           type="number"
+                           placeholder="Select Request Approval">
+                  <nb-option>ONe</nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-control-group">
+                <nb-select [(ngModel)]="type"
+                           id="input-type"
+                           name="type"
+                           fullWidth
+                           type="number"
+                           placeholder="Select Users">
+                  <nb-option>ONe</nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+     
+
+        <div class="col-md-6" #chartsPie ></div>
+        <div class="col-md-6" #chartsBar ></div>
+      
+      <div class="col-md-9" style="height:400px;margin-top: 40px;">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"
+                      [iconUrl]="m.icon" [markerDraggable]="m.draggable">
+            <agm-info-window>
+              <div class="ml-2 float-right">
+                <span style="color:green;"><strong>Green Points : </strong> {{m.greenPoints}}</span>
+                <br />
+                <div>
+                  <br />
+                  <span>Idea :  {{m.description}}</span>
+                </div>
+              </div>
+            </agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
+      <div class="col-md-3" style="height:400px;margin-top: 40px;background-color:white;">
+        <div class="row">
+          <div class="col-md-12" style="text-align:center; padding-top:20px;">
+            <span>TOP USERS</span>
+          </div>
+          <hr class="col-md-12" />
+
+          <div class="col-md-12" style="padding-top:10px;">
+            <table style="width:100%;">
+              <tbody>
+                <tr *ngFor="let user of dashboardViewModel.topUsers">
+                  <th>{{user.name}}</th>
+                  <th style="float: right;">{{user.greenPoints}} GP <span style="height: 10px;width: 10px;background: green;display: block;border-radius: 10px;float: right;margin-top: 3px;margin-left: 7px;"></span></th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nb-card-body>
+</nb-card>

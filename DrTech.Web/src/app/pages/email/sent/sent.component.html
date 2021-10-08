@@ -1,0 +1,89 @@
+<div class="row">
+  <div class ="col-md-12">
+     <div class="input-group col-md-3 search-text-box">
+         <input type="text" class="form-control rounded-right  search-text-box"  placeholder="Search"  name="search" (input)="searchGrid($event.target.value)">
+           <span class="icon-inside"><i class="fas fa-search"></i></span>
+       </div>
+   </div>
+ </div>
+
+
+<nb-card  [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <nb-card-body>
+    <kendo-grid [data]="gridView"
+                [pageSize]="pageSize"
+                [pageable]="true"
+                [skip]="skip"
+                [height]="450"
+                [sortable]="{
+                  allowUnsort: allowUnsort,
+                  mode: multiple ? 'multiple' : 'single'
+                  }"
+                [sort]="sort"
+                (sortChange)="sortChange($event)"
+                [selectable]="true"
+                (pageChange)="pageChange($event)"
+
+                >
+                 <!-- (selectionChange)="onSelect($event)" -->
+      <!-- <kendo-grid-column field="fullName" title="Name" width="*">  </kendo-grid-column> -->
+      <kendo-grid-column field="emailTo" title="EmailTo" width="*"></kendo-grid-column>
+      <kendo-grid-column field="emailSubject" title="Subject" width="*"></kendo-grid-column>
+      <kendo-grid-column field="status" title="Status" width="*"></kendo-grid-column>
+      <kendo-grid-column field="Action" width="100%" [sortable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+
+          <a (click)="onComplaintAction(dialog,$event,dataItem.id)" class="blue size13 " title="Send email" data-toggle="tooltip" data-placement="top"> <button nbButton outline  status="success"><i  class="nb-skip-forward"></i></button></a>&nbsp;
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </nb-card-body>
+  </nb-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+
+  <nb-card style="width: 650px;">
+    <nb-card-header>Email Detail</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form-horizontal" action="/action_page.php">
+            <div class="form-group">
+              <label class="control-label col-sm-2">Email:</label>
+              <label class="control-label col-sm-10">{{data.emailTo}}</label>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2">Subject:</label>
+              <label class="control-label col-sm-10">{{data.emailSubject}}</label>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" style="display: block;float: left;">Body:</label>
+              <label class="control-label col-sm-10" [innerHtml]="emailBodyHTML"></label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="success" class="float-right" (click)="sendEmail(data, ref)">Re-Send</button>
+      <button nbButton status="warning" class="mr-3 float-right" (click)="ref.close()"> Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+	<!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+	<edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+		<!-- Diagram content (shape and connector positions) -->
+		<edmx:Diagrams>
+			<Diagram DiagramId="d638dd44a62745bdaccf90e2256de481" Name="Diagram1" ZoomLevel="101">
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Area" Width="1.5" PointX="0.75" PointY="57.375" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.BinDetail" Width="1.5" PointX="9" PointY="67" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Business" Width="1.5" PointX="7.5" PointY="89.125" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.BusinessGP_Log" Width="1.5" PointX="9.75" PointY="71.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.BusinessType" Width="1.5" PointX="0.875" PointY="0.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.BuyBin" Width="1.5" PointX="11.25" PointY="63.5" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.BuyBinComment" Width="1.5" PointX="16.5" PointY="64.5" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Child" Width="1.5" PointX="5.25" PointY="50.625" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Driver" Width="1.5" PointX="7.5" PointY="113.5" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.EmailNotification" Width="1.5" PointX="2.75" PointY="0.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.EmailNotificationEvent" Width="1.5" PointX="4.75" PointY="0.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Employment" Width="1.5" PointX="9.75" PointY="77.125" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.ExpoPushNotificationEvent" Width="1.5" PointX="4.75" PointY="4.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.GPLevel" Width="1.5" PointX="0.75" PointY="5.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.GreenShop" Width="1.5" PointX="5.25" PointY="114.25" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.LookupType" Width="1.5" PointX="8.25" PointY="96.375" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Member" Width="1.5" PointX="5.25" PointY="56.125" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.NGONeed" Width="1.5" PointX="5.25" PointY="62.625" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Organization" Width="1.5" PointX="10.5" PointY="92.875" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.OrgnizationGP_Log" Width="1.5" PointX="12.75" PointY="74.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.OrgType" Width="1.5" PointX="6.75" PointY="0.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Recycle" Width="1.5" PointX="17" PointY="44.875" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RecycleComment" Width="1.5" PointX="16.5" PointY="55.625" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Reduce" Width="1.5" PointX="8.25" PointY="51.875" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RefTable" Width="1.5" PointX="6.75" PointY="4.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Refuse" Width="1.5" PointX="8.25" PointY="61.875" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RegBusiness" Width="1.5" PointX="5.25" PointY="129.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RegiftComment" Width="1.5" PointX="13.5" PointY="62.25" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RegiftSubItem" Width="1.5" PointX="16.5" PointY="59.875" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RegOrganization" Width="1.5" PointX="5.25" PointY="133.5" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RegSchool" Width="1.5" PointX="5.25" PointY="126.125" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Replant" Width="1.5" PointX="14.25" PointY="56.5" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Report" Width="1.5" PointX="8.25" PointY="56.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Reuse" Width="1.5" PointX="5.25" PointY="109.375" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Role" Width="1.5" PointX="0.75" PointY="61.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.School" Width="1.5" PointX="10.5" PointY="85.125" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.SchoolGP_Log" Width="1.5" PointX="12.75" PointY="69" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.SchoolStaff" Width="1.5" PointX="15.75" PointY="70.375" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.SMSNotificationEvent" Width="1.5" PointX="8.75" PointY="0.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.SMSNotification" Width="1.5" PointX="2.75" PointY="8.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Status" Width="1.5" PointX="5" PointY="46.375" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.STG_Business" Width="1.5" PointX="8.75" PointY="4.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.STG_Organization" Width="1.5" PointX="4.75" PointY="8.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.STG_School" Width="1.5" PointX="10.75" PointY="0.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.UserType" Width="1.5" PointX="0.75" PointY="54.375" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.VehicleType" Width="1.5" PointX="5.25" PointY="118.875" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.WorkingHour" Width="1.5" PointX="10.75" PointY="7.75" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_BuyBin_BinDetails" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Business_LookupType" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Business_RegBusiness" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_BusinessGP_Log_Businesses" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Employment_Users" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_BusinessGP_Log_Employee" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_BuyBin_Status" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_BuyBinComments_BuyBin" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Child_School" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_SchoolGP_Log_Children" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Driver_GreenShop" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Driver_LookupType" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Driver_VehicleType" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_NGONeeds_LookupType_SubType" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_NGONeeds_NGONeeds_Type" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Organization_LookupType" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_RegiftSubItems_SubTypeID" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_RegiftSubItems_TypeID" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Members_Organization" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_OrgnizationGP_Log_Member" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_NGONeeds_Organization" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Organization_RegOrganization" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_OrganizationGP_Log_Organizations" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Recycle_Status" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_RecycleComments_Regift" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Reduce_Status" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Refuse_Status" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_School_RegisteredSchools" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Replant_Status" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Report_Status" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_SchoolGP_Log_Schools" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_SchoolStaff_School" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_SchoolGP_Log_SchoolStaff" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Regift" Width="1.5" PointX="15.25" PointY="76.375" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Regift_LookupType" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Regift_Regift" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Regift_Status" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_RegiftComments_Regift" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Regift_Organization" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_RegiftSubItems_Regift" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.OrderTracking" Width="1.5" PointX="11.25" PointY="44.375" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_OrderTracking_Status" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Company" Width="1.5" PointX="7.375" PointY="10.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.WetWasteSchedule" Width="1.5" PointX="9.625" PointY="33.25" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_WetWasteSchedule_Area" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_WetWasteSchedule_Company" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.ScheduleDetail" Width="1.5" PointX="11.875" PointY="33.875" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_ScheduleDetails_WetWasteSchedule" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.ContactU" Width="1.5" PointX="9.375" PointY="11.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.WasteType" Width="1.5" PointX="13.25" PointY="13.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RecycleSubItem" Width="1.5" PointX="16.125" PointY="9.375" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__RecycleSu__Waste__6F4A8121" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_RecycleSubItems_Recycle" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.RecycleSubItemsType" Width="1.5" PointX="18.375" PointY="12" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_RecycleSubItemsTypes_RecycleSubItems" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_RecycleSubItemsTypes_WasteType" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.City" Width="1.5" PointX="0.75" PointY="50.625" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK_Area_City" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.Ad" Width="1.5" PointX="15.625" PointY="29.625" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.AdType" Width="1.5" PointX="13.375" PointY="1.75" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.GCRedeem" Width="1.5" PointX="5.25" PointY="68.125" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.PaymentMethod" Width="1.5" PointX="8.25" PointY="49.25" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__Ad__AdTypeID__2B5F6B28" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__Ad__AdTypeID__2F2FFC0C" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__Ad__AreaID__2C538F61" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__Ad__AreaID__30242045" />
+				<EntityTypeShape EntityType="DrTech.Amal.Model.UserPayment" Width="1.5" PointX="10.5" PointY="56" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__BuyBin__UserPaym__3D7E1B63" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__UserPayme__Payme__39AD8A7F" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__AddWeight__AreaI__62CF9BA3" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__AddWeight__AreaI__63C3BFDC" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__AddWeight__AreaI__679450C0" />
+				<AssociationConnector Association="DrTech.Amal.Model.FK__AddWeight__AreaI__688874F9" />
+        <EntityTypeShape EntityType="DrTech.Amal.Model.User" Width="1.5" PointX="3" PointY="53.875" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK__Users__AreaID__2E70E1FD" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_Business_Users" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_BusinessGP_Log_Users" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_BuyBinComments_CreatedBy" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_BuyBinComments_UpdatedBy" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_GCRedeem_Users" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_GreenShop_CreatedBy" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_GreenShop_UpdatedBy" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_OrganizationGP_Log_Users" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_RecycleComments_CreatedBy" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_RecycleComments_UpdatedBy" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_Regift_Users" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_RegiftComments_CreatedBy" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_RegiftComments_UpdatedBy" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK_SchoolGP_Log_Users" />
+        <AssociationConnector Association="DrTech.Amal.Model.FK__UserPayme__UserI__2D7CBDC4" />
+			</Diagram>
+		</edmx:Diagrams>
+	</edmx:Designer>
+</edmx:Edmx>

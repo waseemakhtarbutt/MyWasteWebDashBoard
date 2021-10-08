@@ -1,0 +1,52 @@
+<nb-card>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="input-group col-md-3 search-text-box">
+            <input type="text" class="form-control rounded-right  search-text-box" placeholder="Search" name="search"
+              (input)="searchGrid($event.target.value)">
+            <span class="icon-inside"><i class="fas fa-search"></i></span>
+          </div>
+        </div>
+  
+      </div>
+      <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [skip]="skip" [sortable]="true"
+        [selectable]="true" (pageChange)="pageChange($event)">
+        <!-- <kendo-grid-column field="name" title="Name" width="200" [style]="{'font-weight' : 'bold'}"></kendo-grid-column> -->
+        <kendo-grid-column field="name" title="Name" width="150">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <nb-user [picture]="dataItem.filename" [name]="dataItem.name" size="small"></nb-user>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="level" title="Level" width="150"></kendo-grid-column>
+  
+        <kendo-grid-column field="level" title="Progress" width="*" filterable="false">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div *ngIf="dataItem.level == 'Captain' ">
+              <nb-progress-bar [value]="25" status="warning" id="progrss">
+              </nb-progress-bar>
+            </div>
+            <div *ngIf="dataItem.level == 'Major' ">
+              <nb-progress-bar [value]="50" status="primary" id="progrss">
+              </nb-progress-bar>
+            </div>
+            <div *ngIf="dataItem.level == 'General' ">
+              <nb-progress-bar [value]="75" status="info" id="progrss">
+              </nb-progress-bar>
+            </div>
+            <div *ngIf="dataItem.level == 'Commander' ">
+              <nb-progress-bar [value]="100" status="success" id="progrss">
+              </nb-progress-bar>
+            </div>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="totalGP" title="Green Credits" width="150" filterable="false">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="gp">{{ dataItem.totalGP }}</div>
+          </ng-template>
+        </kendo-grid-column>
+      </kendo-grid>
+    </nb-card-body>
+  </nb-card>
+  
+  <!-- Dialog  -->

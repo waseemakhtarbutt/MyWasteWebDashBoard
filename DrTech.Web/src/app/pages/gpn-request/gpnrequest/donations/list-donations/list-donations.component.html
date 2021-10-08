@@ -1,0 +1,66 @@
+<div class="row">
+    <div class ="col-md-12">
+
+       <div class="input-group col-md-3 search-text-box">
+           <input type="text" class="form-control rounded-right  search-text-box"  placeholder="Search"  name="search" (input)="searchGrid($event.target.value)">
+             <span class="icon-inside"><i class="fas fa-search"></i></span>
+         </div>
+         <div class="input-group col-md-6 search-text-box" style="margin-top:56px; margin-left: 20px;">
+            <a  routerLink="/pages/gpn/gpnrequest/addDonations" class="blue size13 lnkAdd" title="New Call For Donation" data-toggle="tooltip" data-placement="top">
+              <button class="btnAdd" nbButton outline  status="success">
+                <i  class="fas fa-plus-circle"></i>&nbsp;New Call For Donation
+              </button>
+            </a>
+        </div>
+     </div>
+   </div>
+<nb-tabset>
+   <nb-tab  tabTitle="Calls for Donations"   badgeStatus="success">
+    <!-- badgeText="{{driverBadge}}" -->
+
+        <!-- <div class="row">
+         <div class ="col-md-12">
+            <div class="input-group col-md-3 search-text-box">
+                <input type="text" class="form-control rounded-right  search-text-box"  placeholder="Search"  name="search" (input)="searchGrid($event.target.value)">
+                  <span class="icon-inside"><i class="fas fa-search"></i></span>
+              </div>
+          </div>
+        </div>
+     -->
+         <nb-card  [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+        <nb-card-body>
+
+            <!-- <input class="k-textbox" (input)="searchGrid($event.target.value)" /> -->
+          <kendo-grid [data]="gridView"
+                      [pageSize]="pageSize"
+                      [pageable]="true"
+                      [skip]="skip"
+                      [sortable]="{
+                        allowUnsort: allowUnsort,
+                        mode: multiple ? 'multiple' : 'single'
+                        }"
+                      [sort]="sort"
+                      (sortChange)="sortChange($event)"
+                      [selectable]="true"
+                      (pageChange)="pageChange($event)">
+
+
+            <!-- <kendo-grid-column field="fullName" title="Name" width="*">  </kendo-grid-column> -->
+
+            <kendo-grid-column field="typeName" title="Type" width="*"></kendo-grid-column>
+            <kendo-grid-column field="subtypeName" title="Size" width="*"></kendo-grid-column>
+            <kendo-grid-column field="qty" title="Quantity" width="*"></kendo-grid-column>
+            <kendo-grid-column field="Action" width="100%" [sortable]="false"  filterable="false">
+              <ng-template kendoGridCellTemplate let-dataItem>
+
+                <a routerLink="/pages/gpn/gpnrequest/addDonations/{{dataItem.id}}" class="blue size13 " title="Edit Donation" data-toggle="tooltip" data-placement="top"> <button nbButton outline  status="success"><i  class="nb-edit"></i>&nbsp;Edit</button></a>&nbsp;
+                <!-- <a routerLink="/pages/driver/tasklist/{{dataItem.id}}" class="blue size13 " title="Approve" data-toggle="tooltip" data-placement="top"> <button nbButton outline  status="success" ><i  class="nb-list"></i>&nbsp;Detail</button></a>&nbsp;
+                <a class="blue size13 " title="Delete" data-toggle="tooltip" data-placement="top"><button (click)="deleteSchool(dataItem.id)" nbButton outline  status="success">X</button></a>&nbsp; -->
+              </ng-template>
+            </kendo-grid-column>
+          </kendo-grid>
+        </nb-card-body>
+        </nb-card>
+  </nb-tab>
+
+ </nb-tabset>

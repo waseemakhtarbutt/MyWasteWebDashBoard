@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{353C44A2-6AB1-483E-9BC4-74C6F26E78A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DrTech.Amal.SQLDataAccess</RootNamespace>
+    <AssemblyName>DrTech.Amal.SQLDataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=9.3.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAzure.Storage.9.3.3\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ContextDB.cs" />
+    <Compile Include="CustomModels\AssociationVeiwModel.cs" />
+    <Compile Include="CustomModels\AzureStorageMultipartFormDataStreamProvider.cs" />
+    <Compile Include="CustomModels\CommentsViewModel.cs" />
+    <Compile Include="CustomModels\BuyBinViewModel.cs" />
+    <Compile Include="CustomModels\CommonViewModelForEmail.cs" />
+    <Compile Include="CustomModels\DesegregatedDataViewModel.cs" />
+    <Compile Include="CustomModels\DriverTokenViewModel.cs" />
+    <Compile Include="CustomModels\DumpRecycleItemViewModel.cs" />
+    <Compile Include="CustomModels\GCRedeemViewModel.cs" />
+    <Compile Include="CustomModels\GPNAverageViewModel.cs" />
+    <Compile Include="CustomModels\GPNViewModelForSMS.cs" />
+    <Compile Include="CustomModels\GUIForRecycleViewModel.cs" />
+    <Compile Include="CustomModels\HoursViewModel.cs" />
+    <Compile Include="CustomModels\MyGPNModel.cs" />
+    <Compile Include="CustomModels\Payment.cs" />
+    <Compile Include="CustomModels\QRCodeViewModel.cs" />
+    <Compile Include="CustomModels\RecycleDetailChartVM.cs" />
+    <Compile Include="CustomModels\RecycleDto.cs" />
+    <Compile Include="CustomModels\RecycleViewModel.cs" />
+    <Compile Include="CustomModels\RegiftViewModel.cs" />
+    <Compile Include="CustomModels\ReportProblemViewModel.cs" />
+    <Compile Include="CustomModels\RequestCount.cs" />
+    <Compile Include="CustomModels\SchoolsComparisionCriteria.cs" />
+    <Compile Include="CustomModels\SchoolsComparisionResult.cs" />
+    <Compile Include="CustomModels\SegregatedDataViewModel.cs" />
+    <Compile Include="CustomModels\ShiftViewModel.cs" />
+    <Compile Include="CustomModels\TokenViewModel.cs" />
+    <Compile Include="CustomModels\UserAssociation.cs" />
+    <Compile Include="CustomModels\UserViewModel.cs" />
+    <Compile Include="IContextDB.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="RepositoryQuery.cs" />
+    <Compile Include="Repository\BuyBinRepository.cs" />
+    <Compile Include="Repository\ChildRepository.cs" />
+    <Compile Include="Repository\CommonRepository.cs" />
+    <Compile Include="Repository\UserPaymentRepository.cs" />
+    <Compile Include="Repository\CompanyRepository.cs" />
+    <Compile Include="Repository\ConfigurationRepository.cs" />
+    <Compile Include="Repository\EmploymentRepository.cs" />
+    <Compile Include="Repository\GPNRepository.cs" />
+    <Compile Include="Repository\MyWasteRepository.cs" />
+    <Compile Include="Repository\NGORepository.cs" />
+    <Compile Include="Repository\OrderTrackingRepository.cs" />
+    <Compile Include="Repository\BusinessRepository.cs" />
+    <Compile Include="Repository\OrganizationRepository.cs" />
+    <Compile Include="Repository\RecycleRepository.cs" />
+    <Compile Include="Repository\ReduceRepository.cs" />
+    <Compile Include="Repository\NGONeedRepository.cs" />
+    <Compile Include="Repository\RefuseRepository.cs" />
+    <Compile Include="Repository\DriverRepository.cs" />
+    <Compile Include="Repository\RegiftRepository.cs" />
+    <Compile Include="Repository\ReplantRepository.cs" />
+    <Compile Include="Repository\ReportRepository.cs" />
+    <Compile Include="Repository\ReuseRepository.cs" />
+    <Compile Include="Repository\SchoolRepository.cs" />
+    <Compile Include="Repository\UsersRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DrTech.Amal.Common\DrTech.Amal.Common.csproj">
+      <Project>{738FC4CA-69A1-45B8-8948-894DF55895B2}</Project>
+      <Name>DrTech.Amal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrTech.Amal.SQLDatabase\DrTech.Amal.SQLDatabase.csproj">
+      <Project>{e292e304-1dee-47bd-932a-5697cc01735c}</Project>
+      <Name>DrTech.Amal.SQLDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DrTech.Amal.SQLModels\DrTech.Amal.SQLModels.csproj">
+      <Project>{20a25880-6d17-4fee-aeb6-2be4856dcc53}</Project>
+      <Name>DrTech.Amal.SQLModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

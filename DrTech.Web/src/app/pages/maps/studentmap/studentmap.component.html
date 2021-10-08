@@ -1,0 +1,49 @@
+<nb-card style="height: 100%;">
+  <nb-card-header>Student/Staff Map </nb-card-header>
+  <nb-card-body>
+    <div class="row" style="height: 100%;">
+      <div class="col-md-2">
+        <div class="form-control-group accept-group">
+
+          <!--<div *ngFor="let marker of markerType">
+            <label class="customised-control">
+              <input class="customised-control-input" type="checkbox" (change)="chkMarkerTypeOnChange($event,marker)" >
+              <span class="customised-control-indicator"></span>
+              <span class="customised-control-description">{{marker}}</span>
+            </label>
+          </div>-->
+          <nb-checkbox name="chkMarkerType" (change)="chkMarkerTypeOnChange($event,marker)" *ngFor="let marker of markerType" [pin]="marker">{{marker}}</nb-checkbox>
+
+        </div>
+      </div>
+      <div class="col-md-10" style="height: 100%;">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+
+          <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng"
+                      [iconUrl]="m.icon" [markerDraggable]="m.draggable">
+            <agm-info-window>
+              <div *ngIf="m.fileName != null && m.label != 'recycle' " style="width:50px; float:left; padding-right:10px;">
+                <img src="{{m.fileName}}" style="height:50px;width:50px;" />
+              </div>
+              <div class="ml-2 float-right">
+                <span style="color:green;"><strong>Green Points : </strong> {{m.greenPoints}}</span>
+                <br />
+                <div *ngIf='m.label === "replant"'>
+                  <span>Plant Count : {{m.plantCount}}</span>
+                  <br />
+                  <span>Plant Name :  {{m.description}}</span>
+                </div>
+                <div *ngIf='m.label !== "replant" && m.label !== "amalbin"'>
+                  <br />
+                  <span>Idea :  {{m.description}}</span>
+                </div>
+              </div>
+            </agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
+
+    </div>
+
+  </nb-card-body>
+</nb-card>

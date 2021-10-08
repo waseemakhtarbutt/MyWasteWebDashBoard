@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group col-md-2 search-text-box">
+      <input type="text" class="form-control rounded-right  search-text-box" placeholder="Search" name="search"
+        (input)="searchGrid($event.target.value)">
+      <span class="icon-inside"><i class="fas fa-search"></i></span>
+    </div>
+    <div class="input-group col-md-2 search-text-box" style="margin-top: 10px;">
+      <select nbInput class="form-control" [(ngModel)]="updatedStatus" (change)="filterChanged($event)">
+        <option *ngFor="let status of statusList" [value]="status.id">{{status.statusName}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <!-- <nb-card-header>
+    Regift List
+  </nb-card-header> -->
+  <nb-card-header class="headerText">
+    {{GridHeaderText}}  
+    <button type="button" class="btn btn-success btn-sm"
+    style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+    <br>
+  </nb-card-header> 
+  <nb-card-body>
+    <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [height]="600" [skip]="skip" [sortable]="{
+      allowUnsort: allowUnsort,
+      mode: multiple ? 'multiple' : 'single'
+      }" [sort]="sort" (sortChange)="sortChange($event)" [selectable]="true" (pageChange)="pageChange($event)"
+      (selectionChange)="onSelect($event)">
+      <kendo-grid-column width="40">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <img src="assets/Icons/Regift.png" size="small">
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="description" title="Description" width="200" [style]="{'font-weight' : 'bold'}">
+      </kendo-grid-column>
+      <kendo-grid-column field="greenPoints" title="Green Credits" width="*"></kendo-grid-column>
+      <kendo-grid-column field="typeDescription" title="Type" width="*"></kendo-grid-column>
+      <kendo-grid-column field="cityDescription" title="City" width="*"></kendo-grid-column>
+      <kendo-grid-column field="statusDescription" title="Status" width="*"></kendo-grid-column>
+      <kendo-grid-column field="pickupDate" title="PickupDate" width="*"></kendo-grid-column>
+
+      <kendo-grid-column field="updatedDate" title="Date" width="*"></kendo-grid-column>
+      <kendo-grid-column field="userName" title="User" width="*">
+
+        <!-- <kendo-grid-column title="Location" width="*" >
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a class="lnk pl30" href="https://www.google.com/maps/place/{{dataItem.latitude}},{{dataItem.longitude}}/@{{dataItem.latitude}},{{dataItem.longitude}},18z" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+        </ng-template>
+        </kendo-grid-column> -->
+
+
+
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a class="lnk" [routerLink]="['/pages/user/detail/', dataItem.userId]">{{dataItem.userName}}</a>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </nb-card-body>
+</nb-card>

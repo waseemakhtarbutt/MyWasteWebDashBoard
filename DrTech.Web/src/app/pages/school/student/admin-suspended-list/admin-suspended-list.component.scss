@@ -1,0 +1,8 @@
+
+@import "../../../../../style.css";
+
+:host 
+  /deep/ 
+.k-grid-header .k-header {
+  background-color: white !important;
+}

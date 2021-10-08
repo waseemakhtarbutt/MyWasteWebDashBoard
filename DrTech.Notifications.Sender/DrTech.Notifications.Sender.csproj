@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject></StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DrTech.Common\DrTech.Common.csproj" />
+    <ProjectReference Include="..\DrTech.DAL\DrTech.DAL.csproj" />
+    <ProjectReference Include="..\DrTech.Models\DrTech.Models.csproj" />
+  </ItemGroup>
+
+</Project>

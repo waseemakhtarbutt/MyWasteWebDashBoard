@@ -1,0 +1,146 @@
+<div class="row" [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <div class="col-md-12">
+
+    <nb-card style="margin-top:10px;">
+      <nb-card-header>Schedule</nb-card-header>
+      <nb-card-body>
+        <form #schedualForm="ngForm">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h4>City</h4>
+            </div>
+            <div class="col-md-4">
+              <h4>Area</h4>
+            </div>
+            <div class="col-md-4">
+              <h4>Driver</h4>
+            </div>
+
+          </div>
+          <div class="row ">
+            <div class="form-group col-md-4">
+              <select class="form-control" name="selectcity" [(ngModel)]='_scheduleModel.CityID'
+                (change)="onChangeAreasByID($event)" required>
+
+                <option [ngValue]=" undefined" selected>Select City</option>
+                <option *ngFor="let city of CityList" [value]="city.id">{{city.cityName}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-4">
+              <select class="form-control" name="selectArea" [(ngModel)]='_scheduleModel.AreaID' required>
+
+                <option [ngValue]="undefined" selected>Select Area</option>
+                <option *ngFor="let area of areaList" [value]="area.id">{{area.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-4">
+              <select class="form-control" name="selectDriver" [(ngModel)]='_scheduleModel.DriverID' required>
+                <!-- <option [value]="-1">Select Business</option> -->
+                <!-- <option [ngValue]="undefined" selected>Select Business</option> -->
+                <option [ngValue]="undefined" selected>Select Driver</option>
+                <option *ngFor="let drv of driverList" [value]="drv.id">{{drv.fullName}}</option>
+              </select>
+            </div>
+
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <h4>Date</h4>
+            </div>
+            <div class="col-md-3">
+              <h4>From</h4>
+            </div>
+            <div class="col-md-3">
+              <h4>To</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr0">
+              <kendo-datepicker nbInput name="dt-collectDate" #date="ngModel" class="picker" format="dd MMM yyyy"
+                [(ngModel)]="_scheduleModel.Date"></kendo-datepicker>
+            </div>
+
+            <div class="col-md-3">
+              <kendo-timepicker nbInput name="fTime" #fromtime="ngModel" class="picker"
+                [(ngModel)]="_scheduleModel.fTime"></kendo-timepicker>
+            </div>
+            <div class="col-md-3">
+              <kendo-timepicker nbInput name="tTime" #totime="ngModel" class="picker"
+                [(ngModel)]="_scheduleModel.tTime"></kendo-timepicker>
+            </div>
+
+          </div><br>
+
+
+        </form>
+
+        <div class="row">
+          <div class="form-group col-md-6">
+            <button [disabled]="!loadBtn" type="submit" class="btn btn-success btn-md"
+              (click)="onSubmit()">Load</button>
+            <button [disabled]="!saveBtn" style=" margin-left:10px;" type="submit" class="btn btn-success btn-md"
+              (click)="saveGrid()">Save</button>
+            <button style=" margin-left:10px;" type="submit" class="btn btn-warning btn-md"
+              (click)="clear()">Clear</button>
+            <div style="-webkit-text-fill-color: red;display:inline;"> {{DublicateErrorMessage}}</div>
+
+          </div>
+
+
+          <div class="form-group col-md-6">
+            <button [disabled]="!exportBtn" style="float:right" type="submit" class="btn btn-primary btn-md"
+              (click)="exportAsXLSX()">Export</button>
+            <button [disabled]="true" style="float:right; margin-right:10px;" type="submit"
+              class="btn btn-primary btn-md" (click)="fileUpload.click()">Import</button>
+            <input type="file" #fileUpload placeholder="Choose Image" (click)="fileUpload.value = null"
+              (change)="uploadFile($event)" style="display:none;">
+            <!-- <a href="javascript:void(0)" style="color:#8cc63f" (click)="fileUpload.click()" class="nb-plus-circled">Import </a>  -->
+
+          </div>
+        </div>
+
+        <kendo-grid [data]="gridView" [skip]="skip" [sortable]="false" [selectable]="true" [filterable]="false">
+
+          <kendo-grid-column field="day" title="Sr No">
+            <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+              {{rowIndex + 1}}
+              <!-- <strong>{{dataItem.ProductName}}</strong>
+                    ({{dataItem.Discontinued ? "discontinued" : "active"}}) -->
+            </ng-template>
+          </kendo-grid-column>
+
+
+          <kendo-grid-column field="Date" title="Date" [format]="{ date: 'long'}" width="*"></kendo-grid-column>
+          <kendo-grid-column field="Day" title="Day" width="*"></kendo-grid-column>
+          <kendo-grid-column field="FromTime" title="From" width="*"></kendo-grid-column>
+          <kendo-grid-column field="ToTime" title="TO" width="*"></kendo-grid-column>
+
+
+          <kendo-grid-column [sortable]="false" field="Active" title="Status" width="*"
+            [headerStyle]="{'text-align': 'center'}" [style]="{'text-align': 'center'}">
+            <!-- <ng-template kendoGridHeaderTemplate let-dataItem  >
+             <input style="zoom: 1.2;" 
+                 type="checkbox" 
+                 name="selectAll"
+                />
+         </ng-template> --> -->
+            <ng-template kendoGridCellTemplate let-dataItem>
+              <input style="zoom: 1.2;" type="checkbox" [checked]="dataItem.Active" [(ngModel)]="dataItem.Active"
+                (click)="statusChange($event)" />
+              <span>{{dataItem.Status}}</span>
+
+            </ng-template>
+          </kendo-grid-column>
+
+        </kendo-grid>
+
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+</div>

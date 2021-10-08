@@ -1,0 +1,317 @@
+<div class="row" style="margin-top: 10px;">
+  <div class="col-md-12">
+    <!-- <nb-card>
+            <nb-card-header> -->
+    <p style=" color:black !important; padding-top: 14px !important;">Let's Go Waste Free - {{BusinessName}} </p>
+    <!-- </nb-card-header>
+          </nb-card> -->
+  </div>
+</div>
+
+<div *ngIf="!HideChartsIfSuperAdmin">
+  <div class="row" *ngIf="ShowSAdmin" style="margin-top: 10px">
+
+    <div class="col-lg-4">
+      <nb-card style="border: 3px solid white; border-radius: 10px;">
+        <nb-card-header class="chartHeader headerText">Daily Recyclable (In Kgs)</nb-card-header>
+        <nb-card-body style="background-color: white !important;border-radius: 5px;">
+          <ngx-daily-weight-graph style="height: 200px !important;"></ngx-daily-weight-graph>
+        </nb-card-body>
+      </nb-card>
+
+    </div>
+    <div class="col-lg-4">
+      <nb-card style="border: 3px solid white; border-radius: 10px;">
+        <nb-card-header class="chartHeader headerText">Daily Green Credits Earned</nb-card-header>
+
+        <nb-card-body style="background-color: white !important;border-radius: 5px;">
+          <ngx-daily-green-credits-graph style="height: 200px !important;"></ngx-daily-green-credits-graph>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-lg-4">
+      <nb-card style="border: 3px solid white; border-radius: 10px;">
+        <nb-card-header class="chartHeader headerText">Monthly Green Credits Summary</nb-card-header>
+
+        <nb-card-body style="background-color: white !important;border-radius: 5px;">
+          <ngx-goigraph-month-wise style="height: 200px !important;"></ngx-goigraph-month-wise>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+  <!--Location Admin Dashboard (Bellow is the previous location admin dashboard just hidden this one- may we need in future one.)-->
+  <div class="row" style="margin-top: 10px" *ngIf="!HideLocationAdminPreviousDashboard">
+    <div class="col-lg-3">
+
+
+      <nb-card style="border: 3px solid white; border-radius: 10px;">
+        <nb-card-header class="chartHeader headerText">Yearly Weight Comparison (In Kgs)</nb-card-header>
+
+        <nb-card-body style="background-color: white !important;border-radius: 5px;">
+
+          <ngx-recycle-bar-chart [ngStyle]="{'height.px': barChartWidth}"></ngx-recycle-bar-chart>
+        </nb-card-body>
+      </nb-card>
+
+
+
+      <nb-card style="border: 3px solid white; border-radius: 10px;">
+        <nb-card-header class="chartHeader headerText">Recycling Composition By Type(Kgs)</nb-card-header>
+
+        <nb-card-body style="background-color: white !important;border-radius: 5px;">
+
+          <ngx-circular-chart [ngStyle]="{'height.px': barChartCircularWidth}"></ngx-circular-chart>
+        </nb-card-body>
+      </nb-card>
+
+
+
+    </div>
+
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-lg-6">
+          <nb-card style="border: 3px solid white; border-radius: 10px;">
+            <nb-card-header class="chartHeader headerText">Monthly Green Credits Summary</nb-card-header>
+
+            <nb-card-body style="background-color: white !important;border-radius: 5px;">
+              <ngx-goigraph-month-wise [ngStyle]="{'height.px': barChartMonthWidth}"></ngx-goigraph-month-wise>
+            </nb-card-body>
+          </nb-card>
+        </div>
+        <div class="col-lg-6">
+          <nb-card style="border: 3px solid white; border-radius: 10px;">
+            <nb-card-header class="chartHeader headerText">Yearly Green Credits Summary </nb-card-header>
+
+            <nb-card-body style="background-color: white !important;border-radius: 5px;">
+              <ngx-goigraph-year-wise [ngStyle]="{'height.px': barChartYearWidth}"></ngx-goigraph-year-wise>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <nb-card style="border: 3px solid white; border-radius: 10px;">
+            <nb-card-header class="chartHeader headerText">Monthly Weight By Type (In Kgs)</nb-card-header>
+
+            <nb-card-body style="background-color: white !important;border-radius: 5px;">
+              <ngx-recyle-detail-chart [ngStyle]="{'height.px': barChartDetailWidth}"></ngx-recyle-detail-chart>
+            </nb-card-body>
+          </nb-card>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- <div class="col-lg-4">
+  <nb-card style="border: 3px solid white;border-radius: 10px;">
+  <nb-card-header class="chartHeader"style="color: #00506a !important; border-bottom: 2px solid #f9f9f9 !important;">Health</nb-card-header>
+  <nb-card-body style="background-color: white !important;border-radius: 20px;">
+    <ngx-goigraph-month-wise style="height: 185px !important; "></ngx-goigraph-month-wise>
+  </nb-card-body>
+  </nb-card>
+  </div>
+
+  <div class="col-lg-4">
+  <nb-card style="border: 3px solid white;border-radius: 10px;">
+  <nb-card-header class="chartHeader"style="color: #00506a !important; border-bottom: 2px solid #f9f9f9 !important;">Workforce</nb-card-header>
+  <nb-card-body style="background-color: white !important;border-radius: 20px;">
+    <ngx-goigraph-month-wise style="height: 185px !important; "></ngx-goigraph-month-wise>
+  </nb-card-body>
+  </nb-card>
+  </div> -->
+
+  </div>
+  <!--End-->
+  <!--Business Admin Dashboard - Proxy User - e.g MCB-->
+  <div class="row" style="margin-top: 10px" *ngIf="ShowBAdmin">
+    <div class="col-lg-4">
+
+
+      <nb-card style="border: 3px solid white; border-radius: 10px;">
+        <nb-card-header class="chartHeader headerText">Yearly Recycling By Locations (In Kgs)</nb-card-header>
+
+        <nb-card-body style="background-color: white !important;border-radius: 5px;">
+
+          <ngx-recycle-bar-chart style="height: 455px !important;"></ngx-recycle-bar-chart>
+        </nb-card-body>
+      </nb-card>
+
+
+
+      <!-- <nb-card style="border: 3px solid white; border-radius: 10px;">
+                    <nb-card-header class="chartHeader"style="color: #00506a !important;">Types Composition</nb-card-header>
+
+                    <nb-card-body style="background-color: white !important;border-radius: 5px;">
+
+                    <ngx-circular-chart [ngStyle]="{'height.px': barChartCircularWidth}"></ngx-circular-chart>
+                    </nb-card-body>
+                    </nb-card> -->
+
+
+
+    </div>
+
+    <div class="col-lg-8">
+      <div class="row">
+        <div class="col-md-12">
+          <ngx-recycle-pi-chart></ngx-recycle-pi-chart>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+            <div  class="col-lg-12">
+                <nb-card style="border: 3px solid white; border-radius: 10px;">
+                    <nb-card-header class="chartHeader"style="color: #00506a !important;">Weight Composition Monthly</nb-card-header>
+
+                    <nb-card-body style="background-color: white !important;border-radius: 5px;">
+                    <ngx-recyle-detail-chart [ngStyle]="{'height.px': barChartDetailWidth}"></ngx-recyle-detail-chart>
+                    </nb-card-body>
+                    </nb-card>
+            </div>
+
+                </div> -->
+
+    </div>
+  </div>
+
+  <!--End-->
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class="row" *ngIf="!HideChartsIfSuperAdmin">
+  <div class="col-lg-4">
+    <ngx-recycle-bar-chart style="height: 200px !important;"></ngx-recycle-bar-chart>
+  </div>
+  <div class="col-lg-4" *ngIf="ShowBAdmin">
+    <ngx-recycle-pi-chart></ngx-recycle-pi-chart>
+  </div>
+  <div class="col-lg-4" *ngIf="ShowSAdmin" >
+
+
+    <nb-card style="border: 3px solid white; border-radius: 10px;" >
+      <nb-card-header>
+          Green  Credits
+      </nb-card-header>
+    <nb-card-body style="background-color: white !important;border-radius: 5px;">
+      <ngx-goigraph-month-wise  style="height: 200px !important; "></ngx-goigraph-month-wise>
+
+    </nb-card-body>
+  </nb-card>
+
+  </div>
+  <div class="col-lg-4" *ngIf="ShowSAdmin"  >
+
+    <ngx-goigraph-year-wise></ngx-goigraph-year-wise>
+  </div>
+  <div class="col-lg-8">
+    <ngx-recyle-detail-chart></ngx-recyle-detail-chart>
+  </div>
+</div> -->
+
+<div class="container">
+  <!-- <div class="row no-gutter" *ngIf="!HideChartsIfSuperAdmin" style="margin-top:5px; padding-left: 10px;">
+    <div class=" col-xs-6 col-sm-6 col-md-6 col-lg-6 p-0 m-0">
+    </div>
+    <div *ngIf="ShowBAdmin" class=" col-xs-6 col-sm-6 col-md-6 col-lg-6 p-0 m-0">
+    </div>
+  </div> -->
+
+  <!--Recycle Detail Chart with Types-->
+
+  <div class="row" *ngIf="ShowLocation">
+    <div class="col-md-12">
+      <div class="input-group col-md-3 search-text-box">
+        <input type="text" class="form-control rounded-right  search-text-box" placeholder="Search Location"
+          name="search" (input)="searchGrid($event.target.value)">
+        <span class="icon-inside"><i class="fas fa-search"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <nb-card *ngIf="ShowIfSuperAdmin">
+      <nb-card-body>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <select (change)="onChangeBusiness($event)"
+              [ngClass]=" businessID.valid || businessID.pristine ? 'form-control '  :  'form-control form-control-danger'"
+              [(ngModel)]='_viewModel.businessID' name="businessID" required #businessID="ngModel">
+
+              <option [ngValue]="undefined" selected>Select Company*</option>
+              <option *ngFor="let busness of HeadBusinessesList" [value]="busness.id">{{busness.name}}</option>
+            </select>
+            <div [hidden]="businessID.valid || businessID.pristine" class="alert alert-danger"> Please select
+              Company </div>
+          </div>
+          <div class="form-group col-md-6">
+            <select (change)="onChangeBusinessGOI($event)"
+              [ngClass]=" companyID.valid || companyID.pristine ? 'form-control '  :  'form-control form-control-danger'"
+              [(ngModel)]='_viewModel.companyID' name="companyID" required #companyID="ngModel">
+              <!-- <option [value]="-1">Select City</option>  -->
+              <option [ngValue]="undefined" selected>Select Business*</option>
+              <option *ngFor="let company of companyList" [value]="company.id">{{company.name}}</option>
+            </select>
+            <div [hidden]="companyID.valid || companyID.pristine" class="alert alert-danger"> Please select
+              Company </div>
+
+          </div>
+        </div>
+        
+        <!--Grid System Is Bellow Code-->
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <nb-card>
+    <nb-card-body>
+  <div class="row" >  
+    <div class="form-group col-md-12">
+      <kendo-daterange>
+        <kendo-dateinput   kendoDateRangeStartInput [(value)]="range.start"></kendo-dateinput>
+        <kendo-dateinput   kendoDateRangeEndInput [(value)]="range.end"></kendo-dateinput>          
+        <button  (click)= "clearDateRange()"class="btn btn-secondary" style="padding: 5px;color: white; background-color:#005169; margin-left: 6%;">Clear</button>
+        <button (click)= "filterDateRange()" class="btn btn-secondary"  style="padding: 5px;color: white; background-color: #8cc63e; margin-left: 2%;">Filter</button>
+     </kendo-daterange>
+    </div>
+ </div>
+</nb-card-body>
+</nb-card>
+  <div class="row">
+    <nb-card>
+      <nb-card-header class="headerText">
+        {{GridHeaderText}}  
+        <button type="button" class="btn btn-success btn-sm"
+        style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+        <br>
+      </nb-card-header> 
+      <nb-card-body>
+        <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [skip]="skip" [selectable]="true"
+          [filterable]="false" (pageChange)="pageChange($event)">
+          <kendo-grid-column *ngIf="ShowLocation" field="locationName" title="Location" width="*">
+          </kendo-grid-column>
+          <kendo-grid-column field="date" title="Date" width="*">
+              <ng-template kendoGridCellTemplate let-dataItem>
+                  {{dataItem.date | date: 'MMM dd, yyyy'}}
+                </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="time" title="Pickup Time" width="*"></kendo-grid-column>
+          <kendo-grid-column field="weight" title="Recyclable (in Kgs)" width="*"></kendo-grid-column>
+          <kendo-grid-column field="notWaste" title="Non Recyclable (in Kgs)" width="*"></kendo-grid-column>
+          <kendo-grid-column field="greenPoints" title="Earned Credits" width="*"></kendo-grid-column>
+        </kendo-grid>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+</div>

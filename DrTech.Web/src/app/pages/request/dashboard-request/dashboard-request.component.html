@@ -1,0 +1,104 @@
+<div class="row">
+  <div class="col-md-12" style="display: -webkit-box;margin-top: 64px;">
+    <div class="col-md-3" style="margin-top: -25px;">
+      <nb-card>
+        <nb-card-header>Request Dashboard</nb-card-header>
+        <nb-list>
+          <nb-list-item>
+            <div>
+              <img src="assets/Icons/Refuse_msi.png">&nbsp;
+              <a [routerLink]="" (click)="onrequest('Refuse')">Refuse
+                <span>{{ArsRequestlist.totalRefuse}}</span>
+              </a>
+            </div>
+          </nb-list-item>
+          <nb-list-item>
+            <div>
+              <img src="assets/Icons/Reduce_msi.png">&nbsp;
+              <a [routerLink]="" (click)="onrequest('Reduse')">Reduse
+                <span>{{ArsRequestlist.toralReduse}}</span>
+              </a>
+            </div>
+          </nb-list-item>
+          <nb-list-item>
+            <div>
+              <img src="assets/Icons/Reuse_msi.png">&nbsp;
+              <a [routerLink]="" (click)="onrequest('Reuse')">Reuse
+                <span>{{ArsRequestlist.totalReuse}}</span>
+              </a>
+            </div>
+          </nb-list-item>
+          <nb-list-item>
+            <div>
+              <img src="assets/Icons/Replant_msi.png">&nbsp;
+              <a [routerLink]="" (click)="onrequest('Replant')">Replant
+                <span>{{ArsRequestlist.totalReplant}}</span>
+              </a>
+            </div>
+          </nb-list-item>
+          <nb-list-item>
+            <div>
+              <img src="assets/Icons/Report_msi.png">&nbsp;
+              <a [routerLink]="" (click)="onrequest('Report')">Report
+                <span>{{ArsRequestlist.totalReport}}</span>
+              </a>
+            </div>
+          </nb-list-item>
+          <nb-list-item>
+            <div>
+              <img src="assets/Icons/Recycal.png">&nbsp;
+              <a [routerLink]="" (click)="onrequest('Recycle')">Recycle
+                <span>{{ArsRequestlist.totalRecycle}}</span>
+              </a>
+            </div>
+          </nb-list-item>
+          <nb-list-item>
+            <div>
+              <img src="assets/Icons/Regift_msi.png"> &nbsp;
+              <a [routerLink]="" (click)="onrequest('Regift')">Regift
+                <span>{{ArsRequestlist.totalRegift}}</span>
+              </a>
+            </div>
+          </nb-list-item>
+
+          <nb-list-item>
+            <div>
+              <img src="assets/Icons/Recycal.png">&nbsp;
+              <a [routerLink]="" (click)="onrequest('Bin')">Bin
+                <span>{{ArsRequestlist.totalBin}}</span>
+              </a>
+            </div>
+          </nb-list-item>
+        </nb-list>
+      </nb-card>
+    </div>
+    <div class="col-md-9" style="margin-top: -45px;">
+
+      <div [hidden]="Refuse">
+        <ngx-refuse-request></ngx-refuse-request>
+      </div>
+      <div [hidden]="Recycle">
+        <ngx-recycle-request></ngx-recycle-request>
+      </div>
+      
+      <div [hidden]="Reduse">
+        <ngx-reduce-request></ngx-reduce-request>
+      </div>
+      <div [hidden]="Regift">
+        <ngx-regift-request></ngx-regift-request>
+      </div>
+      <div [hidden]="Reuse">
+        <ngx-reuse-request></ngx-reuse-request>
+      </div>
+      <div [hidden]="Replant">
+        <ngx-replant-request></ngx-replant-request>
+      </div>
+      <div [hidden]="Report">
+        <ngx-report-request></ngx-report-request>
+      </div>
+      <div [hidden]="bin">
+        <ngx-buybin-request></ngx-buybin-request>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,252 @@
+<nb-card style="height:100%;">
+  <nb-card-header>
+    User Detail
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row" style="height:100%;">
+
+      <nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+        <p class="alert-title"><b>Oh snap!</b></p>
+        <ul class="alert-message-list">
+          <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+        </ul>
+      </nb-alert>
+      <nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+        <p class="alert-title"><b>Hooray!</b></p>
+        <ul class="alert-message-list">
+          <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+        </ul>
+      </nb-alert>
+      <form (ngSubmit)="Edit()" #form="ngForm" class="col-md-12" aria-labelledby="title">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-control-group">
+              <label class="label" for="input-email">Registration:</label>
+              <input nbInput
+                     [(ngModel)]="user.registration"
+                     #registration="ngModel"
+                     id="input-registration"
+                     name="registration"
+                     placeholder="Registration No."
+                     fullWidth
+                     [status]="registration.dirty ? (registration.invalid  ? 'danger' : 'success') : ''"
+                     [required]="getConfigValue('forms.validation.registration.required')"
+                     [minlength]="getConfigValue('forms.validation.registration.minLength')"
+                     [maxlength]="getConfigValue('forms.validation.registration.maxLength')"
+                     [attr.aria-invalid]="registration.invalid && registration.touched ? true : null">
+              <ng-container *ngIf="registration.invalid && registration.touched">
+                <p class="error-message" *ngIf="registration.errors?.required">
+                  Registration Number is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-control-group">
+              <label class="label" for="input-name">Address:</label>
+              <input nbInput
+                     [(ngModel)]="user.address"
+                     #address="ngModel"
+                     id="input-name"
+                     name="address"
+                     placeholder="School Address"
+                     fullWidth
+                     [status]="address.dirty ? (address.invalid  ? 'danger' : 'success') : ''"
+                     [required]="getConfigValue('forms.validation.address.required')"
+                     [attr.aria-invalid]="address.invalid && address.touched ? true : null">
+              <ng-container *ngIf="address.invalid && address.touched">
+                <p class="error-message" *ngIf="address.errors?.required">
+                  Address is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-control-group">
+              <label class="label" for="input-name">Landline #:</label>
+              <input nbInput
+                     [(ngModel)]="user.landline"
+                     #landline="ngModel"
+                     id="input-landline"
+                     name="landline"
+                     placeholder="Landline"
+                     fullWidth
+                     [status]="landline.dirty ? (landline.invalid  ? 'danger' : 'success') : ''"
+                     [required]="getConfigValue('forms.validation.landline.required')"
+                     [attr.aria-invalid]="landline.invalid && landline.touched ? true : null">
+              <ng-container *ngIf="landline.invalid && landline.touched">
+                <p class="error-message" *ngIf="landline.errors?.required">
+                  Landline Number is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-control-group">
+              <label class="label" for="input-email">Mobile:</label>
+              <input nbInput
+                     [(ngModel)]="user.mobile"
+                     #mobile="ngModel"
+                     id="input-mobile"
+                     name="mobile"
+                     placeholder="Mobile Number"
+                     fullWidth
+                     [status]="mobile.dirty ? (mobile.invalid  ? 'danger' : 'success') : ''"
+                     [required]="getConfigValue('forms.validation.mobile.required')"
+                     [attr.aria-invalid]="mobile.invalid && mobile.touched ? true : null">
+              <ng-container *ngIf="mobile.invalid && mobile.touched">
+                <p class="error-message" *ngIf="mobile.errors?.required">
+                  Mobile Number is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-control-group">
+              <label class="label" for="input-email">Email address:</label>
+              <input nbInput
+                     [(ngModel)]="user.email"
+                     #email="ngModel"
+                     id="input-email"
+                     name="email"
+                     pattern=".+@.+..+"
+                     placeholder="Email address"
+                     fullWidth
+                     [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
+                     [required]="getConfigValue('forms.validation.email.required')"
+                     [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+              <ng-container *ngIf="email.invalid && email.touched">
+                <p class="error-message" *ngIf="email.errors?.required">
+                  Email is required!
+                </p>
+                <p class="error-message" *ngIf="email.errors?.pattern">
+                  Email should be the real one!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-md-6">
+            <div class="form-control-group">
+              <label class="label" for="input-name">No # Students:</label>
+              <nb-select [(ngModel)]="user.students"
+                         #students="ngModel"
+                         id="input-students"
+                         type="number"
+                         name="students"
+                         fullWidth
+                         placeholder="Select No. Of Students"
+                         [status]="students.dirty ? (students.invalid  ? 'danger' : 'success') : ''"
+                         [required]="getConfigValue('forms.validation.students.required')"
+                         [attr.aria-invalid]="students.invalid && students.touched ? true : null">
+                <nb-option value="1">1 -100</nb-option>
+                <nb-option value="2">101 - 200</nb-option>
+                <nb-option value="3">201 - 300</nb-option>
+                <nb-option value="4">301 - 400</nb-option>
+              </nb-select>
+              <ng-container *ngIf="students.invalid && students.touched">
+                <p class="error-message" *ngIf="students.errors?.required">
+                  Number of Students is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-control-group">
+              <label class="label" for="input-email">No # Teachers:</label>
+              <nb-select [(ngModel)]="user.teachers"
+                         #teachers="ngModel"
+                         id="input-teachers"
+                         name="teachers"
+                         fullWidth
+                         type="number"
+                         [status]="teachers.dirty ? (teachers.invalid  ? 'danger' : 'success') : ''"
+                         [required]="getConfigValue('forms.validation.teachers.required')"
+                         [attr.aria-invalid]="teachers.invalid && teachers.touched ? true : null"
+                         placeholder="Select No. Of Teachers">
+                <nb-option value="1">1 -10</nb-option>
+                <nb-option value="2">11 - 20</nb-option>
+                <nb-option value="3">21 - 30</nb-option>
+                <nb-option value="4">31 - 40</nb-option>
+              </nb-select>
+              <ng-container *ngIf="teachers.invalid && teachers.touched">
+                <p class="error-message" *ngIf="teachers.errors?.required">
+                  Number of Teachers is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-md-6">
+            <div class="form-control-group">
+              <label class="label" for="input-email">Sector:</label>
+
+              <nb-select [(ngModel)]="user.sector"
+                         #sector="ngModel"
+                         id="input-sector"
+                         name="sector"
+                         fullWidth
+                         type="number"
+                         [status]="sector.dirty ? (sector.invalid  ? 'danger' : 'success') : ''"
+                         [required]="getConfigValue('forms.validation.sector.required')"
+                         [attr.aria-invalid]="sector.invalid && sector.touched ? true : null"
+                         placeholder="Select sector">
+                <nb-option value="1">Government</nb-option>
+                <nb-option value="2">Semi Government</nb-option>
+                <nb-option value="3">Private</nb-option>
+              </nb-select>
+              <ng-container *ngIf="sector.invalid && sector.touched">
+                <p class="error-message" *ngIf="sector.errors?.required">
+                  Sector is required!
+                </p>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row" style="max-height:300px;height:300px;">
+          <div class="col-md-12" style="height: 100%;">
+            <agm-map [latitude]="user.latitude" [longitude]="user.longitude"
+                     [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+              <agm-marker *ngFor="let m of markers; let i = index"
+                          [latitude]="m.lat"
+                          [longitude]="m.lng"
+                          [label]="m.label"
+                          [markerDraggable]="m.draggable"
+                          (dragEnd)="markerDragEnd(m, $event)">
+
+                <agm-info-window>
+                  <strong>InfoWindow content</strong>
+                </agm-info-window>
+
+              </agm-marker>
+
+              <agm-circle [latitude]="user.latitude + 0.3" [longitude]="user.longitude"
+                          [radius]="5000"
+                          [fillColor]="'red'"
+                          [circleDraggable]="true"
+                          [editable]="true">
+              </agm-circle>
+            </agm-map>
+          </div>
+        </div>
+        <button nbButton
+                fullWidth
+                status="success"
+                [disabled]="submitted || !form.valid"
+                [class.btn-pulse]="submitted">
+          Register
+        </button>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+

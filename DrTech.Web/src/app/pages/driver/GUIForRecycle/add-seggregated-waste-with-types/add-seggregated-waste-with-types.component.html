@@ -1,0 +1,194 @@
+<nb-card  [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <nb-card-body>
+    <form #DumpRecycleForm="ngForm" class="container mt-3" (ngSubmit)="SubmitForm()">
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <div class="form-Group">
+            <label>Company</label>
+            <select (change)="onChangeBusiness($event)" class="form-control" [(ngModel)]='businessID' name="businessID"
+              required >
+              <option [ngValue]="undefined" selected>Select Company*</option>
+              <option *ngFor="let busness of HeadBusinessesList" [value]="busness.id">{{busness.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-Group">
+            <label>Branch</label>
+            <select class="form-control" [(ngModel)]='companyID' name="companyID" required >
+              <option *ngFor="let company of companyList" [value]="company.id">{{company.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center" style="margin-top: 13px;">
+        <div class="col-3" style="max-width: 100% !important">
+          <div class="form-group">
+            <label>Date</label>
+            <div>
+              <kendo-datepicker nbInput class="form-control" style="height:48px !important; width: 100% !important; "
+                [max]="max" [min]="min" name="collectDate" required class="picker" format="dd MMM yyyy"
+                [(ngModel)]="collectDate">
+              </kendo-datepicker>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label>Weight</label>
+            <input type="text" class="form-control" [(ngModel)]="tweight" style="height: 48px !important" name="Tweight"
+              placeholder="weight" />
+
+            <input type="hidden" class="form-control" [(ngModel)]="recycleD" name="recycleID">
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <div class="tex-left">
+            <h6 style="color: red">{{typesnullErrorMessage}}</h6>
+          </div>
+          <section class="container border mb-4 p-3" *ngFor="let item of TypesWithWeight; let i = index;">
+            <div class="row">
+              <div class="col-1" style="margin-top: 2%;">
+                <h6>{{i + 1}}</h6>
+              </div>
+              <div class="col-5">
+                <div class="form-group">
+                  <select class="form-control" [(ngModel)]="item.typeID" name="typeID__{{i}}" placeholder="Type"
+                    required>
+                    <option [ngValue]="undefined" selected>Select Type*</option>
+                    <option *ngFor="let type of typesList" [value]="type.id">{{type.name}}</option>
+                  </select>
+                </div>
+
+              </div>
+              <div class="col-5">
+                <div class="form-group">
+                  <input type="text" maxlength="6" pattern="^[0-9]\d{0,9}(\.\d{1,2})?%?$" class="form-control" required
+                    style="height: 48px !important" [(ngModel)]="item.Weight" name="Weight_{{i}}"
+                    placeholder="Weight" />
+                </div>
+              </div>
+           
+              <div class="col-5">
+                <div class="form-group">
+                  <input type="text" maxlength="6" pattern="^[0-9]\d{0,9}(\.\d{1,2})?%?$" [(ngModel)]="item.rate" class="form-control" required
+                    style="height: 48px !important ; margin-left: 43px;" name="rate_{{i}}"
+                    placeholder="Rate" />
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group">
+                  <input type="text" maxlength="6" pattern="^[0-9]\d{0,9}(\.\d{1,2})?%?$"   [(ngModel)]="item.Weight*item.rate" class="form-control" required
+                    style="height: 48px !important ;margin-left: 43px;" name="total_{{i}}"
+                    placeholder="Total" />
+                </div>
+              </div>
+              <div class="col-1" style="margin-top: 2%; margin-left: 43px;">
+                <a role="button" style="color: red !important; cursor: pointer;" (click)="removeRow(i)">X</a>
+              </div>
+            </div>
+          </section>
+          <div class="tex-left" *ngIf="shownTime">
+            <h6 style="color: red">{{errorMessage}}</h6>
+          </div>
+          <div class="tex-left"*ngIf="shownTime">
+            <h6 style="color: red">{{duplicateErrorMessage}}</h6>
+          </div>
+          <div class="tex-left"*ngIf="ismessage">
+              <h6 style="color: red">{{MessageError}}</h6>
+            </div>
+            <div class="tex-left"*ngIf="isSucccessmessage">
+                <h6 style="color:green">{{SuccessMessage}}</h6>
+              </div>
+
+          <div class="">
+            <button type="button" style="background-color: #8cc63e !important; float: left;"
+              class="btn btn-primary mb-2" (click)="addNewRow()">Add Type</button>
+            <button type="submit" class="btn btn-success btn-sm" style="font-size: 0.95rem !important; float: right"
+              [disabled]="!DumpRecycleForm.form.valid">Save</button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+
+</nb-card>
+
+<div class="row">
+  <div class="col-md-6">
+
+  </div>
+  <div class="col-md-2">
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <ngx-desegregated-grid (childData)='handleEvent($event)' (ShowHideChilds)='showHideHandleEvent($event)'
+      (passRecyleID)='getRIDHandleEvent($event)' (typeData)='getListHandleEvent($event)'>
+    </ngx-desegregated-grid>
+  </div>
+  <div class="col-md-4">
+    <nb-card>
+      <nb-card-body style="
+      margin-top: 56px;
+  ">
+        <div class="row justify-content-center">
+          <button type="button" class="btn btn-success btn-sm"
+          style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+          <br>
+          <nb-card>
+            
+            <nb-card-header class="k-header k-grid-draggable-header ng-star-inserted" 
+            style="
+            height: 10px !important;
+            font-size: 12px;
+            /* margin-bottom: -1px; */
+            text-align: center;
+            padding-top: 14px;
+            background-color: #005169 !important;
+
+        ">
+              Weight with types
+
+          
+            </nb-card-header>
+            <nb-card-body>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Weight</th>
+                    <th scope="col">Rate</th>
+                    <th scope="col">Total</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of TypesWithWeightRecycle">
+                    <th scope="row">{{item.rowNumber}}</th>
+                    <td>{{item.type}}</td>
+                    <td>{{item.weight}}</td>
+                    <td>{{item.rate}}</td>
+                    <td>{{item.total}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+

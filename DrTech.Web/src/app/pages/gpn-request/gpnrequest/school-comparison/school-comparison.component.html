@@ -1,0 +1,149 @@
+<nb-card>
+	<nb-card-body>
+	  <div style="height: 600px;">
+		<div class="row pl15 pt15 pb15">
+			<div class="col-md-2" *ngIf='this.roleId == 7'> -- Sub School Admin-->
+				<b>In School Branch</b>
+			</div>
+			<div class="col-md-2" *ngIf='this.roleId == 2'> <!-- School Admin-->
+				<b>Cross School Branches</b>
+			</div>
+		</div>
+		<div class="row pl15 pt15 ctr" *ngIf='this.roleId == 7'> <!-- Sub School Admin-->
+		  <div class="form-group col-md-2">
+			<div class="row" >
+			  <div class="mt3 p7">
+				Classes
+			  </div>
+			  <div>
+				<select class="form-control" [(ngModel)]="this.clas" (change)="onChange($event.target.value)" name="ddlClass" >
+					<option [ngValue]="undefined" selected>Select</option>
+					<option *ngFor="let class of ddlClassList" >{{class.clas}}</option>
+				</select>
+			  </div>
+			</div>
+		  </div>
+  
+  
+		  <div class="form-group col-md-3">
+			  <div class="row" >
+				<div class="mt3 p7">
+					Sections
+				</div>
+				<div style="width: 70%">
+					<ng-multiselect-dropdown name="mlSections"
+					[placeholder]="'Select'"
+					[data]="dropdownList"
+					[(ngModel)]="selectedSections"
+					[settings]="dropdownSettings"
+					(onSelect)="onItemSelect($event)"
+					(onSelectAll)="onSelectAll($event)">
+					</ng-multiselect-dropdown>
+				</div>
+			  </div>
+		  </div>
+		 
+		  <div class="form-group col-md-3">
+			  <div class="row" >
+				<div class="mt3 p7">
+					From
+				</div>
+				<div style="width: 70%">
+					<kendo-datepicker nbInput class="picker" name="dp_SubAdmin_From" format="dd MMM yyyy" [(ngModel)]="this.subAdminFromDate"></kendo-datepicker>
+				</div>
+			  </div>
+		  </div>
+  
+		  <div class="form-group col-md-3">
+			  <div class="row" >
+				<div class="mt3 p7">
+					To
+				</div>
+				<div style="width: 70%">
+					<kendo-datepicker nbInput class="picker" name="dp_SubAdmin_To" format="dd MMM yyyy" [(ngModel)]="this.subAdminToDate"></kendo-datepicker>
+				</div>
+			  </div>
+		  </div>
+		  <div class="col-md-1" [hidden]="this.clas == null || this.selectedSections.length == 0 || this.subAdminFromDate == null || this.subAdminToDate == null || this.subAdminToDate < this.subAdminFromDate">
+			  <a (click)="GetComparisonData()" class="cmpsrch"><i class="nb-search" style="font-size: 35px"></i></a>
+		  </div>   
+		</div>
+		<div class="row pl15 pt15 ctr" *ngIf='this.roleId == 2'> <!--School Admin-->       
+		  <div class="form-group col-md-5">
+			  <div class="row" >
+				<div class="mt3 p7">
+					Branch
+				</div>
+				<div style="width: 70%">
+					<ng-multiselect-dropdown name="mlSchools" 
+					[placeholder]="'Select'"
+					[data]="dropdownList"
+					[(ngModel)]="selectedSchools"
+					[settings]="dropdownSettings"
+					(onSelect)="onItemSelect($event)"
+					(onSelectAll)="onSelectAll($event)">
+					</ng-multiselect-dropdown>
+				</div>
+			  </div>
+		  </div>
+		 
+		  <div class="form-group col-md-3">
+			  <div class="row" >
+				<div class="mt3 p7">
+					From
+				</div>
+				<div style="width: 70%">
+					<kendo-datepicker nbInput class="picker" name="dp_SchoolAdmin_From" format="dd MMM yyyy" [(ngModel)]="this.schoolAdminFromDate"></kendo-datepicker>
+				</div>
+			  </div>
+		  </div>
+  
+		  <div class="form-group col-md-3">
+			  <div class="row" >
+				<div class="mt3 p7">
+					To
+				</div>
+				<div style="width: 70%">
+					<kendo-datepicker nbInput class="picker" name="dp_SchoolAdmin_To" format="dd MMM yyyy" [(ngModel)]="this.schoolAdminToDate"></kendo-datepicker>
+				</div>
+			  </div>
+		  </div>
+		  <div class="col-md-1" [hidden]="this.selectedSchools.length == 0 || this.schoolAdminFromDate == null || this.schoolAdminToDate == null || this.schoolAdminToDate < this.schoolAdminFromDate">
+			  <a (click)="GetComparisonData()" class="cmpsrch"><i class="nb-search" style="font-size: 35px"></i></a>
+		  </div>   
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<kendo-chart [hidden]="!this.IsSearched">
+					<kendo-chart-tooltip [shared]="true">
+						<ng-template kendoChartSharedTooltipTemplate let-category="category" let-points="points">
+							<div><b> {{ category }} (Green Worth) </b></div>
+							<div *ngFor="let point of points">
+								{{ point.series.name }} : {{ point.value }}
+							</div>
+						</ng-template>
+					  </kendo-chart-tooltip>
+					<kendo-chart-title text="Monthly Progress (Green Points)"></kendo-chart-title>
+					<kendo-chart-category-axis >
+						<kendo-chart-category-axis-item 
+							[categories]="monthList">
+						</kendo-chart-category-axis-item>
+					</kendo-chart-category-axis>
+					<kendo-chart-series>
+					  <kendo-chart-series-item *ngFor="let item of chartData" [name]="item.category" type="line" [data]="item.gpList" >
+					  </kendo-chart-series-item>
+					</kendo-chart-series>
+				  </kendo-chart>
+			</div>
+		</div>
+	  </div>
+	</nb-card-body>
+  </nb-card>
+<!-- <div id="chart-container">
+<canvas #myCanvas id="canvas" 
+	baseChart [chartType]="chartType" 
+	[datasets]="chartData" 
+	[labels]="chartLabels" 
+	[options]="chartOptions">
+</canvas>
+</div> -->

@@ -1,0 +1,92 @@
+<div class="row" style="margin-top: 20px; margin-left:20px;">
+  <div class="col-md-12">
+       <div class="row">
+         <h4 style="padding-left: 20px;">Add New Record</h4>
+       </div>
+        <nb-card>
+          <nb-card-body>
+            <form (ngSubmit)="onSubmit()" #levelForm="ngForm">
+              <div class="row" *ngIf="ShowHide">
+                <div class="form-group col-md-3" *ngIf="ShowHide">
+                  <select (change)="onChangeBusiness($event)"
+                    [ngClass]=" businessID.valid || businessID.pristine ? 'form-control '  :  'form-control form-control-danger'"
+                    [(ngModel)]='_viewModel.businessID' name="businessID" required #businessID="ngModel">
+                    <!-- <option [value]="-1">Select City</option>  -->
+                    <option [ngValue]="undefined" selected>Select Company*</option>
+                    <option *ngFor="let busness of HeadBusinessesList" [value]="busness.id">{{busness.name}}</option>
+                  </select>
+                  <div [hidden]="businessID.valid || businessID.pristine" class="alert alert-danger"> Please select
+                    Company </div>
+                </div>
+                <div class="col-md-4">
+                <h4 style="font-family: Arial, Helvetica, sans-serif; color:green"><i>{{LoggedInAdminInfo}}</i></h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <select
+                    [ngClass]=" companyID.valid || companyID.pristine ? 'form-control '  :  'form-control form-control-danger'"
+                    [(ngModel)]='_viewModel.companyID' name="companyID" [required]="IsRequired" #companyID="ngModel">
+                    <!-- <option [value]="-1">Select City</option>  -->
+                    <option *ngIf="ShowDefault" [value]="default.id" selected="selected">{{default.name}}
+                    <option *ngIf="!ShowDefault" [ngValue]="undefined" selected>Select Location*</option>
+                    <option *ngFor="let company of companyList" [value]="company.id">{{company.name}}</option>
+                  </select>
+                  <div [hidden]="companyID.valid || companyID.pristine" class="alert alert-danger"> Please select
+                    Company </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <select
+                    [ngClass]=" typeID.valid || typeID.pristine ? 'form-control '  :  'form-control form-control-danger'"
+                    [(ngModel)]='_viewModel.typeID' name="typeID" required #typeID="ngModel">
+                    <!-- <option [value]="-1">Select City</option>  -->
+                    <option [ngValue]="undefined" selected>Select Type*</option>
+                    <option *ngFor="let type of typesList" [value]="type.id">{{type.name}}</option>
+                  </select>
+                  <div [hidden]="typeID.valid || typeID.pristine" class="alert alert-danger"> Please select
+                    Type </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-3">
+
+                  <input type="text" id="text" (keypress)="numberOnly($event)" maxlength="4" pattern="^[0-9]*$"
+                    [ngClass]=" Weight.valid || Weight.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Weight*" [(ngModel)]="_viewModel.Weight" name="Weight" required #Weight="ngModel">
+                  <div [hidden]="Weight.valid || Weight.pristine" class="alert alert-danger">
+                    Weight is required
+                  </div>
+                </div>
+                <div class="form-group col-md-3">
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <kendo-datepicker nbInput  [max]="max" name="dt-collectDate" required #collectdate="ngModel" class="picker"
+                    format="dd MMM yyyy" [(ngModel)]="_viewModel.collectDate"></kendo-datepicker>
+                </div>
+                <div class="form-group col-md-3">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <div style="float: left" class="text-success">{{SuccessMessage}}</div>
+                  <button type="submit" class="btn btn-success btn-sm"
+                    style="font-size: 0.95rem !important; float: right" [disabled]="!levelForm.form.valid">Save</button>
+                </div>
+                <div class="form-group col-md-4">
+                </div>
+              </div>
+            </form>
+          </nb-card-body>
+        </nb-card>
+
+  </div>
+</div>

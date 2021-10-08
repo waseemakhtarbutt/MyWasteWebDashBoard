@@ -1,0 +1,39 @@
+<nb-card>
+    <nb-card-header style="border:none !important">
+        Drivers
+    </nb-card-header>
+  <nb-card-body style="border:none !important;  overflow: hidden;">
+    <div class="row" style="background-color:#ffffff; padding: 20px;">
+        <div col-md-4 style="margin-left:20px;">
+            <nb-user [picture]="_userViewModel.fileName" [name]="_userViewModel.fullName" ></nb-user>  
+        </div>
+        <div col-md-8 >
+        <h3 style="margin-top:25px; margin-left:20px; color:rgb(0, 112, 146)" > {{_userViewModel.fullName}} </h3>
+        <div style="margin-top: 20px; margin-left: 20px;"><img img style="height:15px;" src='assets/images/driver/phone.png' />&nbsp; {{_userViewModel.phone}} &nbsp;&nbsp; |&nbsp;&nbsp;   <img img style="height:15px;" src='assets/images/driver/truck.png' /> &nbsp; {{_userViewModel.vehicleName}} &nbsp; &nbsp;|&nbsp;&nbsp; <img img style="height:15px;" src='assets/images/driver/nplate.png' /> &nbsp;  {{_userViewModel.regNumber}} </div>
+        </div>
+    </div>
+  </nb-card-body> 
+<nb-tabset>
+    <nb-tab  tabTitle="All Jobs"  badgeText="{{jobBadge}}"
+    badgeStatus="success">
+   
+        <ngx-alljobs [DriverId]="DriverId" (messageEvent)="allJobsBadgeCount($event)"></ngx-alljobs>
+  </nb-tab>
+  <!-- <nb-tab  tabTitle="Regift"  badgeText="{{regiftBadge}}"
+  badgeStatus="success">
+<ngx-regift-driverlist [DriverId]="DriverId" (messageEvent)="regiftBadgeCount($event)"></ngx-regift-driverlist>
+</nb-tab> -->
+
+<nb-tab  tabTitle="Recycling"  badgeText="{{recycleBadge}}"
+badgeStatus="success">
+<ngx-recycle-driverlist [DriverId]="DriverId" (messageEvent)="recycleBadgeCount($event)"></ngx-recycle-driverlist>
+</nb-tab>
+
+<!-- <nb-tab  tabTitle="Amal Market Place"  badgeText="{{deliveredBadge}}"
+badgeStatus="success">
+<ngx-delivered-driverlist [DriverId]="DriverId" (messageEvent)="deliveredBadgeCount($event)"></ngx-delivered-driverlist>
+</nb-tab>  -->
+  
+ </nb-tabset>
+ <a class="bck" [routerLink]="['/pages/driver/list']">Back to Listing</a>
+</nb-card>

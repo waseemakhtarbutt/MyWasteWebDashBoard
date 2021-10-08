@@ -1,0 +1,67 @@
+
+@import "../../../../../../style.css";
+
+:host 
+  /deep/ 
+  button.btn-success.btn-outline {
+  color: #656565;
+  font-weight: 500;
+//   font-family: Roboto;
+  cursor: default;
+   padding: 2px 5px 2px 5px; 
+  font-size: 10px;
+  line-height: 1.25;
+  border-radius: 50rem;
+  background-color: #ffffff;
+ // border: 2px solid #8dc63f;
+  border: 1px solid #656565;
+  text-transform: capitalize !important;
+  
+};
+ 
+
+// :host 
+//   /deep/ 
+// button.btn-outline.btn-success.hover {
+//     color: #ffffff !important;
+//     background-color: #9cce59;
+//     border-color: 1px solid #b0b2b7 !important;
+// }
+
+// :host 
+//   /deep/ 
+// .btn-outline.btn-success {
+//   border: 1px solid #6565658f !important;
+//   color: #656565d6;
+//   background-color: transparent;
+// }
+
+:host 
+  /deep/ 
+kendo-grid a.k-link {
+    font-weight: bold;
+    color: #656565 !important;
+}
+
+:host 
+  /deep/ 
+.k-pager-numbers .k-state-selected {
+    color: #fff;
+    background-color: #8cc63e;
+}
+
+:host 
+  /deep/ 
+button.btn-outline.btn-success.hover {
+    color: #ffffff !important;
+    background-color: #9cce59;
+    border-color: 1px solid #b0b2b7 !important;
+}
+
+:host 
+  /deep/ 
+.btn-outline.btn-success {
+  border: 1px solid #6565658f !important;
+  color: #656565d6;
+  background-color: transparent;
+}

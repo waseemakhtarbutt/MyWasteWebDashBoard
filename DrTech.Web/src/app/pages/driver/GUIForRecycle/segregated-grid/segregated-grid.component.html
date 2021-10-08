@@ -1,0 +1,41 @@
+<div class="row">
+
+  <nb-card>
+    <nb-card-header class="headerText">
+
+    <br>
+    </nb-card-header>
+    <nb-card-body>
+
+      <table>
+        <thead>
+          <th>Type</th>
+          <th>Weight</th>
+        </thead>
+      </table>
+      <tbody>
+        <tr *ngFor="let item of listViewModel">
+        <td>{{item.type}}</td>
+        <td>{{item.weight}}</td>
+
+        </tr>
+      </tbody>
+
+      <!-- <kendo-grid [data]="gridView"
+      [pageSize]="pageSize"
+      [pageable]="true"
+      [skip]="skip"
+      [selectable]="true"
+      [filterable]="false"
+      (pageChange)="pageChange($event)">
+
+        <kendo-grid-column *ngIf="name=='Paper'" field="name" title="name" width="*"></kendo-grid-column>
+        <kendo-grid-column field="date" title="Date" width="*"></kendo-grid-column>
+        <kendo-grid-column field="time" title="Pickup Time" width="*"></kendo-grid-column>
+        <kendo-grid-column field="weight" title="Recyclable (in Kgs)" width="*"></kendo-grid-column>
+        <kendo-grid-column field="notWaste" title="Non Recyclable (in Kgs)" width="*"></kendo-grid-column>
+        <kendo-grid-column field="greenPoints" title="Earned Credits" width="*"></kendo-grid-column>
+      </kendo-grid> -->
+    </nb-card-body>
+  </nb-card>
+</div>

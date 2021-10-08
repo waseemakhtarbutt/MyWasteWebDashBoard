@@ -1,0 +1,152 @@
+<!--
+<div class="container">
+    <nb-card class="cardSize">
+        <nb-card-body>
+  <div class="row">
+
+        <form (ngSubmit)="onSubmit()" #levelForm="ngForm">
+            <div class="row" style="font-weight: 600;margin-left: 0px;font-size: 16px;margin-bottom: 5px;">
+                <p style="padding-left: 10px;">
+                    Location Comparison
+                  </p>
+
+            </div>
+          <div class="row" style="margin-left: 5px;">
+              <div class="col-md-3 dropdownPadding">
+                  <div class="form-group ">
+                      <select class="dropdownFontSize" [ngClass]=" companyID1.valid || companyID1.pristine ? 'form-control '  :  'form-control form-control-danger'" [(ngModel)]='_viewModel.companyID1' name="companyID1" required #companyID1="ngModel">
+                             <option [value]="-1">Select GOI</option>
+                               <option [value]="default.id" selected="selected">{{default.name}}
+                          <option *ngFor="let company of companyList" [value]="company.id">{{company.name}}</option>
+                        </select>
+                         <div [hidden]="companyID1.valid || companyID1.pristine" class="alert alert-danger"> Please select GOI </div>
+
+                  </div>
+                </div>
+                <div class="col-md-3 dropdownPadding">
+                    <div class="form-group ">
+                        <select class="dropdownFontSize" [ngClass]=" companyID2.valid || companyID2.pristine ? 'form-control '  :  'form-control form-control-danger'" [(ngModel)]='_viewModel.companyID2' name="companyID2" required #companyID2="ngModel">
+                            <option [value]="-1">Select GOI</option>
+                          <option [value]="defaultSecond.id" selected="selected">{{defaultSecond.name}}
+                            <option *ngFor="let company1 of companyList1" [value]="company1.id">{{company1.name}}</option>
+                          </select>
+                           <div [hidden]="companyID2.valid || companyID2.pristine" class="alert alert-danger"> Please select GOI </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3 dropdownPadding">
+                    <div class="form-group">
+                        <select class="dropdownFontSize" [ngClass]=" companyID3.valid || companyID3.pristine ? 'form-control '  :  'form-control form-control-danger'" [(ngModel)]='_viewModel.companyID3' name="companyID" required #companyID3="ngModel">
+                            <option [value]="-1">Select GOI</option>
+                          <option [value]="defaultThird.id" selected="selected">{{defaultThird.name}}
+                            <option *ngFor="let company2 of companyList2" [value]="company2.id">{{company2.name}}</option>
+                          </select>
+                           <div [hidden]="companyID3.valid || companyID3.pristine" class="alert alert-danger"> Please select GOI </div>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                  <button type="submit" class="btn btn-success btn-sm btnMargin" style="font-size: 0.-0.05rem !important; float: right; text-transform: lowercase;"
+                  [disabled]="!levelForm.form.valid">Compare</button>
+              </div>
+          </div>
+
+          </form>
+
+
+  </div>
+  <div class="row">
+    <div class="col-md-12 p-0 m-0">
+      <ngx-charts-bar-horizontal
+      [scheme]="colorScheme"
+      [results]="resultsBarHorizontal"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [view]="view"
+      [showDataLabel]="showDataLabel"
+      >
+
+      </ngx-charts-bar-horizontal>
+  </div>
+  </div>
+</nb-card-body>
+</nb-card>
+</div> -->
+
+
+
+
+
+
+    <nb-card class="col-lg-12">
+      <nb-card-header class="" style="font-size: 12px !important;color:  #00506a !important">
+      Total Green Credits (By Locations)
+      </nb-card-header>
+    <nb-card-body>
+        <form (ngSubmit)="onSubmit()" #levelForm="ngForm">
+
+            <div class="row">
+                          <div class="col-md-3 dropdownPadding">
+                              <div class="form-group ">
+                                  <select class="dropdownFontSize" [ngClass]=" companyID1.valid || companyID1.pristine ? 'form-control '  :  'form-control form-control-danger'" [(ngModel)]='_viewModel.companyID1' name="companyID1" #companyID1="ngModel">
+                                         <option [ngValue]="undefined" selected>Select GOI</option>
+                                           <!-- <option [value]="default.id" selected="selected">{{default.name}} -->
+                                      <option *ngFor="let company of companyList" [value]="company.id">{{company.name}}</option>
+                                    </select>
+                                     <div [hidden]="companyID1.valid || companyID1.pristine" class="alert alert-danger"> Please select GOI </div>
+
+                              </div>
+                            </div>
+                            <div class="col-md-3 dropdownPadding">
+                                <div class="form-group ">
+                                    <select class="dropdownFontSize" [ngClass]=" companyID2.valid || companyID2.pristine ? 'form-control '  :  'form-control form-control-danger'" [(ngModel)]='_viewModel.companyID2' name="companyID2" #companyID2="ngModel">
+                                        <option [ngValue]="undefined" selected>Select GOI</option>
+                                      <!-- <option [value]="defaultSecond.id" selected="selected">{{defaultSecond.name}} -->
+                                        <option *ngFor="let company1 of companyList1" [value]="company1.id">{{company1.name}}</option>
+                                      </select>
+                                       <div [hidden]="companyID2.valid || companyID2.pristine" class="alert alert-danger"> Please select GOI </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3 dropdownPadding">
+                                <div class="form-group">
+                                    <select class="dropdownFontSize" [ngClass]=" companyID3.valid || companyID3.pristine ? 'form-control '  :  'form-control form-control-danger'" [(ngModel)]='_viewModel.companyID3' name="companyID" #companyID3="ngModel">
+                                        <option [ngValue]="undefined" selected>Select GOI</option>
+                                      <!-- <option [value]="defaultThird.id" selected="selected">{{defaultThird.name}} -->
+                                        <option *ngFor="let company2 of companyList2" [value]="company2.id">{{company2.name}}</option>
+                                      </select>
+                                       <div [hidden]="companyID3.valid || companyID3.pristine" class="alert alert-danger"> Please select GOI </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                              <button type="submit" class="btn btn-success btn-sm btnMargin" style="font-size: 0.-0.05rem !important;  text-transform: lowercase;"
+                              [disabled]="!levelForm.form.valid">Compare</button>
+                          </div>
+
+                        </div>
+                      </form>
+
+
+
+
+
+
+
+        <ngx-charts-bar-horizontal
+        [scheme]="colorScheme"
+        [results]="resultsBarHorizontal"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [showDataLabel]="showDataLabel"
+        [view]="view"
+        >
+
+        </ngx-charts-bar-horizontal>
+
+    </nb-card-body>
+</nb-card>

@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row" style="margin-top: 50px;">
+    <div class="col-md-12">
+        <nb-card>
+            <nb-card-body>
+              <form (ngSubmit)="onSubmit()" #WorkingHoursForm="ngForm" class="form">
+                <div class="row">
+                  <div class="col-md-1">
+                    <p class="text-right">From</p>
+
+                  </div>
+                  <div class="col-md-2">
+                    <kendo-timepicker nbInput required #startTime="ngModel" class="picker" name="kt-pickTime"
+                      [(ngModel)]="_viewModel.StartTime" readonly>
+
+                    </kendo-timepicker>
+
+                  </div>
+                  <div class="col-md-1">
+
+                    <p class="text-right">To</p>
+                  </div>
+                  <div class="col-md-2">
+                    <kendo-timepicker nbInput required #endTime="ngModel" class="picker" name="kt-pickTime2"
+                      [(ngModel)]="_viewModel.EndTime" readonly>
+                    </kendo-timepicker>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-success btn-sm" [disabled]="!WorkingHoursForm.form.valid"
+                        style="font-size: 0.95rem !important;">Save</button>
+                    </div>
+                  </div>
+                  <div class="col-md-5"></div>
+
+                </div>
+
+                <br>
+
+                <div class="row">
+                  <div class="col-md-7"></div>
+                 <p style="color: green;">{{SuccessMessage}}</p>
+                </div>
+              </form>
+            </nb-card-body>
+          </nb-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+        <nb-card [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+            <nb-card-body>
+
+              <!-- <input class="k-textbox" (input)="searchGrid($event.target.value)" /> -->
+              <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [skip]="skip" [sortable]="true"
+              [sortable]="{
+                allowUnsort: allowUnsort,
+                mode: multiple ? 'multiple' : 'single'
+                }"
+              [sort]="sort"
+              (sortChange)="sortChange($event)"
+                [selectable]="true" (pageChange)="pageChange($event)">
+
+
+                <!-- <kendo-grid-column field="fullName" title="Name" width="*">  </kendo-grid-column> -->
+
+                <kendo-grid-column field="shift" title="Shift" width="*"></kendo-grid-column>
+                <kendo-grid-column field="startTime" title="StartTime" width="*"></kendo-grid-column>
+                <kendo-grid-column field="endTime" title="EndTime" width="*"></kendo-grid-column>
+              </kendo-grid>
+            </nb-card-body>
+          </nb-card>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+<!-- <ngx-refer-friend></ngx-refer-friend> -->

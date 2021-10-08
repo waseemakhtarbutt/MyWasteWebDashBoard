@@ -1,0 +1,254 @@
+<nb-card>
+  <nb-card-header>
+    Amal Market Place
+  </nb-card-header>
+  <nb-card-body>
+      <div class="row">
+        <div class="col-md-7 bg bdr">
+          <form #form="ngForm">
+              <div class="row mt11">
+                <div class="col-md-7 bdr mt7">
+                  <h5 class="mt7">{{_binModel.name}}</h5>
+                </div>
+                <div class="col-md-5 mt7">
+                  <div class="lbl mt7">Order Number</div>
+                  <div><h6>{{_binModel.orderID}}</h6></div>
+                </div>
+              </div>
+              <br>
+              <div class="row mb7" *ngFor="let subitem of _binModel.binSubItems; let i=index;" (change)="Calculate()">
+                <div class="col-sm-7 col-md-7 pr0">
+                  <input type="text" readonly name="txt-desc-{{i}}" required #desc="ngModel" class="form-control txtitem" [(ngModel)]="subitem.description" />
+                </div>
+                <div class="col-sm-1 col-md-1 pt15 lblQty lbl">Qty</div>
+                <div class="col-sm-2 col-md-2 pr0 pl0" (input)="Calculate()">
+                    <input nbInput [disabled]="_binModel.statusName == 'Declined' || _binModel.statusName == 'Delivered'"
+                    name="txt-quantity-{{i}}"
+                    class="form-control qty"
+                    fullWidth
+                    [(ngModel)]="subitem.qty"
+                    placeholder=""
+                    type="text" numbersOnly maxlength="3" required #quantity="ngModel">
+                </div>
+                <div class="col-sm-1 col-md-1 pr0 pl0 updw">
+                    <div (click)="QtyInc(subitem)">+</div>
+                    <div class="lne"></div>
+                    <div (click)="QtyDec(subitem)">-</div>
+                  </div>
+                <div class="col-sm-1 col-md-1 mt13" *ngIf="i!=0" (click)="RemoveItem(i)"><i class="nb-close"></i></div>
+                <div [hidden]="(desc.valid && quantity.valid) || _binModel.statusName == 'Delivered' || _binModel.statusName == 'Declined'" class="col-sm-11" style="width:100%">
+                    <div class="vld">Description/Quantity Required!</div>
+                </div>
+              </div>
+              <!-- <div class="row">
+                  <div class="col-md-11 pr0">
+                      <button class="btn" (click)="AddItem()"><i class="nb-plus-circled"></i>Add New Item</button>
+                  </div>
+              </div> -->
+              <br>
+              <div class="row ml15">
+                  <div class="col-md-8 row gpspr pl0">
+                    <h4>Green Points</h4>
+                    <span class="app">(approx)</span>
+                  </div>
+                  <div class="col-md-4 row gpspr">
+                      <i class="nb-star gpico"></i>
+                      <h1>{{_binModel.totalGP}}</h1>
+                  </div>
+              </div>
+              <div class="row ml15">
+                <div class="col-md-8 row gpspr pl0">
+                  <h4>Total Price</h4>
+                  <span class="app">(approx)</span>
+                </div>
+                <div class="col-md-4 row gpspr">
+                    <i class="nb-star gpico"></i>
+                    <h1>{{_binModel.price}}</h1>
+                </div>
+              </div>
+              <div class="row ml15">
+                <div class="col-md-8 row gpspr pl0">
+                  <h4>Paid Price</h4>
+                  <span class="app">(approx)</span>
+                </div>
+                <div class="col-md-4 row gpspr">
+                    <i class="nb-star gpico"></i>
+                    <h1>{{_binModel.amountPaid}}</h1>
+                </div>
+              </div>
+              <div class="row ml15">
+                <div class="col-md-8 row gpspr pl0">
+                  <h4>Payment Method</h4>
+                  <span class="app">(approx)</span>
+                </div>
+                <div class="col-md-4 row gpspr">
+                    <i class="nb-star gpico"></i>
+                    <h1>{{_binModel.paymentMethod}}</h1>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                  <div class="col-md-12">
+                      <h4>Set Deliver Time</h4>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <kendo-timepicker name="dt-deliverytime" [min]="min" [max]="max" [disabled]="_binModel.statusName == 'Declined' || _binModel.statusName == 'Delivered'" nbInput required #delivertime="ngModel" class="picker" [(ngModel)]="_binModel.deliverTime"></kendo-timepicker>
+                  </div>
+                  <div class="col-md-5 pr0">
+                      <kendo-datepicker [min]="mindate" name="dt-deliverydate" [disabled]="_binModel.statusName == 'Declined' || _binModel.statusName == 'Delivered'" nbInput required #deliverdate="ngModel" class="picker" format="dd MMM yyyy" [(ngModel)]="_binModel.deliverDate"></kendo-datepicker>
+                  </div>
+                  <div [hidden]="(delivertime.valid && deliverdate.valid) || _binModel.statusName == 'Declined'  || _binModel.statusName == 'Delivered'" class="col-sm-11" style="width:100%">
+                      <!-- <div class="vld">Delivery Date/Time is not valid!</div> -->
+                  </div>
+              </div>
+              <br>
+              <div class="row">
+                  <div class="col-md-12">
+                      <h4>Driver</h4>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-11 pr0">
+                    <select class="form-control" [disabled]="_binModel.statusName == 'Declined' || _binModel.statusName == 'Delivered'" name="ddl-driver" [(ngModel)]='_binModel.assignTo' required #driver="ngModel">
+                      <option *ngFor='let drv of driverList' [value]='drv.id'>{{drv.fullName}}</option>
+                    </select>
+                    <div *ngIf="driver.invalid || _binModel.assignTo == -1 && (_binModel.statusName != 'Declined' && _binModel.statusName != 'Delivered')" class="vld">
+                        Please select driver.
+                    </div>
+                  </div>
+              </div>
+              <br>
+              <div class="row" [hidden]="_binModel.assignTo != -1 && _binModel.statusName != 'Declined'">
+                  <div class="col-md-12">
+                      <h4>Status</h4>
+                  </div>
+              </div>
+              <div class="row" [hidden]="_binModel.assignTo != -1 && _binModel.statusName != 'Declined'">
+                  <div class="col-md-11 pr0">
+                      <select name="ddlStatus" [disabled]="_binModel.statusName == 'Declined'  || _binModel.statusName == 'Delivered'" nbInput class="form-control" [(ngModel)]="_binModel.orderStatusID">
+                          <option *ngFor="let status of statusList" [value]="status.value">{{status.description}}</option>
+                      </select>
+                  </div>
+              </div>
+              <br>
+              <div class="row" [hidden]="(_binModel.statusName == 'Declined'  || _binModel.statusName == 'Delivered')">
+                  <div class="col-md-12">
+                      <h4>Comments</h4>
+                  </div>
+              </div>
+              <div class="row" [hidden]="_binModel.statusName == 'Declined' || _binModel.statusName == 'Delivered'">
+                  <div class="col-md-11 pr0">
+                      <textarea name="ta_comment" [(ngModel)]="_binModel.comments" class="ta"></textarea>
+                  </div>
+                  <div class="col-md-1 pr0" style="margin-top:73px" *ngIf="_binModel.comments != null && _binModel.comments.trim() != ''">
+                      <div style="cursor: pointer" (click)="SMSBinComments()"><i class="fas fa-sms"></i></div>
+                  </div>
+              </div>
+              <br>
+              <div class="row mb11">
+                  <div class="col-md-6">
+                      <a class="bck" [routerLink]="['/pages/request/buybin']">Back to Listing</a>
+                  </div>
+                  <div class="col-md-5 pr0" *ngIf="(delivertime.valid && deliverdate.valid) && (_binModel.statusName != 'Declined' && _binModel.statusName != 'Delivered')">
+                      <button (click)='AssignBinToDriver()' nbButton status="success" style="float:right" >
+                          <!-- <div *ngIf="(form.valid && _binModel.assignTo != -1) && (_binModel.statusName != 'Delivered')">Assign Driver</div>
+                          <div *ngIf="(form.invalid || _binModel.assignTo == -1) && (_binModel.statusName != 'Delivered')">Save</div> -->
+                          <div *ngIf="_binModel.statusName != 'Declined'  && _binModel.statusName != 'Delivered'">Save</div>
+                      </button>
+                  </div>
+              </div>
+              <br>
+              <div class="row" [hidden]="(_binModel.buyBinComments == undefined || _binModel.buyBinComments.length == 0)">
+                  <div class="col-md-12">
+                      <h4>History</h4>
+                  </div>
+              </div>
+              <div class="row" [hidden]="_binModel.buyBinComments == undefined || _binModel.buyBinComments.length == 0">
+                <div class="col-md-11 pr0">
+                  <kendo-grid [data]="gridView"
+                    [pageSize]="pageSize"
+                    [pageable]="true"
+                    [skip]="skip"
+                    [sortable]="true"
+                    [selectable]="true"
+                    (pageChange)="pageChange($event)">
+                      <kendo-grid-column field="date" title="Date" width="150"></kendo-grid-column>
+                      <kendo-grid-column field="user" title="User" width="100" ></kendo-grid-column>
+                      <kendo-grid-column field="comments" title="Comments" width="*"></kendo-grid-column>
+                  </kendo-grid>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="col-md-5 bg" style="padding-left:30px;">
+            <div class="row mt11">
+                <div class="col-md-8 bdr mt7">
+                  <h4>Status</h4>
+                </div>
+                <div class="col-md-1 mt7">
+                </div>
+                <div class="col-md-3 st mt7 row">
+                  <div>{{_binModel.statusName}}</div>
+                  <!-- <i class="nb-power"></i> -->
+                </div>
+            </div>
+            <br>
+            <!-- <div class="row" *ngIf="_binModel.statusName=='Assigned' || _binModel.statusName=='Resolved'">
+              <div class="col-md-1 imgbg" *ngIf="_binModel.statusName=='Assigned'"></div>
+              <div class="col-md-1 imgbg" *ngIf="_binModel.statusName=='Resolved'"></div>
+              <div class="col-md-9"><h6>Collection</h6></div>
+              <div class="col-md-2 st" *ngIf="_binModel.statusName=='Assigned'">...</div>
+              <div class="col-md-2 st" *ngIf="_binModel.statusName=='Resolved'"><i class="nb-checkmark-circle"></i></div>
+            </div>
+            <br>
+            <div class="row" *ngIf="_binModel.statusName=='Assigned' || _binModel.statusName=='Resolved'">
+                <div class="col-md-1 imgbg" *ngIf="_binModel.statusName=='Assigned'"></div>
+                <div class="col-md-1 imgbg" *ngIf="_binModel.statusName=='Resolved'"></div>
+                <div class="col-md-9"><h6>Delivery</h6></div>
+                <div class="col-md-2 st" *ngIf="_binModel.statusName=='Assigned'">...</div>
+                <div class="col-md-2 st" *ngIf="_binModel.statusName=='Resolved'"><i class="nb-checkmark-circle"></i></div>
+            </div>
+            <br>  -->
+            <img class="rounded mx-auto d-block image-class-dailog" src="{{_binModel.fileNameTakenByUser}}">
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                  <h5>{{_binModel.userName}}</h5>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="lbl">
+                  Phone
+                </div>
+                <div>
+                  <h6>{{_binModel.userPhone}}</h6>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="lbl">
+                  Address
+                </div>
+                <div>
+                  <h6>{{_binModel.userAddress}}</h6>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-11">
+              <div class="row mb11">
+                  <div>
+                    <i class="nb-location"></i>
+                  </div>
+                  <div>
+                    <a class="maplink" href="https://www.google.com/maps/place/{{_binModel.latitude}},{{_binModel.longitude}}/@{{_binModel.latitude}},{{_binModel.longitude}},18z" target="_blank">View on Google Map</a>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </nb-card-body>
+</nb-card>
+

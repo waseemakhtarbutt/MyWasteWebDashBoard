@@ -1,0 +1,95 @@
+
+// .no-gutter > [class*='col-'] {
+//   padding-right:0;
+//   padding-left:0;
+// }
+// :host
+//   /deep/
+// .row.no-pad {
+//     margin-right:0;
+//     margin-left:0;
+//   }
+//   .row.no-pad > [class*='col-'] {
+//     padding-right:0;
+//     padding-left:0;
+//   }
+
+//   //Screens
+
+//   /* Smartphones (portrait and landscape) ----------- */
+// @media only screen
+// and (min-width : 320px)
+// and (max-width : 480px) {
+//     .cardSize{
+//         max-width: 350px;
+//      }
+// }
+
+// /* Smartphones (landscape) ----------- */
+// @media only screen
+// and (min-width : 321px) {
+//     .cardSize{
+//         max-width: 350px;
+//      }
+// }
+
+// /* Smartphones (portrait) ----------- */
+// @media only screen
+// and (max-width : 320px) {
+//     .cardSize{
+//         max-width: 350px;
+//      }
+// }
+
+// /* iPads (portrait and landscape) ----------- */
+// @media only screen
+// and (min-width : 768px)
+// and (max-width : 1024px) {
+//     .cardSize{
+//         max-width: 800px;
+//      }
+// }
+
+// /* iPads (landscape) ----------- */
+// @media only screen
+// and (min-width : 768px)
+// and (max-width : 1024px)
+// and (orientation : landscape) {
+//     .cardSize{
+//         max-width: 800px;
+//      }
+// }
+
+// /* iPads (portrait) ----------- */
+// @media only screen
+// and (min-width : 768px)
+// and (max-width : 1024px)
+// and (orientation : portrait) {
+//     .cardSize{
+//         max-width: 800px;
+//      }
+// }
+
+// /* Desktops and laptops ----------- */
+// @media only screen
+// and (min-width : 1224px) {
+//     .cardSize{
+//         max-width: 1000px;
+//      }
+// }
+
+// /* Large screens ----------- */
+// @media only screen
+// and (min-width : 1824px) {
+//     .cardSize{
+//         max-width: 100px;
+//      }
+// }
+
+// /* iPhone 4 ----------- */
+// @media
+// only screen and (-webkit-min-device-pixel-ratio : 1.5),
+// only screen and (min-device-pixel-ratio : 1.5) {
+// /* Styles */
+// }
+

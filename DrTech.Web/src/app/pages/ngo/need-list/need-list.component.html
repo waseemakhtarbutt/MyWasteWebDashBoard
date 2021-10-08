@@ -1,0 +1,62 @@
+<nb-card>
+  <nb-card-header>
+    Need List
+  </nb-card-header>
+
+  <nb-card-body>
+    <button nbButton status="success" (click)="onComplaintAction(dialog,$event, 'add')">Add Need</button>
+    <input #search class="search form-control float-right col-md-4 mb-3" type="text" placeholder="Search..." (keydown)="onSearch(search.value)">
+    <ng2-smart-table [settings]="settings" [source]="source" (custom)="onComplaintAction(dialog,$event,'edit')"></ng2-smart-table>
+    <!--
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table> -->
+  </nb-card-body>
+</nb-card>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+
+  <nb-card style="width: 550px;">
+    <nb-card-header>Need Detail</nb-card-header>
+    <nb-card-body>
+      <div class="row ">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Description</label>
+            <input nbInput class="form-control" type="text" placeholder="Description" [(ngModel)]="_needModel.description" />
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="form-group">
+            <label>City</label>
+            <select nbInput class="form-control" [(ngModel)]="_needModel.city">
+              <option *ngFor="let city of _dropdowns.cityList.list" [value]="city.value">{{city.description}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="form-group">
+            <label>Donation Type</label>
+            <select nbInput class="form-control" [(ngModel)]="_needModel.type" (change)="GetSubType()">
+              <option *ngFor="let type of _dropdowns.donationType.list" [value]="type.value">{{type.description}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="form-group">
+            <label>Donation Sub Type <strong>({{_subDropdowns.title}})</strong></label>
+            <select nbInput class="form-control" [(ngModel)]="_needModel.subType">
+              <option *ngFor="let sub of _subDropdowns.list" [value]="sub.value">{{sub.description}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="success" class="float-right" (click)="updateStatus(ref)">Save</button>
+      <button nbButton status="warning" class="mr-3 float-right" (click)="ref.close()"> Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

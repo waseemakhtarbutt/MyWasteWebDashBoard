@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group  col-md-8" style="float: left; margin-top: 10px;">
+      <kendo-daterange>
+        <kendo-dateinput   kendoDateRangeStartInput [(value)]="range.start"></kendo-dateinput>
+        <kendo-dateinput   kendoDateRangeEndInput [(value)]="range.end"></kendo-dateinput>&nbsp;&nbsp;&nbsp;              
+    </kendo-daterange>
+    <button  (click)= "clearDateRange()"class="btn btn-secondary" style="padding: 5px;color: white; background-color:#005169; margin-left: 6%;">Clear</button>
+    <button (click)= "filterDateRange()" class="btn btn-secondary"  style="padding: 5px;color: white; background-color: #8cc63e; margin-left: 2%;">Filter</button>
+    </div>
+    <div class="input-group col-md-3 search-text-box">
+      <input type="text" class="form-control rounded-right  search-text-box" placeholder="Search" name="search"
+        (input)="searchGrid($event.target.value)">
+      <span class="icon-inside"><i class="fas fa-search"></i></span>
+    </div>
+  </div>
+</div>
+
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <nb-card-header class="headerText">
+    {{GridHeaderText}}  
+    <button type="button" class="btn btn-success btn-sm"
+    style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+    <br>
+  </nb-card-header> 
+  <nb-card-body>
+    <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [skip]="skip" [height]="450"
+      (sortChange)="sortChange($event)" [selectable]="true" (pageChange)="pageChange($event)"
+      (selectionChange)="onSelect($event)">
+      <!-- <kendo-grid-column field="fullName" title="Name" width="*">  </kendo-grid-column> -->
+      <kendo-grid-column field="fullName" title="User Name" width="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a class="lnk" [routerLink]="['/pages/user/detail/', dataItem.userId]">{{dataItem.fullName}}</a>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="cityName" title="City" width="120"></kendo-grid-column>
+      <kendo-grid-column field="area" title="Area" width="200"></kendo-grid-column>
+      <kendo-grid-column field="address" title="Address" width="200"></kendo-grid-column>
+      <kendo-grid-column field="location" title="Location" width="80">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span><a
+              href="https://www.google.com/maps/place/{{dataItem.latitude}},{{dataItem.longitude}}/@{{dataItem.latitude}},{{dataItem.longitude}},18z"
+              target="_blank" class="fas fa-map-marker-alt lnk pl30"></a> </span>
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="phone" title="Phone" width="120"></kendo-grid-column>
+      <kendo-grid-column field="" title="Waste Received" width="120"></kendo-grid-column>
+      <kendo-grid-column field="greenPoints" title="Green Point" width="120"></kendo-grid-column>
+      <kendo-grid-column field="walletBalance" title="Balance Amount" width="120"></kendo-grid-column>
+      <kendo-grid-column field="paymentStatus" title="Payment Staus" width="120"></kendo-grid-column>
+      <kendo-grid-column field="isVarified" title="Isverified" width="120"></kendo-grid-column>
+    </kendo-grid>
+  </nb-card-body>
+</nb-card>

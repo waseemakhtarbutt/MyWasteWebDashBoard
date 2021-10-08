@@ -1,0 +1,86 @@
+<nb-card style="height:100%;">
+  <nb-card-header>
+    Employee Detail
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="row" style="height:100%;">
+
+      <div class="col-md-3">
+        <img style="border-radius: 10px;" class="img-fluid img-thumbnail" src="{{_viewModel.fileName}}" onerror="this.src = '/assets/images/default-user.png'" />
+        <br />
+        <hr />
+
+        <table class="table table-striped table-hover">
+          <tbody>
+            <tr>
+              <td style="width:60%;">Verified</td>
+              <td><span class="label label-success user-status-label" [ngClass]="{'basic':!isVerified, 'registered':isVerified}">{{_viewModel.verified}}</span></td>
+            </tr>
+            <!--<tr>
+              <td style="width:60%;">User Type</td>
+              <td><span class="label label-success">{{_viewModel.userType}}</span></td>
+            </tr>-->
+            <tr *ngIf="_viewModel.isMyStudent">
+              <td><button class="btn btn-success" (click)="btnUpdateStatusOnClick('Approved', _viewModel.id)">Verify</button></td>
+              <td><button class="btn btn-danger" (click)="btnUpdateStatusOnClick('Rejected', _viewModel.id)">Reject</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <h1 class="mt-0">{{_viewModel.name}}</h1>
+          <!--<span class="ml-4"><a href="https://www.google.com/maps/place/{{_viewModel.latitude}},{{_viewModel.longitude}}/@{{_viewModel.latitude}},{{_viewModel.longitude}},18z" target="_blank"><img style="height:35px;" src='assets/images/map/user.png' /></a> </span>-->
+        </div>
+        <hr />
+        <div class="row mt-4">
+          <h4 class="mt-0">Basic Information</h4>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <strong>Gaurdian/ Father Name:</strong>
+          </div>
+          <div class="col-md-8">
+            {{_viewModel.parentName}}
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <strong>School :</strong>
+          </div>
+          <div class="col-md-8">
+            {{_viewModel.schoolName}}
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <strong>Class :</strong>
+          </div>
+          <div class="col-md-8">
+            {{_viewModel.className}}
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <strong>Section:</strong>
+          </div>
+          <div class="col-md-8">
+            {{_viewModel.sectionName}}
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-4">
+            <strong>Roll No.:</strong>
+          </div>
+          <div class="col-md-8">
+            {{_viewModel.rollNo}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+

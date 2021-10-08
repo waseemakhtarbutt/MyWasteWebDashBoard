@@ -1,0 +1,51 @@
+<nb-card>
+  <nb-card-header>
+    Regift Pendding Approval List
+  </nb-card-header>
+
+  <nb-card-body>
+    <input #search class="search form-control float-right col-md-4 mb-3" type="text" placeholder="Search..." (keydown)="onSearch(search.value)">
+    <ng2-smart-table [settings]="settings" [source]="source" (custom)="onComplaintAction(dialog,$event)"></ng2-smart-table>
+    <!--
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table> -->
+  </nb-card-body>
+</nb-card>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+
+  <nb-card style="width: 650px;">
+    <nb-card-header>Regift Detail</nb-card-header>
+    <nb-card-body>
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="flex-centered col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="text-center">
+              <img class="rounded mx-auto d-block image-class-dailog" alt="..." src="{{data.fileName}}">
+            </div>
+          </div>
+        
+
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" *ngIf="data.city < 0 || data.donateTo < 0 || data.type < 0">
+            <div *ngIf="data.donateTo < 0">
+              <strong>NGO : </strong> {{ data.donateToDescription }}
+            </div>
+            <div *ngIf="data.donateTo < 0">
+              <strong>Donation Type : </strong> {{ data.typeDescription }}
+            </div>
+            <div *ngIf="data.city < 0">
+              <strong>City : </strong> {{ data.cityDescription }}
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="success" class="float-right" (click)="updateStatus(6, data, ref)">Approve</button>
+      <button nbButton status="success" class="mr-3 float-right" (click)="updateStatus(5, data, ref)">Reject</button>
+      <button nbButton status="warning" class="mr-3 float-right" (click)="ref.close()"> Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

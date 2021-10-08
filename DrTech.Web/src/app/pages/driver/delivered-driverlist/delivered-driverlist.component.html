@@ -1,0 +1,35 @@
+
+<nb-card  [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <nb-card-header class="headerText">
+    {{GridHeaderText}}  
+    <button type="button" class="btn btn-success btn-sm"
+    style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+    <br>
+  </nb-card-header>
+    <nb-card-body>
+        <kendo-grid style="padding-top:10px;" [data]="deliveredGridView"
+                    [pageSize]="pageSize"
+                    [pageable]="true"             
+                    [skip]="skip" 
+                    [sortable]="true"
+                    (pageChange)="pageChange($event)">
+      
+                    <kendo-grid-column field="description" title="Description" width="*" [style]="{'font-weight' : 'bold'}">
+                        <ng-template kendoGridCellTemplate let-dataItem>
+                            <!-- <nb-user [picture]="dataItem.fileName" [name]="dataItem.name"  size="small"></nb-user> -->
+                            <span><img img class="grdimg" src='assets/images/driver/Bin.png' /> {{dataItem.description}}</span>
+                          </ng-template>
+                    </kendo-grid-column>
+          <!-- <kendo-grid-column field="description" title="Description" width="*"></kendo-grid-column> -->
+          <kendo-grid-column field="userName" title="User Name" width="*"></kendo-grid-column>
+          <kendo-grid-column field="vehicleName" title="Vehicle" width="*"></kendo-grid-column>
+          <kendo-grid-column field="regNumber" title="Vehicle Number" width="*"></kendo-grid-column>
+          <kendo-grid-column field="Location" title="Location" width="*">
+              <ng-template kendoGridCellTemplate let-dataItem>
+              <span><a href="https://www.google.com/maps/place/{{dataItem.latitude}},{{dataItem.longitude}}/@{{dataItem.latitude}},{{dataItem.longitude}},18z" target="_blank" class="fas fa-map-marker-alt lnk pl30"></a> </span>
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="statusName" title="Status" width="*"></kendo-grid-column> 
+        </kendo-grid>
+      </nb-card-body>
+    </nb-card>

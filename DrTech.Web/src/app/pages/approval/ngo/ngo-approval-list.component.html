@@ -1,0 +1,63 @@
+<nb-card>
+  <nb-card-header>
+    School List
+  </nb-card-header>
+  <nb-card-body>
+    <kendo-grid [data]="listViewModel"
+                [pageSize]="10"
+                [pageable]="true"
+                [sortable]="true"
+                [scrollable]="'virtual'"
+                [rowHeight]="30"
+                >
+
+      <kendo-grid-column field="Image" width="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <img height="50" width="50" src="{{dataItem.fileName}}" />
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="description" title="Name" width="*"></kendo-grid-column>
+      <kendo-grid-column field="status" title="Status" width="*"></kendo-grid-column>
+
+      <kendo-grid-column field="Action" width="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a href="javascript:void(0);" (click)="open(dialog,dataItem)" class="blue size13" title="View Detail" data-toggle="tooltip" data-placement="top">
+            <i class="fa fa-eye"></i>
+          </a>&nbsp;
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </nb-card-body>
+</nb-card>
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+
+  <nb-card style="width: 500px;">
+    <nb-card-header>Update Status</nb-card-header>
+    <nb-card-body>
+      <div class="row ">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="flex-centered col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div class="text-center">
+                <img class="rounded mx-auto d-block image-class-dailog" alt="..." src="{{data.fileName}}">
+              </div>
+            </div>
+            <div class="flex-centered col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div class="text-center">
+                <p>{{data.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="success" class="float-right" (click)="updateStatus(data, ref, 'Approved')">Approve</button>
+      <button nbButton status="success" class="float-right mr-3 " (click)="updateStatus(data, ref,'Rejected')">Reject</button>
+      <button nbButton status="warning" class="mr-3 float-right" (click)="ref.close()"> Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,175 @@
+
+    <nb-card [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+      <nb-card-header class="headerText">
+
+        <div class="row">
+          <div class="col-md-2" style="margin-top: 10px;">  {{GridHeaderText}}
+         
+          </div>
+          <div class="col-md-10 col-lg-10 col-sm-12 col-xs-10">
+          <div class="row">
+            <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
+                <form (ngSubmit)="loadFilteredData()" #filterForm="ngForm">
+                  <div class="form-group">
+                      <label style="margin-top: 10px;">Company</label>
+                      <select (change)="onChangeBusiness($event)" class="form-control" [(ngModel)]='range.companyID' name="businessID"
+                        required >
+                        <option [ngValue]="undefined" selected>Select Company*</option>
+                        <option *ngFor="let busness of HeadBusinessesList" [value]="busness.id">{{busness.name}}</option>
+                      </select>
+                    </div>
+                      <div class="form-group">
+                      <label style="margin-top: 10px;">Branch</label>
+                      <select class="form-control" [(ngModel)]='range.branchID' name="companyID" required >
+                        <option *ngFor="let company of companyList" [value]="company.id">{{company.name}}</option>
+                      </select>
+                      <div *ngIf="ShowError">
+                        <h6 style="color: red; float:right">{{ErrorMessage}}</h6>
+                      </div>
+                    </div>
+                      <div class="form-group">
+                        <kendo-daterange>
+                       
+                            <label>
+                              <!-- <span class="label" >Start &nbsp;&nbsp;&nbsp;&nbsp; </span> -->
+
+                              <kendo-dateinput kendoDateRangeStartInput [(value)]="range.start"   placeholder="Start Date"></kendo-dateinput>
+                              &nbsp;&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <label>
+                              <!-- <span class="label">End &nbsp;&nbsp;&nbsp;&nbsp;</span> -->
+                              <kendo-dateinput kendoDateRangeEndInput [(value)]="range.end" placeholder="End Date"></kendo-dateinput>
+                            </label>
+                            <kendo-daterange-popup [animate]="false"></kendo-daterange-popup>
+                          </kendo-daterange>
+
+                    </div>
+
+                  </form>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                <div class="btn-group">
+                    <button (click)="loadFilteredData()" class="btn btn-success btn-sm" style="font-size: 0.95rem !important; height: 32px;">Filter</button>
+                    <button (click)="ClearFilter()" class="btn btn-success btn-sm" style="font-size: 0.95rem !important; height: 32px;">Clear</button>
+
+                  </div>
+              </div>
+          </div>
+
+
+
+
+
+
+
+
+
+             <!-- <div class="row">
+               <div class="col-md-10">
+                  <form (ngSubmit)="loadFilteredData()" #filterForm="ngForm">
+                      <div class="form-group col-10">
+                          <kendo-daterange>
+                              <label>
+                                <span class="label" >Start &nbsp;&nbsp;&nbsp;&nbsp; </span>
+
+                                <kendo-dateinput kendoDateRangeStartInput [(value)]="range.start" required></kendo-dateinput>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                              </label>
+                              <label>
+                                <span class="label">End &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <kendo-dateinput kendoDateRangeEndInput [(value)]="range.end" required></kendo-dateinput>
+                              </label>
+                              <kendo-daterange-popup [animate]="false"></kendo-daterange-popup>
+                            </kendo-daterange>
+
+                      </div>
+                      <div class="form-group col-2">
+                          <div class=" float-right">
+                              <button type="submit" [disabled]="!filterForm.form.valid" class="btn btn-success btn-sm"
+                                style="font-size: 0.95rem !important; height: 32px;">Filter</button>
+                            </div>
+                      </div>
+                    </form>
+               </div>
+               <div class="col-md-2">
+                  <button (click)="ClearFilter()" class="btn btn-success btn-sm"
+            style="font-size: 0.95rem !important; height: 32px;">Clear</button>
+               </div>
+             </div> -->
+             <button type="button" class="btn btn-success btn-sm"
+             style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+             
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+                {{GridHeaderText}}
+            </div>
+
+            </div>
+          <div class="col-md-8">
+            <form (ngSubmit)="loadFilteredData()" #filterForm="ngForm">
+              <div class="form-group">
+                  <kendo-daterange>
+                      <label>
+                        <span class="label" >Start &nbsp;&nbsp;&nbsp;&nbsp; </span>
+
+                        <kendo-dateinput kendoDateRangeStartInput [(value)]="range.start" required></kendo-dateinput>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                      </label>
+                      <label>
+                        <span class="label">End &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <kendo-dateinput kendoDateRangeEndInput [(value)]="range.end" required></kendo-dateinput>
+                      </label>
+                      <kendo-daterange-popup [animate]="false"></kendo-daterange-popup>
+                    </kendo-daterange>
+                    <div class=" float-right">
+                        <button type="submit" [disabled]="!filterForm.form.valid" class="btn btn-success btn-sm"
+                          style="font-size: 0.95rem !important; height: 32px;">Filter</button>
+                      </div>
+              </div>
+            </form>
+
+          </div>
+          <div class="col-md-2">
+            <button (click)="ClearFilter()" class="btn btn-success btn-sm text-warning"
+            style="font-size: 0.95rem !important; height: 32px;">Clear</button>
+          </div>
+        </div> -->
+      </nb-card-header>
+      <nb-card-body>
+        <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [skip]="skip" [selectable]="true"
+          [filterable]="false" (pageChange)="pageChange($event)" (selectionChange)="onSelect($event)">
+          <kendo-grid-column field="companyName" title="Company" width="*"></kendo-grid-column>
+          <kendo-grid-column field="branchName" title="Branch" width="*"></kendo-grid-column>
+          <kendo-grid-column field="date" title="Date" width="*">
+            <ng-template kendoGridCellTemplate let-dataItem>
+              {{dataItem.date | date: 'MMM dd, yyyy'}}
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="weight" title="Total Weight" width="*"></kendo-grid-column>
+
+
+          <kendo-grid-column field="Status" width="*" [sortable]="false" filterable="false">
+            <ng-template kendoGridCellTemplate let-dataItem>
+              <div *ngIf="dataItem.isActive == true">
+                <span>Segregated</span>
+                <!-- <span class="blue size13 " title="Segregated" data-toggle="tooltip" data-placement="top"><button nbButton
+                    outline status="success" style="background-color: #8cc63e !important"><span
+                      class="fa fa-check"></span></button></span>&nbsp; -->
+              </div>
+
+              <div *ngIf="dataItem.isActive == false">
+                  <span style="color: red">Un Segregated</span>
+                <!-- <span class="blue size13 " title="Desegregated" data-toggle="tooltip" data-placement="top"><button nbButton
+                    outline status="success" style="background-color: red !important"><span
+                      class="fa fa-check"></span></button></span>&nbsp; -->
+              </div>
+            </ng-template>
+          </kendo-grid-column>
+        </kendo-grid>
+      </nb-card-body>
+    </nb-card>
+
+

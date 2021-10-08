@@ -1,0 +1,56 @@
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-4">
+          <select [(ngModel)]="request.id"   #t (change)="valueChange(t.value)"
+          >    
+          <option value="0">All</option>
+          <option *ngFor="let school of schoolBranches" [value]="school.id" >{{ school.branchName }}</option>
+          </select>
+      </div>
+      <div class="col-md-2 ">
+        
+        
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+      <div class ="col-md-12">
+         <div class="input-group col-md-3 search-text-box">
+             <input type="text" class="form-control rounded-right  search-text-box"  placeholder="Search"  name="search" (input)="searchGrid($event.target.value)">
+               <span class="icon-inside"><i class="fas fa-search"></i></span>
+           </div>
+       </div>
+    </div>
+    <kendo-grid [data]="listViewModel"
+    [pageSize]="pageSize"
+    [pageable]="true"
+    [skip]="skip"
+    [sortable]="{
+      allowUnsort: allowUnsort,
+      mode: multiple ? 'multiple' : 'single'
+      }"
+    [sort]="sort"
+    (sortChange)="sortChange($event)"
+    [selectable]="true"
+    [filter]="filter"
+    (filterChange)="filterChange($event)"
+    (pageChange)="pageChange($event)">
+       <kendo-grid-column field="name"  title="Student Name"  ></kendo-grid-column>
+       <kendo-grid-column field="className"  title="Class Name"  ></kendo-grid-column>
+        <kendo-grid-column field="branchName"  title="Branch"  ></kendo-grid-column>
+        <kendo-grid-column field="address" title="Address" ></kendo-grid-column>
+        <kendo-grid-column field="greenWorth" title="Green Worth" ></kendo-grid-column>
+        <kendo-grid-column field="level" title="Level"></kendo-grid-column>
+        <!-- <kendo-grid-column field="Action" width="*" [sortable]="false" filterable="false">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <a class="blue size13 " title="Activate" data-toggle="tooltip" data-placement="top"><button (click)="onComplaintAction(dialog,$event, dataItem.id)" nbButton outline  status="success"><span class="fa fa-check"></span></button></a>&nbsp;
+          </ng-template>
+        </kendo-grid-column> -->
+        </kendo-grid>
+  </nb-card-body>
+</nb-card>

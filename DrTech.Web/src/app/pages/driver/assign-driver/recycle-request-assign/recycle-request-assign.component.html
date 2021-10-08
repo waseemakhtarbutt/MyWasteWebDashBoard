@@ -1,0 +1,310 @@
+<nb-card>
+  <nb-card-header>
+    Recycle
+  </nb-card-header>
+  <nb-card-body>
+      <div class="row">
+        <div class="col-md-7 bg bdr">
+            <form #form="ngForm">
+              <div class="row mt11">
+                <div class="col-md-7 bdr mt7">
+                  <h5 class="mt7">{{_recycleModel.description}}</h5>
+                </div>
+                <div class="col-md-5 mt7">
+                  <div class="lbl mt7">Order Number</div>
+                  <div><h6>{{_recycleModel.orderID}}</h6></div>
+                </div>
+              </div>
+              <br>
+              <div class="row mb7" *ngFor="let subitem of _recycleModel.recycleSubItems; let i=index;" (change)="CalculateGP()">
+                  <div class="col-md-6 pr0">
+                      <input type="text" [disabled]="_recycleModel.statusName == 'Declined' || _recycleModel.statusName == 'Delivered'" name="txt-desc-{{i}}" required #desc="ngModel" class="form-control txtitem" [(ngModel)]="subitem.description" />
+                  </div>
+                  <div class="col-md-2 lblQtyRc lbl">
+                    <div>Weight</div>
+                    <div>(Approx)</div>
+                  </div>
+                  <div class="col-md-2 wt pr0 pl0" (input)="CalculateGP()">
+                      <input [disabled]="_recycleModel.statusName == 'Declined' || _recycleModel.statusName == 'Delivered'"
+                      name="txt-wgt-{{i}}"
+                      class="form-control wt"
+                      fullWidth
+                      [(ngModel)]="subitem.weight"
+                      placeholder=""
+                      type="text" decimalOnly maxlength="5" required #weight="ngModel">
+                  </div>
+                  <div class="col-md-1 lblkg lbl">
+                      <div>kg</div>
+                  </div>
+                  <div class="col-sm-1 col-md-1 mt13" *ngIf="i!=0" (click)="RemoveItem(i)"><i class="nb-close"></i></div>
+                  <div [hidden]="(weight.valid && desc.valid) || _recycleModel.statusName == 'Declined' || _recycleModel.statusName == 'Delivered'" class="col-sm-11" style="width:100%">
+                      <div class="vld">Description/Weight Required!</div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-11 pr0">
+                      <button class="btn" [disabled]="_recycleModel.statusName == 'Declined' || _recycleModel.statusName == 'Delivered'" (click)="AddItem()"><i class="nb-plus-circled"></i>Add New Item</button>
+                  </div>
+              </div>
+              <br>
+            <div class="row ml15">
+                  <div class="col-md-9 row gpspr pl0">
+                    <h4>Green Credits</h4>
+                    <span class="app">(approx)</span>
+                  </div>
+                  <div class="col-md-3 row gpspr">
+                      <i class="nb-star gpico"></i>
+                      <h1>{{_recycleModel.totalGP}}</h1>
+                  </div>
+              </div>
+
+              <!-- <div class="row ml15">
+                  <div class="col-md-9 row gpspr pl0">
+                    <h4>Cash</h4>
+                    <span class="app">(approx)</span>
+                  </div>
+                  <div class="col-md-3 row gpspr">
+                      <i class="nb-star gpico"></i>
+                      <h1>{{_recycleModel.cash}}</h1>
+                  </div>
+              </div> -->
+              <br>
+              <div class="row">
+                  <div class="col-md-12">
+                      <h4>Set Collect Time</h4>
+                  </div>
+              </div>
+              <div class="row">
+                  <!-- <div class="col-md-6">
+                      <kendo-timepicker  onkeydown="return false;"   [min]="min" [max]="max" [disabled]="_recycleModel.statusName == 'Declined' || _recycleModel.statusName == 'Delivered'" nbInput name="dt-collectTime" required #collecttime="ngModel" class="picker" [(ngModel)]="_recycleModel.collectTime"></kendo-timepicker>
+                  </div> -->
+                  <div class="col-md-5 pr0">
+                      <kendo-datepicker [min]="mindate" [disabled]="_recycleModel.statusName == 'Declined' || _recycleModel.statusName == 'Delivered'" nbInput name="dt-collectDate" required #collectdate="ngModel" class="picker" format="dd MMM yyyy" [(ngModel)]="_recycleModel.collectDate"></kendo-datepicker>
+                  </div>
+                  <div [hidden]="(collectdate.valid) || _recycleModel.statusName == 'Declined' || _recycleModel.statusName == 'Delivered'" class="col-sm-11" style="width:100%">
+                      <div class="vld">Collect Date/Time is not valid!</div>
+                  </div>
+              </div><br>
+              <div class="row">
+                  <div class="col-md-12">
+                      <h4>Driver</h4>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-11 pr0">
+                    <select class="form-control" [disabled]="_recycleModel.statusName == 'Declined' || _recycleModel.statusName == 'Delivered'" name="ddl-driver" [(ngModel)]='_recycleModel.assignTo' required #driver="ngModel">
+                      <option *ngFor='let drv of driverList' [value]='drv.id'>{{drv.fullName}}</option>
+                    </select>
+                    <div *ngIf="driver.invalid || _recycleModel.assignTo == -1 && (_recycleModel.statusName != 'Declined' && _recycleModel.statusName != 'Delivered')" class="vld">
+                        Please select driver.
+                    </div>
+                  </div>
+              </div>
+              <br>
+              <div class="row" [hidden]="_recycleModel.assignTo != -1 && _recycleModel.statusName != 'Declined'">
+                  <div class="col-md-12">
+                      <h4>Status</h4>
+                  </div>
+              </div>
+              <div class="row" [hidden]="_recycleModel.assignTo != -1 && _recycleModel.statusName != 'Declined'">
+                  <div class="col-md-11 pr0">
+                      <select name="ddlStatus" [disabled]="_recycleModel.statusName == 'Declined'  || _recycleModel.statusName == 'Delivered'" nbInput class="form-control" [(ngModel)]="_recycleModel.orderStatusID">
+                          <option *ngFor="let status of statusList" [value]="status.value">{{status.description}}</option>
+                      </select>
+                  </div>
+              </div>
+              <br>
+              <div class="row" [hidden]="(_recycleModel.statusName == 'Declined'  || _recycleModel.statusName == 'Delivered')">
+                  <div class="col-md-12">
+                      <h4>Comments</h4>
+                  </div>
+              </div>
+              <div class="row" [hidden]="_recycleModel.statusName == 'Declined'  || _recycleModel.statusName == 'Delivered'">
+                  <div class="col-md-11 pr0">
+                      <textarea name="ta_comment" [(ngModel)]="_recycleModel.comments" class="ta"></textarea>
+                  </div>
+                  <div class="col-md-1 pr0" style="margin-top:73px" *ngIf="_recycleModel.comments != null && _recycleModel.comments.trim() != ''">
+                      <div style="cursor: pointer" (click)="SMSRecycleComments()"><i class="fas fa-sms"></i></div>
+                  </div>
+              </div>
+
+              <br>
+              <div class="row mb11">
+                  <div class="col-md-6">
+                      <a class="bck" [routerLink]="['/pages/request/recycle']">Back to Listing</a>
+                  </div>
+                  <div class="col-md-2 pr0">
+                      <!-- Hide in case of Declined and Complete -->
+                        <!-- <button (click)="onRejectAction(dialogReject,$event)" [hidden]="_recycleModel.statusName == 'Declined'  || _recycleModel.statusName == 'Collected'" nbButton status="success" style="float:right" >Reject</button> -->
+                    </div>
+                  <div class="col-md-3 pr0" *ngIf="(_recycleModel.statusName != 'Declined' && _recycleModel.statusName != 'Delivered')">
+                      <button (click)='AssignRecycleToDriver()' nbButton status="success" style="float:right" >
+                          <!-- <div *ngIf="(form.valid && _recycleModel.assignTo != -1) && (_recycleModel.statusName != 'Declined'  && _recycleModel.statusName != 'Collected')">Assign Driver</div>
+                          <div *ngIf="(form.invalid || _recycleModel.assignTo == -1) && (_recycleModel.statusName != 'Declined'  && _recycleModel.statusName != 'Collected')">Save</div> -->
+                          <div *ngIf="_recycleModel.statusName != 'Declined'  && _recycleModel.statusName != 'Delivered'">Save</div>
+                        </button>
+                  </div>
+              </div>
+              <br>
+              <div class="row" [hidden]="(_recycleModel.recycleComments == undefined || _recycleModel.recycleComments.length == 0)">
+                  <div class="col-md-12">
+                      <h4>History</h4>
+                  </div>
+              </div>
+              <div class="row" [hidden]="_recycleModel.recycleComments == undefined || _recycleModel.recycleComments.length == 0">
+                <div class="col-md-11 pr0">
+                  <kendo-grid [data]="gridView"
+                    [pageSize]="pageSize"
+                    [pageable]="true"
+                    [skip]="skip"
+                    [sortable]="true"
+                    [selectable]="true"
+                    (pageChange)="pageChange($event)">
+                      <kendo-grid-column field="date" title="Date" width="150"></kendo-grid-column>
+                      <kendo-grid-column field="user" title="User" width="100" ></kendo-grid-column>
+                      <kendo-grid-column field="comments" title="Comments" width="*"></kendo-grid-column>
+                  </kendo-grid>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div class="col-md-5 bg" style="padding-left:30px;">
+            <div class="row mt11">
+                <div class="col-md-3 bdr mt7">
+                  <h4>Status</h4>
+                </div>
+                <div class="col-md-1 mt7">
+                </div>
+                <div class="col-md-8 st mt7 row" >
+                  <div style="width: 100%"><div style="float:right">{{this.pendingConfirmation}}</div></div>
+                  <!-- <i class="nb-power"></i> -->
+                </div>
+            </div>
+            <br>
+            <div class="row" *ngIf="_recycleModel.statusName=='Collected' || _recycleModel.statusName=='Delivered' || _recycleModel.statusName=='Declined'">
+              <div class="col-md-1">
+                <img style="max-height:35px" *ngIf="_recycleModel.fileNameTakenByDriver!=null" src="{{_recycleModel.fileNameTakenByDriver}}" />
+                <div class="imgbg" *ngIf="_recycleModel.fileNameTakenByDriver==null">&nbsp;</div>
+              </div>
+              <div class="col-md-8 ml15">
+                  <h6>Collected</h6>
+                  <div class="row">
+                    <div class="lbl wpc" *ngIf="_recycleModel.collectedPendingConfirmation">Confirmed</div>
+                    <div class="lbl bdr wpc" *ngIf="!_recycleModel.collectedPendingConfirmation">With pending confirmation</div>
+                    <a class="lbl bck" *ngIf="!_recycleModel.collectedPendingConfirmation && _recycleModel.statusName!='Declined'" (click)="onComplaintAction(dialog,$event, true)" style="cursor:pointer">Confirm</a>
+                  </div>
+              </div>
+              <div class="col-md-1" *ngIf="_recycleModel.collectedPendingConfirmation">
+                  <i class="nb-checkmark-circle chk"></i>
+              </div>
+            </div>
+            <br>
+            <div class="row" *ngIf="_recycleModel.statusName=='Delivered' || _recycleModel.statusName=='Declined'">
+                <div class="col-md-1">
+                  <img style="max-height:35px" *ngIf="_recycleModel.fileNameTakenByOrg!=null" src="{{_recycleModel.fileNameTakenByOrg}}" />
+                  <div class="imgbg" *ngIf="_recycleModel.fileNameTakenByOrg==null">&nbsp;</div>
+                </div>
+                <div class="col-md-8 ml15">
+                    <h6>Delivered</h6>
+                    <div class="row">
+                      <div class="lbl wpc" *ngIf="_recycleModel.deliveredPendingConfirmation">Confirmed</div>
+                      <div class="lbl bdr wpc" *ngIf="!_recycleModel.deliveredPendingConfirmation">With pending confirmation</div>
+                      <a class="lbl bck" *ngIf="!_recycleModel.deliveredPendingConfirmation && _recycleModel.statusName!='Declined'" (click)="onComplaintAction(dialog,$event, false)" style="cursor:pointer">Confirm</a>
+                    </div>
+                </div>
+                <div class="col-md-1" *ngIf="_recycleModel.deliveredPendingConfirmation">
+                    <i class="nb-checkmark-circle chk"></i>
+                </div>
+              </div>
+            <br>
+            <img class="rounded mx-auto d-block image-class-dailog" src="{{_recycleModel.fileNameTakenByUser}}">
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                  <h5>{{_recycleModel.userName}}</h5>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div class="lbl">
+                  Phone
+                </div>
+                <div>
+                  <h6>{{_recycleModel.userPhone}}</h6>
+                </div>
+            </div>
+            <div>
+              <div class="lbl">
+                City
+              </div>
+              <div>
+                <h6>{{_recycleModel.cityName}}</h6>
+              </div>
+          </div>
+            <br>
+            <div>
+                <div class="lbl">
+                  Address
+                </div>
+                <div>
+                  <h6>{{_recycleModel.userAddress}}</h6>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-11 mb11">
+              <div class="row">
+                  <div>
+                    <i class="nb-location"></i>
+                  </div>
+                  <div>
+                    <a class="maplink" href="https://www.google.com/maps/place/{{_recycleModel.latitude}},{{_recycleModel.longitude}}/@{{_recycleModel.latitude}},{{_recycleModel.longitude}},18z" target="_blank">View on Google Map</a>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </nb-card-body>
+</nb-card>
+<!-- Dialog  -->
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card class="dlg">
+      <div class="row " class="dlgrow">
+        <div class="col-md-12 col-sm-12">
+          <div class="form-group">
+            <label class="dlgmsgclr"> Do you want to confirm recycle request? </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12 col-sm-12" style="margin-left: 7rem;">
+          <button nbButton status="success" class="dlgyes" (click)="SetConfirmation(ref)">Yes</button>
+          <button nbButton status="warning" class="dlgno" (click)="ref.close()"> No </button>
+        </div>
+      </div>
+      <div class=" form-group col-md-3 col-sm-3">
+      </div>
+    </nb-card>
+  </ng-template>
+
+<ng-template #dialogReject let-data let-ref="dialogRef">
+    <nb-card class="dlg">
+      <div class="row " class="dlgrow">
+        <div class="col-md-12 col-sm-12">
+          <div class="form-group">
+            <label class="dlgmsgclr"> Do you want to reject recycle request? </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12 col-sm-12" style="margin-left: 7rem;">
+          <button nbButton status="success" class="dlgyes" (click)="RejectRecycle(ref)">Yes</button>
+          <button nbButton status="warning" class="dlgno" (click)="ref.close()"> No </button>
+        </div>
+      </div>
+      <div class=" form-group col-md-3 col-sm-3">
+      </div>
+    </nb-card>
+  </ng-template>
+
+

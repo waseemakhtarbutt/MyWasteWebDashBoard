@@ -1,0 +1,191 @@
+
+@import "../../../../style.css";
+span {
+
+  color: #005169;
+  font-size: 30px;
+  float: right;
+  
+}
+a{
+font-size: 20px;
+color:black;
+margin-left:5px;
+}
+nb-card {
+  // min-width: 10rem;
+  // max-width: 20rem;
+  // //margin: 0 auto 2rem;
+}
+
+:host
+  /deep/
+  button.btn-success.btn-outline {
+  color: #656565;
+  font-weight: 500;
+//   font-family: Roboto;
+  cursor: default;
+   padding: 2px 5px 2px 5px;
+  font-size: 10px;
+  line-height: 1.25;
+  border-radius: 50rem;
+  background-color: #ffffff;
+ // border: 2px solid #8dc63f;
+  border: 1px solid #656565;
+  text-transform: capitalize !important;
+
+};
+
+:host 
+/deep/
+.user-picture {
+ 
+
+}
+:host
+  /deep/
+button.btn-outline.btn-success.hover {
+    color: #ffffff !important;
+    background-color: #9cce59;
+    border-color: 1px solid #b0b2b7 !important;
+}
+
+:host
+  /deep/
+.btn-outline.btn-success {
+  border: 1px solid #6565658f !important;
+  color: #656565d6;
+  background-color: transparent;
+}
+
+:host
+  /deep/
+kendo-grid a.k-link {
+    font-weight: bold;
+    color: #656565 !important;
+}
+
+:host
+  /deep/
+.k-pager-numbers .k-state-selected {
+    color: #fff;
+    background-color: #8cc63e;
+}
+
+:host
+  /deep/
+ ::-webkit-scrollbar-track {
+  background: #ffffff !important;
+}
+/////////////////////////////////////////////Above is grid CSS
+
+
+// :host
+// /deep/
+// .user-picture {
+//     height: 10rem !important;
+//     width: 10rem !important;
+//     background: #ffffff;
+//     border: solid 2px #bcc3cc;
+
+// }
+
+// :host
+// /deep/
+//  .user-name {
+//     display: none !important;
+// }
+// .heading{
+//     margin-left: 30px;
+// }
+
+// .upload{
+//     font-weight:bold;
+//     color:#28a745;
+//     margin-left: 15px;
+//     line-height: 36px;
+// }
+
+// .image-location{
+
+//     margin-left: 600px;
+//     margin-top: 10px;
+// }
+
+// .row-location{
+//     margin-top: -75px;
+// }
+
+// :host
+// /deep/
+// .user-picture {
+//     height: 7rem !important;
+//     width: 7rem !important;
+// }
+
+// // .image-location{
+// //     // margin-left: 500px;
+// //     width: 137px !important;
+// //     float: left;
+// //     margin-top: 10px;
+// // }
+
+// :host
+// /deep/
+// nb-card-header {
+
+//     border-bottom: none !important;
+// }
+// :host
+// /deep/
+// .user-picture {
+//     height: 10rem !important;
+//     width: 10rem !important;
+//     background: #ffffff;
+//     border: solid 2px #bcc3cc;
+
+// }
+
+// :host
+// /deep/
+//  .user-name {
+//     display: none !important;
+// }
+// .heading{
+//     margin-left: 30px;
+// }
+
+// .upload{
+//     font-weight:bold;
+//     color:#28a745;
+//     margin-left: 15px;
+//     line-height: 36px;
+// }
+
+// .image-location{
+
+//     margin-left: 600px;
+//     margin-top: 10px;
+// }
+
+// :host
+// /deep/
+// .user-picture {
+//     height: 7rem !important;
+//     width: 7rem !important;
+// }
+
+// :host
+// /deep/
+// nb-card-header {
+
+//     border-bottom: none !important;
+// }
+
+
+
+
+
+
+
+

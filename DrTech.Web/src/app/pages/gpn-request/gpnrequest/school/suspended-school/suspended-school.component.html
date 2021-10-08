@@ -1,0 +1,58 @@
+<!-- <nb-tabset>
+    <nb-tab  tabTitle="Drivers"  badgeText="{{driverBadge}}" badgeStatus="success">  -->
+        <div class="row">
+            <div class ="col-md-12">
+               <div class="input-group col-md-3 search-text-box">
+                   <input type="text" class="form-control rounded-right  search-text-box"  placeholder="Search"  name="search" (input)="searchGrid($event.target.value)">
+                     <span class="icon-inside"><i class="fas fa-search"></i></span>
+                 </div>
+             </div>
+           </div>
+        <nb-card  [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+          <nb-card-header class="headerText">
+            {{GridHeaderText}}  
+            <button type="button" class="btn btn-success btn-sm"
+            style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+            <br>
+          </nb-card-header> 
+            <nb-card-body>
+              <kendo-grid [data]="gridView"
+                          [pageSize]="pageSize"
+                          [pageable]="true"
+                          [skip]="skip"
+                          [sortable]="{
+                            allowUnsort: allowUnsort,
+                            mode: multiple ? 'multiple' : 'single'
+                            }"
+                          [sort]="sort"
+                          (sortChange)="sortChange($event)"
+                          [selectable]="true"
+                          (pageChange)="pageChange($event)"
+                          (selectionChange)="onSelect($event)">
+                          <kendo-grid-column field="name" title="School Name" width="*">
+                              <ng-template kendoGridCellTemplate let-dataItem>
+                                  <nb-user  [picture]="dataItem.fileName" [name]="dataItem.name"  size="small"></nb-user>
+                                </ng-template>
+                          </kendo-grid-column>
+
+                <!-- <kendo-grid-column field="fullName" title="Name" width="*">  </kendo-grid-column> -->
+                <kendo-grid-column field="branchName" title="Branch Name" width="*"></kendo-grid-column>
+                <kendo-grid-column field="contactPerson" title="Contact Person" width="*"></kendo-grid-column>
+                <kendo-grid-column field="phone" title="Contact Number" width="*"></kendo-grid-column>
+                <kendo-grid-column field="email" title="Email Address" width="*"></kendo-grid-column>
+
+                <kendo-grid-column field="Action" width="100%" [sortable]="false">
+                  <ng-template kendoGridCellTemplate let-dataItem>
+                    <a class="blue size13 " title="Unsuspend" data-toggle="tooltip" data-placement="top"><button (click)="activateInstance(dataItem.id)" nbButton outline  status="success"><a class="fa fa-check"></a></button></a>&nbsp;
+
+                  </ng-template>
+                </kendo-grid-column>
+
+
+              </kendo-grid>
+            </nb-card-body>
+            </nb-card>
+      <!-- </nb-tab>
+
+     </nb-tabset> -->
+

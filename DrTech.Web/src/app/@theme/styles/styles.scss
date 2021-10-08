@@ -1,0 +1,122 @@
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+@import '~@nebular/bootstrap/styles/globals';
+// ...
+
+// global app font size
+@import './font-size';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './bootstrap-rtl';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+  @include nb-bootstrap-global();
+
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  // fixed in rc.9 and can be removed after upgrade
+  .custom-control .custom-control-indicator {
+    border-radius: 50%; // TODO: quickfix for https://github.com/akveo/nebular/issues/275
+  }
+  @include bootstrap-rtl();
+};
+
+.nb-theme-default ng2-smart-table thead tr.ng2-smart-filters th {
+  display: none !important;
+  text-align: center !important;
+}
+.nb-theme-default ng2-smart-table table tr td {
+  text-align: center !important;
+}
+.nb-theme-default ng2-smart-table table tr.ng2-smart-titles th {
+  text-align: center !important;
+}
+
+.nb-theme-default nb-card-header {
+  background-color: #007092 !important;
+  color: white !important;
+}
+.image-class-dailog {
+  width: 100%;
+  object-fit: scale-down;
+  height: 300px;
+  border: 2px solid #dadfe6;
+}
+.nb-theme-default agm-map {
+  height:100% !important;
+}
+
+.k-grid thead {
+  background-color: #007092 !important;
+}
+kendo-grid {
+  a.k-link {
+    color:white !important;
+  }
+}
+
+
+
+
+.cdk-global-scrollblock {
+  position: static;
+  overflow: hidden !important;
+}
+.nb-theme-default nb-layout.overlay-scroll-block .scrollable-container {
+  overflow: hidden !important;
+}
+
+.nb-theme-default nb-layout .layout .layout-container .content .columns nb-layout-column {
+  padding: 2.25rem 1.0rem 0.75rem !important;
+}
+
+
+.gm-style .gm-style-iw-c {
+  overflow: hidden !important; 
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  transform: translate(-50%,-100%);
+  background-color:  #1f1e1e !important;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+  color: white;
+}
+
+.gm-ui-hover-effect
+{
+  display: block;
+  border: 0px;
+  margin: 0px;
+  border-bottom-left-radius: 50% !important;
+  padding: 0px;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  top: -6px !important;
+  right: -5px !important;
+  width: 30px !important;
+  height: 30px !important;
+  height: 25px !important;
+  background-color: rgb(140, 198, 62) !important;
+}
+
+.gm-style .gm-style-iw-d {
+  box-sizing: border-box;
+  overflow: hidden !important; 
+}

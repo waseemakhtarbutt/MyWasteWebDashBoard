@@ -1,0 +1,129 @@
+@import '../../../@theme/styles/themes';
+@import "../../../../style.css";
+
+@include nb-install-component() {
+
+  nb-card-body {
+    padding: 0;
+  }
+
+  /deep/ agm-map {
+    width: 100%;
+    height: nb-theme(card-height-large);
+  }
+
+  nb-checkbox {
+    clear: both;
+    display: block;
+    border-bottom: 1px solid #ebeef2;
+    margin: 10px 0px 10px 15px;
+    line-height: 20px;
+  }
+
+//   :host 
+//   /deep/ 
+//   nb-card-header {
+//     background-color: #eaedf4 !important;
+//     color: rgb(71, 71, 71) !important;
+// }
+
+:host 
+ /deep/ 
+.gm-style .gm-style-iw-t::after {
+  background: #1f1e1e;
+  box-shadow: -2px 2px 2px 0 rgba(178,178,178,.4);
+  content: "";
+  height: 5px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%,-50%) rotate(-45deg);
+  width: 5px;
+  overflow: hidden !important;
+}
+
+
+element.style {
+   overflow: hidden; 
+}
+
+
+:host 
+ /deep/
+.gm-style .gm-style-iw-c {
+  overflow: hidden !important; 
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  transform: translate(-50%,-100%);
+  background-color:  #1f1e1e !important;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+  color: white;
+}
+
+:host 
+ /deep/
+.user-picture {
+  height: 2.5rem;
+  width: 2.5rem;
+  background: #ffffff;
+   border: none !important;
+}
+
+
+:host 
+ /deep/
+.gm-style .gm-style-iw-d {
+  box-sizing: border-box;
+  overflow: hidden !important; 
+}
+
+:host 
+ /deep/
+.gm-ui-hover-effect
+{
+  display: block;
+  border: 0px;
+  margin: 0px;
+  border-bottom-left-radius: 50% !important;
+  padding: 0px;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  top: -6px !important;
+  right: -5px !important;
+  width: 30px !important;
+  height: 30px !important;
+  height: 25px !important;
+  background-color: rgb(140, 198, 62) !important;
+}
+
+:host 
+ /deep/
+.gm-ui-hover-effect {
+  opacity: 100% !important;
+}
+
+.menu{
+  margin-top: 25px !important;
+  position: absolute;
+  background-color: white;
+  height: 430px;
+ margin-left: 25px;
+ border-radius: 10px;
+ padding: 0px !important;
+
+}
+
+:host 
+ /deep/
+ .columns{
+  padding: 2.25rem 0.25rem 0.75rem;
+ 
+}
+
+}

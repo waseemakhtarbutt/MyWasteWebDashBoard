@@ -1,0 +1,57 @@
+
+@import "../../../../style.css";
+
+:host 
+  /deep/ 
+  button.btn-success.btn-outline {
+  color: #656565;
+  font-weight: 500;
+//   font-family: Roboto;
+  cursor: default;
+   padding: 2px 2px; 
+  font-size: 10px;
+  line-height: 1.25;
+  border-radius: 0.375rem;
+  background-color: #ffffff;
+ // border: 2px solid #8dc63f;
+  border: 2px solid #656565;
+  text-transform: capitalize !important;
+  
+};
+ 
+
+:host 
+  /deep/ 
+button.btn-outline.btn-success.hover {
+    color: #ffffff !important;
+    background-color: #9cce59;
+    border-color: 2px solid #b0b2b7 !important;
+}
+
+:host 
+  /deep/ 
+.k-grid-header .k-header {
+  background-color:#fff !important;
+}
+
+:host 
+  /deep/ 
+.k-pager-numbers .k-state-selected {
+    color: #fff;
+    background-color: #8cc63e;
+}
+:host 
+/deep/
+.user-picture {
+    height: 10rem !important;
+    width: 10rem !important;
+    background: #ffffff;
+    border: solid 2px #bcc3cc;
+}
+
+:host 
+/deep/
+.user-name {
+  font-family: Roboto;
+  display: none;
+}

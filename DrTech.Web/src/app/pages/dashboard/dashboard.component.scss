@@ -1,0 +1,21 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+
+  nb-card-body {
+    padding: 0;
+  }
+
+
+  /deep/ agm-map {
+    width: 100%;
+    height: nb-theme(card-height-large);
+  }
+  nb-checkbox {
+    clear: both;
+    display: block;
+    border-bottom: 1px solid #ebeef2;
+    margin: 10px 0px 10px 15px;
+    line-height: 20px;
+  }
+}

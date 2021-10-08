@@ -1,0 +1,20 @@
+nb-card {
+  transform: translate3d(0, 0, 0);
+}
+
+.user-status-label {
+  padding: 6px;
+  border-radius: 40px;
+  color: white;
+  height: 10px !important;
+  font-size: 12px;
+}
+
+.user-status-label.basic {
+  background-color: #e8e197;
+  color: black;
+}
+
+.user-status-label.registered {
+  background-color: green;
+}

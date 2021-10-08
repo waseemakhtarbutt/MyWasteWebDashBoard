@@ -1,0 +1,177 @@
+<img src="assets/logo.png" style="padding-left: 20%;">
+
+<!-- <h1 id="title" style="color: #00506a; padding-right: 20% !important" class="">Login</h1> -->
+<h1 style="padding-left: 20%">
+  <span style="color: #00506a; font-weight: 200;">Lets go</span><br>
+  <b><span style="color: #00506a;">waste</span>   <span style="color: #8cc63e;"> free</span></b>
+</h1>
+<h1 style="padding-left: 20%;color: #00506a;">Login</h1>
+<!-- <p class="sub-title">Hello! Sign in with your email.</p> -->
+<nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+  <!-- <p class="alert-title"><b>Oh snap!</b></p> -->
+  <ul class="alert-message-list">
+    <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+  </ul>
+</nb-alert>
+
+<nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+  <!-- <p class="alert-title"><b>Hooray!</b></p> -->
+  <ul class="alert-message-list">
+    <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+  </ul>
+</nb-alert>
+
+<form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+  <div style="width: 50%;margin-left: 20%;">
+    <div class="form-control-group">
+      <!-- <label class="label" for="input-email">Email address:</label> -->
+      <input nbInput
+             fullWidth
+             [(ngModel)]="user.email"
+             #email="ngModel"
+             name="email"
+             id="input-email"
+             pattern=".+@.+\..+"
+             placeholder="Username"
+             autofocus
+             [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''"
+             [required]="getConfigValue('forms.validation.email.required')"
+             [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+      <ng-container *ngIf="email.invalid && email.touched">
+        <p class="error-message" *ngIf="email.errors?.required">
+          Email is required!
+        </p>
+        <p class="error-message" *ngIf="email.errors?.pattern">
+          Email should be the real one!
+        </p>
+      </ng-container>
+    </div>
+    <div class="form-control-group">
+      <!-- <label class="label" for="input-password">Password:</label> -->
+      <input nbInput
+             fullWidth
+             [(ngModel)]="user.password"
+             #password="ngModel"
+             name="password"
+             type="password"
+             id="input-password"
+             placeholder="Password"
+             [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+             [required]="getConfigValue('forms.validation.password.required')"
+             [minlength]="getConfigValue('forms.validation.password.minLength')"
+             [maxlength]="getConfigValue('forms.validation.password.maxLength')"
+             [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+      <ng-container *ngIf="password.invalid && password.touched ">
+        <p class="error-message" *ngIf="password.errors?.required">
+          Password is required!
+        </p>
+        <p class="error-message" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+          Password should contains
+          from {{ getConfigValue('forms.validation.password.minLength') }}
+          to {{ getConfigValue('forms.validation.password.maxLength') }}
+          characters
+        </p>
+      </ng-container>
+    </div>
+    <div class="form-control-group accept-group" style="margin: 1rem">
+      <!-- <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">Remember me</nb-checkbox> -->
+      <!-- <a class="forgot-password" routerLink="../request-password">Forgot Password?</a> -->
+    </div>
+    <button nbButton
+            fullWidth
+            status="success"
+            [disabled]="submitted || !form.valid"
+            [class.btn-pulse]="submitted">
+      Sign In
+    </button>
+    <div class="form-control-group accept-group" style="margin: 1rem 0 0;">
+      <!-- <p>If there is any issue please call us: 3213000303</p> -->
+      <p>Having trouble logging in?
+        write us at <a href="mailto:info@amalforlife.com" style="color: blue;">info@amalforlife.com</a>
+      </p>
+    </div>
+  </div>
+</form>
+<img src="assets/loginfooter.png" style="padding-left: 20%;">
+
+<!-- <section *ngIf="socialLinks && socialLinks.length > 0" class="links" aria-label="Social sign in">
+  or enter with:
+  <div class="socials">
+    <ng-container *ngFor="let socialLink of socialLinks">
+      <a *ngIf="socialLink.link"
+         [routerLink]="socialLink.link"
+         [attr.target]="socialLink.target"
+         [attr.class]="socialLink.icon"
+         [class.with-icon]="socialLink.icon">{{ socialLink.title }}</a>
+      <a *ngIf="socialLink.url"
+         [attr.href]="socialLink.url"
+         [attr.target]="socialLink.target"
+         [attr.class]="socialLink.icon"
+         [class.with-icon]="socialLink.icon">{{ socialLink.title }}</a>
+    </ng-container>
+  </div>
+</section> -->
+
+<!-- <section class="another-action" aria-label="Register">
+  Don't have an account? <a class="text-link" routerLink="../register">Register</a>
+</section> -->
+
+<!--New Design By Ihsan -->
+<!-- <br>
+<br>
+  <div class="row">
+
+    <div class="col-md-6" style="width:597px; height:711px; padding-left: 0px !important; margin-left: 0px !important;">
+      <nb-card style="width:597px; height:711px;">
+        <nb-card-body>
+
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-md-6" style="width:597px; height:711px;">
+      <img src="assets/loginLogo.png" >
+    </div>
+
+  </div>
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 p-0 mt-0">
+            <div class="information">
+              <nb-card style="width:597px; height:711px;">
+                <nb-card-body>
+
+                </nb-card-body>
+              </nb-card>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 p-0 m-0">
+            <div class="pricing">
+              <img src="assets/loginLogo.png" >
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<div class="row">
+  <div class="col-md-6 pull-left">
+     <div class="col-md-12">
+      <nb-card style="width:597px; height:711px;">
+        <nb-card-body>
+
+        </nb-card-body>
+      </nb-card>
+     </div>
+  </div>
+  <div class="col-md-6 pull-right">
+     <div class="col-md-12">
+      <img src="assets/loginLogo.png" >
+     </div>
+  </div>
+</div> -->
+<!--End-->
+

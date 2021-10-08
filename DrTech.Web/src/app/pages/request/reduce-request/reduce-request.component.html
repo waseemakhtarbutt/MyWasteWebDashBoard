@@ -1,0 +1,133 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group col-md-2 search-text-box">
+      <input type="text" class="form-control rounded-right  search-text-box" placeholder="Search" name="search"
+        (input)="searchGrid($event.target.value)">
+      <span class="icon-inside"><i class="fas fa-search"></i></span>
+    </div>
+    <div class="input-group col-md-2 search-text-box" style="margin-top: 10px;">
+      <select nbInput class="form-control" [(ngModel)]="updatedStatus" (change)="filterChanged($event)">
+        <option *ngFor="let status of statusList" [value]="status.id">{{status.statusName}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="width: 400px; background-color: white !important">
+    <nb-card-header style="background-color: white !important;border-bottom: 0px solid #D1DCE5 !important;">Reduce
+    </nb-card-header>
+    <nb-card-body style="background-color: white">
+      <div class="row ">
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1" style="background-color:white !important"></div>
+        <div class="flex-centered col-xl-10 col-lg-10 col-md-10 col-sm-10"
+          style="background-color: white !important;border:none !important">
+          <div *ngIf="data.fileName !=''" class="text-center">
+            <img style="border: 0px solid #dadfe6 !important"
+              class="rounded img-responsive mx-auto d-block image-class-dailog" alt="..." src="{{data.fileName}}">
+          </div>
+          <div *ngIf="data.fileName ==''" class="text-center">
+            <img style="border: 0px solid #dadfe6 !important"
+              class="rounded img-responsive mx-auto d-block image-class-dailog" src="assets/images/default.png">
+          </div>
+        </div>
+        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1" style="background-color:white !important"></div>
+
+
+      </div>
+
+      <div class="row" style="background-color:white !important">
+        <div class="col-md-1 col-sm-1"></div>
+        <div class="col-md-10 col-sm-10" style="margin-top:10px;">
+
+          <div class="form-group" style="height:45px !important">
+            <select (change)="getSelectedOptionText($event)" [disabled]="!IsDisabled" nbInput class="form-control"
+              [(ngModel)]="data.statusID">
+              <option *ngFor="let status of statusList" [value]="status.id">{{status.statusName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-1"></div>
+      </div>
+      <div class="row" style="background-color:white !important">
+
+        <div class="col-md-1 col-sm-1"></div>
+        <div class="col-md-10 col-sm-10">
+          <div class="form-group">
+            <input [disabled]="!IsGPTextBoxDisabled" maxlength="4" nbInput (keypress)="numberOnly($event)"
+              style="height:45px !important" type="" text class="form-control" fullWidth [(ngModel)]="data.greenPoints"
+              name="points" id="points" placeholder="Green Points">
+          </div>
+        </div>
+        <div class="col-md-1 col-sm-1"></div>
+
+
+      </div>
+    </nb-card-body>
+    <nb-card-footer style="border-top: 0px solid #ebeef2 !important;">
+      <button [disabled]="!IsDisabled" nbButton status="success" class="float-right"
+        (click)="updateStatus(data, ref)">Update Status</button>
+      <button nbButton status="warning" class="mr-3 float-right" (click)="ref.close()"> Cancel</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<!--Above is the edit template for refuse-->
+
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <nb-card-header class="headerText">
+    {{GridHeaderText}}  
+    <button type="button" class="btn btn-success btn-sm"
+    style="font-size: 0.95rem !important; float: right" (click)="exportAsXLSX()" >Downloud Excel File</button>
+    <br>
+  </nb-card-header> 
+  <nb-card-body>
+    <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [skip]="skip" [height]="600" [sortable]="{
+                        allowUnsort: allowUnsort,
+                        mode: multiple ? 'multiple' : 'single'
+                        }" [sort]="sort" (sortChange)="sortChange($event)" [selectable]="true"
+      (pageChange)="pageChange($event)" (selectionChange)="onSelect($event)">
+      <kendo-grid-column width="40">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <img src="assets/Icons/Reduce_msi.png" size="small">
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="name" title="Description" width="*">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <nb-user [picture]="dataItem.fileName" [name]="dataItem.idea" size="small"></nb-user>
+        </ng-template>
+      </kendo-grid-column>
+
+      <!-- <kendo-grid-column field="fullName" title="Name" width="*">  </kendo-grid-column> -->
+      <kendo-grid-column field="statusDescription" title="Status" width="*"></kendo-grid-column>
+
+      <kendo-grid-column field="greenPoints" title="Green Credits" width="*"></kendo-grid-column>
+      <kendo-grid-column field="userName" title="User Name" width="*"></kendo-grid-column>
+      <kendo-grid-column field="updatedDate" title="Date" width="*"></kendo-grid-column>
+      <kendo-grid-column field="location" title="Location" width="*">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span><a
+              href="https://www.google.com/maps/place/{{dataItem.latitude}},{{dataItem.longitude}}/@{{dataItem.latitude}},{{dataItem.longitude}},18z"
+              target="_blank" class="fas fa-map-marker-alt lnk pl30"></a> </span>
+        </ng-template>
+      </kendo-grid-column>
+
+
+      <kendo-grid-column field="Action" width="100%" [sortable]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+
+          <a (click)="onComplaintAction(dialog,$event,dataItem.id)" class="blue size13 " title="Approve"
+            data-toggle="tooltip" data-placement="top"> <button nbButton outline status="success"><i
+                class="nb-edit"></i></button></a>&nbsp;
+          <!-- <button class="btn btn-lg btn-outline-primary" (click)="onComplaintAction(dialog,$event)">Launch</button> -->
+
+          <!-- <a routerLink="/pages/driver/tasklist/{{dataItem.id}}" class="blue size13 " title="Approve" data-toggle="tooltip" data-placement="top"> <button nbButton outline  status="success" ><i  class="nb-list"></i>&nbsp;Detail</button></a>&nbsp;
+                <a class="blue size13 " title="Delete" data-toggle="tooltip" data-placement="top"><button (click)="deleteSchool(dataItem.id)" nbButton outline  status="success">X</button></a>&nbsp; -->
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </nb-card-body>
+</nb-card>
+<!-- </nb-tab>
+  onComplaintAction(dialog,$event)
+ </nb-tabset> -->

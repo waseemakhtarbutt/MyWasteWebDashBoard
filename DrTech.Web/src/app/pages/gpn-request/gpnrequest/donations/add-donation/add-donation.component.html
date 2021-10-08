@@ -1,0 +1,79 @@
+<!-- <div class="heading">
+  <h3>Create an Instance for School </h3>
+</div> -->
+
+<div class="row">
+  <div class="col-md-12">
+
+    <nb-tabset>
+      <nb-tab tabTitle="{{this._viewModel.title}}">
+        <nb-card>
+          <nb-card-body > 
+            <form (ngSubmit)="onSubmit()" #schoolForm="ngForm" class="form">
+                <div class="row">
+                    <div class="form-group col-md-3">
+                      <select class="form-control" [attr.required]="!donationFlag" [(ngModel)]='_viewModel.typeID' name="selectType" (change)="getSelectedOptionText($event)"  (change) = "LoadSubItems(_viewModel.typeID)">
+                        <option [ngValue]="undefined" selected>Choose Item type</option>
+                        <option *ngFor="let item of itemslist" [value]="item.id">{{item.name}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <select class="form-control" [attr.required]="!donationFlag" [(ngModel)]='_viewModel.subTypeID' name="selectsubType" >
+                          <option [ngValue]="undefined" selected>Set Size</option>
+                          <option *ngFor="let Subitem of subitemslist" [value]="Subitem.id">{{Subitem.name}}</option>
+                        </select>
+                      </div>
+                  </div>
+              <div class="row" *ngIf="!show" >        
+                <div class="form-group col-md-3">
+                  <input type="text" [disabled]="!donationFlag"  [attr.required]="donationFlag"
+                    [ngClass]=" description.valid || description.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Item Name" [(ngModel)]="_viewModel.typeDescription" name="typeDescription" required
+                    #typeDescription="ngModel">
+                  <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+                      <!-- description is required -->
+                  </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" [disabled]="!donationFlag"
+                      [ngClass]=" description.valid || description.pristine ? 'form-control' :  'form-control form-control-danger'"
+                      placeholder="sub type" [(ngModel)]="_viewModel.subTypeDescription" name="subTypeDescription" required
+                      #subTypeDescription="ngModel">
+                    <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+                        <!-- description is required -->
+                    </div>
+                  </div>
+                
+                
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <input type="text"
+                    [ngClass]=" description.valid || description.pristine ? 'form-control' :  'form-control form-control-danger'"
+                    placeholder="Item Quantity" [(ngModel)]="_viewModel.qty" name="qty" required
+                    #description="ngModel">
+                  <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+                      Quantity is required
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="form-group col-md-3">
+                      <a class="bck" [routerLink]="['/pages/gpn/gpnrequest/donation']">Back to Listing</a>
+                  </div>
+                <div class="form-group col-md-3">
+                  <button type="submit" class="btn btn-success btn-sm" style="font-size: 0.95rem !important; margin-left: 85px;"
+                    [disabled]="!schoolForm.form.valid">Create Call for Donation</button>
+                </div>
+              </div>
+            </form>
+          </nb-card-body>
+
+        </nb-card>
+      </nb-tab>
+    </nb-tabset>
+   
+  </div>
+
+  
+</div>

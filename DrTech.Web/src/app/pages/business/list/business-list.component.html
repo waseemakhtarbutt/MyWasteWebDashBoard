@@ -1,0 +1,32 @@
+<nb-card>
+  <nb-card-header>
+    Business List
+  </nb-card-header>
+
+  <nb-card-body>
+    <kendo-grid [data]="listViewModel"
+                [pageSize]="10"
+                [pageable]="true"
+                [sortable]="true"
+                [scrollable]="'virtual'"
+                [rowHeight]="30"
+                >
+
+      <kendo-grid-column field="name" title="Name" width="*"></kendo-grid-column>
+      <kendo-grid-column field="address" title="Address" width="*"></kendo-grid-column>
+      <kendo-grid-column field="email" title="Email" width="*"></kendo-grid-column>
+      <kendo-grid-column field="status" title="Status" width="*"></kendo-grid-column>
+      <kendo-grid-column field="Location" title="Location" width="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span><a href="https://www.google.com/maps/place/{{dataItem.latitude}},{{dataItem.longitude}}/@{{dataItem.latitude}},{{dataItem.longitude}},18z" target="_blank"><img style="height:50px;" src='assets/images/map/user.png' /></a> </span>
+        </ng-template>
+      </kendo-grid-column>
+
+      <kendo-grid-column field="Action" width="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a routerLink="/pages/business/detail/{{dataItem.businessId}}" class="blue size13" title="View Detail" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>&nbsp;
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </nb-card-body>
+</nb-card>

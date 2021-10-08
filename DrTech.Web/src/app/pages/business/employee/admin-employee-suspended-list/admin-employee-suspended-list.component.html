@@ -1,0 +1,83 @@
+
+<style>
+    #a {
+    quotes: """ """;
+  }
+  </style>
+
+
+<nb-card>
+    <nb-card-header style="border:none !important">
+        Employees
+    </nb-card-header>
+    <nb-card-body>
+         <div class="row">
+            <div class ="col-md-12">
+               <div class="input-group col-md-3 search-text-box">
+                   <input type="text" class="form-control rounded-right  search-text-box"  placeholder="Search"  name="search" (input)="searchGrid($event.target.value)">
+                     <span class="icon-inside"><i class="fas fa-search"></i></span>
+                 </div>
+             </div>
+
+          </div>
+      <kendo-grid [data]="gridView"
+      [pageSize]="pageSize"
+      [pageable]="true"
+      [skip]="skip"
+      [sortable]="{
+        allowUnsort: allowUnsort,
+        mode: multiple ? 'multiple' : 'single'
+        }"
+      [sort]="sort"
+      (sortChange)="sortChange($event)"
+      [selectable]="true"
+      [filter]="filter"
+
+      (filterChange)="filterChange($event)"
+      (pageChange)="pageChange($event)">
+          <kendo-grid-column field="name" title="Name" width="*">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <nb-user  [picture]="dataItem.filename" [name]="dataItem.name" size="small"></nb-user>
+              </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="businessname" title="Business" ></kendo-grid-column>
+          <kendo-grid-column field="department" title="Department" ></kendo-grid-column>
+          <kendo-grid-column field="designation" title="Designation" ></kendo-grid-column>
+          <kendo-grid-column field="role" title="Role" ></kendo-grid-column>
+          <kendo-grid-column field="suboffice" title="Sub Office" ></kendo-grid-column>
+          <kendo-grid-column field="contactno" title="Contact Number" filterable="false"></kendo-grid-column>
+          <kendo-grid-column field="totalGP" title="Green Credits" width="*" filterable="false">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <div class="gp">{{ dataItem.totalGP }}</div>
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="Action" width="*" [sortable]="false" filterable="false">
+            <ng-template kendoGridCellTemplate let-dataItem>
+              <a class="blue size13 " title="Activate" data-toggle="tooltip" data-placement="top"><button (click)="onComplaintAction(dialog,$event, dataItem.id)" nbButton outline  status="success"><span class="fa fa-check"></span></button></a>&nbsp;
+            </ng-template>
+          </kendo-grid-column>
+          </kendo-grid>
+    </nb-card-body>
+  </nb-card>
+
+  <!-- Dialog  -->
+
+  <ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card class="dlg">
+      <div class="row " class="dlgrow">
+        <div class="col-md-12 col-sm-12">
+          <div class="form-group">
+            <label class="dlgmsgclr"> Do you want to activate employee <q id="a">{{employeeName}}</q>? </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12 col-sm-12" style="margin-left: 7rem;">
+          <button nbButton status="success" class="dlgyes" (click)="ActivateEmployee(ref)">Yes</button>
+          <button nbButton status="warning" class="dlgno" (click)="ref.close()"> No </button>
+        </div>
+      </div>
+      <div class=" form-group col-md-3 col-sm-3">
+      </div>
+    </nb-card>
+  </ng-template>

@@ -1,0 +1,211 @@
+
+
+/* Grid css */
+:host
+  /deep/
+
+
+  .k-grid tbody tr:hover {
+    background-color: #ffff;
+    animation-duration: 0.25s;
+    /* box-shadow: inset 0px 7px 0px 0px #ebeff5, inset 0 10px 10px rgb(235, 239, 245); */
+    /* box-shadow: inset 10px 10px 5px #ebeff5 !important; */
+    -moz-box-shadow:    inset  0 -10px 15px -10px #4b4b4b;
+    -webkit-box-shadow: inset  0 -10px 15px -10px #4b4b4b;
+    box-shadow:        inset  0 -10px 15px -10px #4b4b4b;
+}
+
+:host
+/deep/
+.k-grid-content {
+  overflow: auto;
+}
+
+:host
+/deep/
+.k-grid th {
+  padding: 8px 12px;
+  border-style: none !important;
+  border-color: inherit;
+  outline: 0;
+  font-weight: inherit;
+  text-align: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:host
+/deep/
+.k-grid td {
+  padding: 8px 12px;
+  border-style: none;
+  border-color: inherit;
+  outline: 0;
+  font-weight: inherit;
+  text-align: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-bottom:4px solid #EBEFF5;
+}
+
+:host
+/deep/
+.k-grid tr  {
+  padding: 8px 12px;
+  border-style: solid !important;
+  border-color: blue;
+  outline: 0;
+  font-weight: inherit;
+  text-align: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* :host
+/deep/
+.k-grid tr td {
+  border-bottom: 1px solid lightgray !important;
+} */
+
+:host
+/deep/
+.k-grid thead {
+  background-color: #ffff !important;
+  padding: 0px 0px 0px 0px !important;
+}
+
+:host
+/deep/
+div.k-grid-header.ng-star-inserted {
+  padding: 0px 0px 0px 0px !important;
+  border:none;
+}
+
+
+
+
+:host
+/deep/
+.k-grid tr.k-alt {
+  background-color: rgb(255, 255, 255);
+}
+
+:host
+/deep/
+.k-grid tr.k-state-selected>td {
+  color: #656565;
+  background-color: rgb(246, 246, 246);
+}
+
+:host
+  /deep/
+kendo-grid a.k-link {
+    font-weight: normal !important;
+    color: #656565 !important;
+}
+
+:host
+  /deep/
+.k-pager-numbers .k-state-selected {
+    color: #fff;
+    background-color: #8cc63e;
+    text-align: right;
+}
+
+:host
+  /deep/
+.k-grid-header .k-header {
+  font-weight: normal !important;
+  font-size: 12px;
+  background-color: #EBEFF5 !important
+}
+
+:host
+  /deep/
+.k-grid tr td {
+  font-size: 13px;
+  font-weight: normal;
+  color:#000000;
+}
+
+:host
+  /deep/
+.k-pager-numbers .k-state-selected {
+    color: #fff;
+    background-color: #8cc63e;
+}
+
+:host
+  /deep/
+.k-grid-header-wrap {
+  border: none;
+}
+
+:host
+  /deep/
+.k-pager-wrap .k-pager-info {
+  -ms-flex: 1;
+  /* flex: 1; */
+  /* text-align: center; */
+  -ms-flex-order: 9;
+  order: 9;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  width: 110px !important;
+  display: none;
+}
+
+:host
+  /deep/
+.k-grid-pager {
+  padding: 8px;
+  border-width: 1px 0 0;
+  border-color: inherit;
+  font-size: inherit;
+  justify-content: center;
+  background-color: #ebeff5
+}
+
+:host
+  /deep/
+.k-pager-numbers .k-link {
+  /* color: #ff6358; */
+  background: #ffff;
+}
+
+:host
+  /deep/
+.k-pager-numbers .k-link:hover {
+  color: #ffffff !important;
+  background-color: #8cc63e;
+}
+:host
+  /deep/
+.k-pager-numbers .k-state-selected {
+  color: #fff !important;
+  background-color: #8cc63e !important;
+}
+
+:host
+  /deep/
+.k-pager-nav:hover {
+  color: #ffffff !important;
+  background-color: #8cc63e;
+
+}
+
+:host
+  /deep/
+.k-pager-nav {
+  /* color: #ffffff !important; */
+  background-color: #ffff;
+  margin-left: 5px;
+
+}
+
+:host
+  /deep/
+.k-pager-numbers .k-link {
+  background: #ffff;
+  margin-right: 5px;
+}

@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group col-md-3 search-text-box">
+      <input type="text" class="form-control rounded-right  search-text-box" placeholder="Search" name="search"
+        (input)="searchGrid($event.target.value)">
+      <span class="icon-inside"><i class="fas fa-search"></i></span>
+    </div>
+  </div>
+</div>
+
+
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <nb-card-body>
+    <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [skip]="skip" [height]="450"
+      (sortChange)="sortChange($event)" [selectable]="true" (pageChange)="pageChange($event)"
+      (selectionChange)="onSelect($event)">
+      <!-- <kendo-grid-column field="fullName" title="Name" width="*">  </kendo-grid-column> -->
+      <kendo-grid-column field="fullName" title="Full Name" width="*"></kendo-grid-column>
+      <kendo-grid-column field="email" title="Email" width="*"></kendo-grid-column>
+      <kendo-grid-column field="phone" title="Phone" width="*"></kendo-grid-column>
+      <kendo-grid-column field="createdDate" title="Reg.Date" width="120">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          {{dataItem.createdDate | date: 'MMM dd, yyyy'}}
+        </ng-template>
+      </kendo-grid-column>
+      <kendo-grid-column field="location" title="Location" width="*">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span><a
+              href="https://www.google.com/maps/place/{{dataItem.latitude}},{{dataItem.longitude}}/@{{dataItem.latitude}},{{dataItem.longitude}},18z"
+              target="_blank" class="fas fa-map-marker-alt lnk pl30"></a> </span>
+        </ng-template>
+      </kendo-grid-column>
+
+    </kendo-grid>
+  </nb-card-body>
+</nb-card>

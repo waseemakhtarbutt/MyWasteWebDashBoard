@@ -1,0 +1,144 @@
+
+// .form-control {
+//     min-width: 154px !important;
+// }
+
+
+
+// @media only screen and (min-width: 320px) and (max-width: 479px){
+//   .cardSize{
+//      max-width: 350px;
+//   }
+//  }
+
+// @media only screen and (min-width: 480px) and (max-width: 767px){
+//     .cardSize{
+//         max-width: 500px;
+//      }
+//  }
+
+// @media only screen and (min-width: 768px) and (max-width: 991px){
+//     .cardSize{
+//         max-width: 3800px;
+//      }
+// }
+
+// @media only screen and (min-width: 992px){
+
+//     .cardSize{
+//         max-width: 900px;
+//      }
+//  }
+
+
+ /////////////////////////////
+
+
+//  /* Smartphones (portrait and landscape) ----------- */
+// @media only screen
+// and (min-width : 320px)
+// and (max-width : 480px) {
+//     .cardSize{
+//         max-width: 350px;
+//      }
+// }
+
+// /* Smartphones (landscape) ----------- */
+// @media only screen
+// and (min-width : 321px) {
+//     .cardSize{
+//         max-width: 350px;
+//      }
+// }
+
+// /* Smartphones (portrait) ----------- */
+// @media only screen
+// and (max-width : 320px) {
+//     .cardSize{
+//         max-width: 350px;
+//      }
+// }
+
+// /* iPads (portrait and landscape) ----------- */
+// @media only screen
+// and (min-width : 768px)
+// and (max-width : 1024px) {
+//     .cardSize{
+//         max-width: 800px;
+//      }
+// }
+
+// /* iPads (landscape) ----------- */
+// @media only screen
+// and (min-width : 768px)
+// and (max-width : 1024px)
+// and (orientation : landscape) {
+//     .cardSize{
+//         max-width: 800px;
+//      }
+// }
+
+// /* iPads (portrait) ----------- */
+// @media only screen
+// and (min-width : 768px)
+// and (max-width : 1024px)
+// and (orientation : portrait) {
+//     .cardSize{
+//         max-width: 800px;
+//      }
+// }
+
+// /* Desktops and laptops ----------- */
+// @media only screen
+// and (min-width : 1224px) {
+//     .cardSize{
+//         max-width: 1000px;
+//      }
+
+// }
+
+// @media only screen
+// and (width : 1680px) {
+//      .dropdownPadding{
+//         padding: 5px !important;
+//       }
+//       .btnMargin{
+//         margin-top: 7px;
+//       }
+
+// }
+
+// @media only screen
+// and (width : 1280px) {
+//     .dropdownPadding{
+//        padding: 1px !important;
+//       // margin: 1px !important;
+//      }
+//      .btnMargin{
+//         margin-top: 4px;
+//       }
+// }
+
+// /* Large screens ----------- */
+// @media only screen
+// and (min-width : 1824px) {
+//     .cardSize{
+//         max-width: 1000px;
+//      }
+// }
+
+// /* iPhone 4 ----------- */
+// @media
+// only screen and (-webkit-min-device-pixel-ratio : 1.5),
+// only screen and (min-device-pixel-ratio : 1.5) {
+// /* Styles */
+// }
+
+.dropdownFontSize{
+    font-size: 12px !important;
+   }
+
+   .headerText{
+    color: #00506a !important;
+    font-size: 14px !important;
+  }

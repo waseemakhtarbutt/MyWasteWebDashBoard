@@ -1,0 +1,171 @@
+
+@import "../../../../../style.css";
+@import "../../../../@theme/styles/themes";
+
+:host
+  /deep/
+  button.btn-success.btn-outline {
+  color: #656565;
+  font-weight: 500;
+//   font-family: Roboto;
+  cursor: default;
+   padding: 2px 5px 2px 5px;
+  font-size: 10px;
+  line-height: 1.25;
+  border-radius: 50rem;
+  background-color: #ffffff;
+ // border: 2px solid #8dc63f;
+  border: 1px solid #656565;
+  text-transform: capitalize !important;
+
+};
+
+
+:host
+  /deep/
+button.btn-outline.btn-success.hover {
+    color: #ffffff !important;
+    background-color: #9cce59;
+    border-color: 1px solid #b0b2b7 !important;
+}
+
+:host
+  /deep/
+.btn-outline.btn-success {
+  border: 1px solid #6565658f !important;
+  color: #656565d6;
+  background-color: transparent;
+}
+
+:host
+  /deep/
+kendo-grid a.k-link {
+    font-weight: bold;
+    color: #656565 !important;
+}
+
+:host
+  /deep/
+.k-pager-numbers .k-state-selected {
+    color: #fff;
+    background-color: #8cc63e;
+}
+
+:host
+  /deep/
+ ::-webkit-scrollbar-track {
+  background: #ffffff !important;
+}
+:host
+  /deep/
+.no-gutter > [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+}
+
+:host
+  /deep/
+ nb-card-header {
+  background-color:white !important;
+  color:black !important;
+}
+
+@include nb-install-component() {
+  ngx-daily-weight-graph,
+  ngx-daily-green-credits-graph,
+  ngx-recycle-bar-chart,
+  ngx-goigraph-year-wise,
+  ngx-circular-chart,
+  ngx-recyle-detail-chart,
+  ngx-goigraph-month-wise{
+    display: block;
+    width: 100%;
+    height: nb-theme(card-height-medium);
+
+    /deep/ {
+      .pie-label {
+        fill: nb-theme(color-fg-heading);
+      }
+
+      .grid-line-path {
+        stroke: nb-theme(separator);
+      }
+
+      text {
+        fill: nb-theme(color-fg-heading);
+      }
+
+      .chart-legend {
+        .legend-labels {
+          background: nb-theme(color-bg);
+        }
+        .legend-label {
+          color: nb-theme(color-fg-heading);
+          .active .legend-label-text {
+            color: nb-theme(color-fg-heading);
+          }
+        }
+      }
+    }
+  }
+}
+
+.advanced-pie-legend-wrapper
+{
+    height: 250px !important;
+}
+
+
+
+:host
+  /deep/
+  .nb-theme-default [_nghost-c11] gx-goigraph-month-wise[_ngcontent-c11], nb-theme-default [_nghost-c11] ngx-recycle-bar-chart[_ngcontent-c11],
+  .nb-theme-default [_nghost-c11] ngx-goigraph-year-wise[_ngcontent-c11],nb-theme-default [_nghost-c11] ngx-recyle-detail-chart[_ngcontent-c11],
+  nb-theme-default [_nghost-c11] ngx-circular-chart[_ngcontent-c11],
+  nb-theme-default [_nghost-c11] ngx-daily-weight-graph[_ngcontent-c11]
+  nb-theme-default [_nghost-c11] ngx-daily-green-credits-graph[_ngcontent-c11]
+{
+  display: block;
+  width: 100%;
+
+}
+
+.headerText{
+  color: #00506a !important;
+  font-size: 12px !important;
+}
+
+:host
+  /deep/
+.k-grid-header .k-header {
+  font-weight: normal !important;
+  font-size: 12px;
+  background-color: #005169 !important;
+  color: white !important;
+}
+
+// .label {
+//   display: block;
+//   font-weight: bold;
+//   text-indent: 8px;
+//   color: #656565;
+// }
+
+.ptr{
+  background:none;
+  border:none;
+  color:#FFF;
+  font-family:Verdana, Geneva, sans-serif;
+  cursor:pointer;
+}
+
+button:hover {
+  cursor:pointer !important;
+}
+
+:host
+/deep/
+.k-grid tbody tr:hover {
+
+  cursor:pointer !important;
+}

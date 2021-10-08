@@ -1,0 +1,26 @@
+<nb-card>
+  <nb-card-header>
+    Employee List
+  </nb-card-header>
+
+  <nb-card-body>
+    <kendo-grid [data]="listViewModel"
+                [pageSize]="10"
+                [pageable]="true"
+                [sortable]="true"
+                [scrollable]="'virtual'"
+                [rowHeight]="30"
+               >
+
+      <kendo-grid-column field="name" title="Name" width="*"></kendo-grid-column>
+      <kendo-grid-column field="ngoName" title="NGO" width="*"></kendo-grid-column>
+      <kendo-grid-column field="verified" title="Verified" width="*"></kendo-grid-column>
+
+      <kendo-grid-column field="Action" width="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a routerLink="/pages/ngo/member/detail/{{dataItem.id}}" class="blue size13" title="View Detail" data-toggle="tooltip" data-placement="top"><i class="fa fa-eye"></i></a>&nbsp;
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </nb-card-body>
+</nb-card>

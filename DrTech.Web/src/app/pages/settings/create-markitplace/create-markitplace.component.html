@@ -1,0 +1,110 @@
+<div class="row" >
+  <div class="col-md-12" style="display: -webkit-box;">
+  <div class="col-md-4">
+    <nb-card style="margin-top:10px;">
+      <nb-card-header>{{headerInfo}}</nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="onSubmit()" #AdsForm="ngForm">
+               
+
+                <div class="form-group ">
+                  <input type="text"
+                    class="form-control"
+                    [ngClass]="form-control"
+                    placeholder="Price*" [(ngModel)]="_viewModel.price" name="Price" 
+                  >
+  
+                </div>
+             
+                <div class="form-group ">
+                  <input type="text"
+                    class="form-control"
+                    [ngClass]="form-control"
+                    placeholder="Item Name*" [(ngModel)]="_viewModel.binName" name="BinName" 
+                  >
+  
+                </div>
+                <div class="form-group ">
+                  <input type="text"
+                    class="form-control"
+                    [ngClass]="form-control"
+                    placeholder="Capacity*" [(ngModel)]="_viewModel.capacity" name="Capacity" 
+                  >
+  
+                </div>
+                <div class="form-group ">
+                  <input type="text"
+                    class="form-control"
+                    [ngClass]="form-control"
+                    placeholder="Description*" [(ngModel)]="_viewModel.desction" name="description" 
+                  >
+  
+                </div>
+    <div style="min-height: 120px;">
+        <div class="form-group ">
+          <nb-user [picture]="_viewModel.fileName" [name]="_viewModel.fullName" class="companyLogo" required></nb-user>
+          <input type="file" #fileUpload placeholder="Choose Image" (click)="fileUpload.value = null"
+            (change)="uploadImage($event)" style="display:none;" required>
+            <a href="javascript:void(0)" style="color:#8cc63f" (click)="fileUpload.click()"
+            class="nb-plus-circled" required>{{uploadTxt}} </a>
+          <div [hidden]="picSize" class="alert alert-danger">Size must be less then 2MB</div>
+          <div [hidden]="picType" class="alert alert-danger"> Please select image file</div>
+          <button type="submit" class="btn btn-success btn-md" [disabled]="!AdsForm.form.valid" style="float: right;">Save</button>
+          <button type="button" (click)="onUpdate()" class="btn btn-success btn-md" [disabled]="!AdsForm.form.valid" style="float: left;">Update</button>
+
+        </div>
+      </div>
+              
+              
+              <!-- <button type="button" class="btn btn-warning btn-md" style="margin-left: 10px;"
+                (click)="redirectNew()">Cancel</button> -->
+
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-8" style="margin-top:32px;">
+  <nb-card [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+    <nb-card-body>
+  
+      <!-- <input class="k-textbox" (input)="searchGrid($event.target.value)" /> -->
+      <kendo-grid [data]="gridView" [pageSize]="pageSize" [pageable]="true" [skip]="skip" [selectable]="true"
+        [filterable]="false" [sortable]="{
+                      allowUnsort: allowUnsort,
+                      mode: multiple ? 'multiple' : 'single'
+                      }" [sort]="sort" (sortChange)="sortChange($event)" (pageChange)="pageChange($event)">
+        <kendo-grid-column field="binName" title="BinName" width="*"></kendo-grid-column>
+        <kendo-grid-column field="price" title="Price" width="*"></kendo-grid-column>
+        <kendo-grid-column field="description" title="Discription" width="*"></kendo-grid-column>
+        <kendo-grid-column field="fileName" title="Banner Name" width="*">
+          <ng-template kendoGridCellTemplate let-dataItem >
+              <a href="{{dataItem.fileName}}" target="_blank">Picture</a>
+           <!-- // <a class="lnk" target="_blank" [routerLink]="'',dataItem.fileName" >qw</a> -->
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Action" width="100%"  [sortable]="false" filterable="false">
+          <ng-template kendoGridCellTemplate let-dataItem>
+
+            <a class="blue size13 " (click)="editValue(dataItem.id)"
+              title="Edit" data-toggle="tooltip" data-placement="top"> <button nbButton outline
+                status="success"><i class="nb-edit"></i>&nbsp;Edit</button></a>&nbsp;
+
+                <!-- <a class="blue size13 " title="Suspend" data-toggle="tooltip" data-placement="top"><button (click)="onComplaintAction(dialog,$event, dataItem.id)" nbButton outline  status="success">x</button></a>&nbsp; -->
+
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="Action" width="100%"  [sortable]="false" filterable="false">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <a class="blue size13 " (click)="InactiveMarketPlace(dataItem.id)"
+              title="Edit" data-toggle="tooltip" data-placement="top"> <button nbButton outline
+                status="success"><i class=""></i>&nbsp;Delete</button></a>&nbsp;
+                <!-- <a class="blue size13 " title="Suspend" data-toggle="tooltip" data-placement="top"><button (click)="onComplaintAction(dialog,$event, dataItem.id)" nbButton outline  status="success">x</button></a>&nbsp; -->
+          </ng-template>
+        </kendo-grid-column>
+
+      </kendo-grid>
+    </nb-card-body>
+  </nb-card>
+</div>
+</div>
+</div>

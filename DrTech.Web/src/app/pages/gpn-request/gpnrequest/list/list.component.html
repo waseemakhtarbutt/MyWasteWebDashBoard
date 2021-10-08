@@ -1,0 +1,19 @@
+
+   
+
+<nb-tabset>
+    <nb-tab  tabTitle="School"  badgeText="{{schoolBadge}}"
+    badgeStatus="success">
+    <ngx-school (messageEvent)="schoolBadgeCount($event)"> </ngx-school>
+  </nb-tab>
+  <nb-tab tabTitle="Business" badgeText="{{businessBadge}}"
+  badgeStatus="success">
+  <ngx-business (messageEvent)="businessBadgeCount($event)"> </ngx-business>
+  </nb-tab>
+  <nb-tab tabTitle="Organization"
+  badgeText="{{organizationBadge}}"
+  badgeStatus="success">
+  <ngx-organization (messageEvent)="organizationBadgeCount($event)"> </ngx-organization>
+  </nb-tab>
+ </nb-tabset>
+

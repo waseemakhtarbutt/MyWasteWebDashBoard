@@ -1,0 +1,48 @@
+
+@import "../../../../../../style.css";
+
+:host 
+/deep/
+.user-picture {
+    height: 10rem !important;
+    width: 10rem !important;
+    background: #ffffff;
+    border: solid 2px #bcc3cc;
+    
+}
+
+:host 
+/deep/
+ .user-name {
+    display: none !important;
+}
+.heading{
+    margin-left: 30px;
+}
+
+.upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+}
+
+.image-location{
+    
+    margin-left: 600px;
+    margin-top: 10px;
+}
+
+:host 
+/deep/
+.user-picture {
+    height: 7rem !important;
+    width: 7rem !important;
+}
+
+:host 
+/deep/
+nb-card-header {
+   
+    border-bottom: none !important; 
+}

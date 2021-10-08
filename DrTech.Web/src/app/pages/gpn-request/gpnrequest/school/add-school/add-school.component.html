@@ -1,0 +1,179 @@
+<div class="row" [nbSpinner]="loading" nbSpinnerStatus="success" nbSpinnerSize="xlarge">
+  <div class="col-md-12">
+
+    <nb-card style="margin-top:10px;">
+      <nb-card-header>{{headerInfo}}</nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="onSubmit()" #schoolForm="ngForm">
+
+          <div class="row">
+
+            <div class="form-group col-md-3">
+              <input type="text" [disabled]="!!schoolFlag"
+                [ngClass]=" name.valid || name.pristine ? 'form-control' :  'form-control form-control-danger'"
+                placeholder="School Name" [(ngModel)]="_viewModel.name" name="name" required #name="ngModel">
+              <div [hidden]="name.valid || name.pristine || _viewModel.name" class="alert alert-danger"> Name is
+                required </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <select class="form-control" [(ngModel)]='_viewModel.parentID' name="selectSchool"
+                (ngModelChange)="onChangeObj($event)">
+                <!-- <option [value]="-1">Select School</option> -->
+                <!-- <option [ngValue]="undefined" selected>Select School</option> -->
+                <option *ngFor="let school of schoolList" [value]="school.id">{{school.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-3">
+              <nb-user [picture]="_viewModel.fileName" [name]="_viewModel.fullName" class=""></nb-user>
+              <input type="file" #fileUpload placeholder="Choose Image" (click)="fileUpload.value = null"
+                (change)="uploadImage($event)" style="display:none;">
+              <a href="javascript:void(0)" style="color:#8cc63f" (click)="fileUpload.click()" class="nb-plus-circled">
+                {{uploadTxt}}</a>
+              <div [hidden]="picSize" class="alert alert-danger">Size must be less then 2MB </div>
+              <div [hidden]="picType" class="alert alert-danger"> Please select image file</div>
+            </div>
+          </div>
+
+          <div [ngClass]="rowClass ? ' row row-location' : ' row row-locationMessage'">
+
+            <div class="form-group col-md-3">
+              <input type="text"
+                [ngClass]=" branchName.valid || branchName.pristine ? 'form-control' :  'form-control form-control-danger'"
+                placeholder="Branch Name" [(ngModel)]="_viewModel.branchName" name="branchName" required
+                #branchName="ngModel">
+              <div [hidden]="branchName.valid || branchName.pristine" class="alert alert-danger"> Branch name is
+                required </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-md-3">
+              <input type="text" id="text"
+                [ngClass]=" address.valid || address.pristine ? 'form-control' :  'form-control form-control-danger'"
+                placeholder="Address" [(ngModel)]="_viewModel.address" name="address" required #address="ngModel">
+              <div [hidden]="address.valid || address.pristine" class="alert alert-danger"> Address is required </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <select
+                [ngClass]=" cityID.valid || cityID.pristine ? 'form-control'  :  'form-control form-control-danger'"
+                [(ngModel)]='_viewModel.cityID' name="cityID" required #cityID="ngModel">
+                <!-- <option [value]="-1">Select City</option> -->
+                <option [ngValue]="undefined" selected>Select City</option>
+                <option *ngFor="let city of cityList" [value]="city.id">{{city.cityName}}</option>
+              </select>
+              <div [hidden]="cityID.valid || cityID.pristine" class="alert alert-danger"> Please select city </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-md-3">
+              <input type="text"
+                [ngClass]=" contactPerson.valid || contactPerson.pristine ? 'form-control' :  'form-control form-control-danger'"
+                placeholder="Contact Person" [(ngModel)]="_viewModel.contactPerson" name="contactPerson" required
+                #contactPerson="ngModel">
+              <div [hidden]="contactPerson.valid || contactPerson.pristine" class="alert alert-danger"> Contact person
+                is required</div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <input type="text" maxlength="11" numbersOnly
+                [ngClass]=" phone.valid || phone.pristine ? 'form-control' :  'form-control form-control-danger'"
+                placeholder="Phone" [(ngModel)]="_viewModel.phone" name="phone" required #phone="ngModel">
+              <div [hidden]="phone.valid || phone.pristine" class="alert alert-danger"> Phone is required </div>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-md-3">
+              <input type="text" class="form-control" placeholder="Reg# Format [C]-[S]"
+                [(ngModel)]="_viewModel.regFormat" name="regFormat">
+              <div [hidden]="isregFormat" class="alert alert-danger"> Please Enter Correct Format [C]-[S]</div>
+            </div>
+            <div class="form-group col-md-3">
+              <input type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                [ngClass]=" email.valid || email.pristine ? 'form-control' :  'form-control form-control-danger'"
+                placeholder="Email" [(ngModel)]="_viewModel.email" name="email" required #email="ngModel">
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+
+                <div *ngIf="email.errors.required">
+                  Email is required.
+                </div>
+                <div *ngIf="email.errors?.pattern">
+                  Invalid email format
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-3">
+              <input type="text" class="form-control" placeholder="Required Documents" [(ngModel)]="_viewModel.document"
+                name="document" [disabled]="true">
+              <div [hidden]="downloadAllow"> <a [href]="_viewModel.documentFileName" download="test"
+                  style="color:#8cc63f;">Download Documents</a> </div>
+
+
+            </div>
+            <div class="form-group col-md-3" style="margin-top: 1rem;">
+              <input type="file" #file placeholder="Choose file" (click)="fileUpload.value = null"
+                (change)="uploadFile(file.files)" style="display:none;">
+              <a href="javascript:void(0)" style="color:#8cc63f;" (click)="file.click()" class="nb-plus-circled"> Upload
+                Documents </a>
+              <div [hidden]="fileSize" class="alert alert-danger">Size must be less then 10MB</div>
+              <div [hidden]="fileType" class="alert alert-danger"> Please select zip file</div>
+              <!-- <button type="button" class="btn btn-primary btn-xs" (click)="file.click()">Browse</button> -->
+
+            </div>
+          </div>
+
+          <div class="row" [ngClass]="rowButtonClass ? ' row' : 'row-locationFileMessage'">
+            <div class="form-group col-md-6">
+
+              <button type="submit" class="btn btn-success btn-md" [disabled]="!schoolForm.form.valid">Submit</button>
+              <button type="button" class="btn btn-warning btn-md" style="margin-left: 10px;"
+                (click)="onComplaintAction(dialog,$event)">Cancel</button>
+            </div>
+          </div>
+
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+</div>
+
+<!-- Dialog -->
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card style="width: 400px; height:200px;">
+    <div class="row " style=" margin-top: 4rem;  text-align: center;">
+      <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+          <label style="color:black"> Do you really want to discard the changes? </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12 col-sm-12" style="margin-left: 7rem;">
+        <button nbButton status="success" style="width: 7rem;" (click)="backToList(ref)">Yes</button>
+        <button nbButton status="warning" style="margin-left: 10px;  width: 7rem;" (click)="ref.close()"> No </button>
+      </div>
+    </div>
+    <div class=" form-group col-md-3 col-sm-3">
+
+
+    </div>
+
+
+
+  </nb-card>
+</ng-template>
